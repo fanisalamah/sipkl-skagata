@@ -1,0 +1,30 @@
+.auth-title {
+    color:#39b076;
+    font-size: 10px;
+}
+
+.auth-title h1 {
+    color:#39b076;
+    font-size: 5px;
+}
+
+.btn-primary {
+    background-color:#39b076;
+    border-color:#39b076;
+
+}
+
+.btn-primary:hover {
+    background-color: #2e9d67;
+    border-color:#2e9d67;
+}
+
+
+.font-bold {
+    color:#39b076;
+}
+
+.form-check-input:checked{
+    background-color:#39b076;
+    border-color:#39b076;
+}
