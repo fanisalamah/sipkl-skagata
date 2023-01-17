@@ -20,7 +20,7 @@ class InternshipController extends Controller
 
     public function submissionAccept($id) {
         $data = InternshipSubmission::find($id);
-        $data->status = '2';
+        $data->status = '3';
         $data->save();
         // $data->advisors()->attach($request->advisor_id);
      
