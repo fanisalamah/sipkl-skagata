@@ -135,4 +135,11 @@
       0 => 'TimWassenburg\\PivotTableGenerator\\PivotTableGeneratorServiceProvider',
     ),
   ),
+  'tucker-eric/eloquentfilter' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'EloquentFilter\\ServiceProvider',
+    ),
+  ),
 );

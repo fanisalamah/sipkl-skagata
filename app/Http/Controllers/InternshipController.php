@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Advisor;
+use App\Models\Departement;
 use App\Models\Industry;
 use App\Models\InternshipSubmission;
 use App\Models\Student;
@@ -11,20 +12,21 @@ use Illuminate\Http\Request;
 
 class InternshipController extends Controller
 {
-    public function internshipSubmission () {
+    public function internshipSubmission (Request $request) {
         $data['allDataSub'] = InternshipSubmission::with('students', 'advisors', 'industries')->where('status', '1')->get();
         $data['advisors'] = Advisor::all();
+        $data['departements'] = Departement::all();
+        $data['students'] = Student::with('departements');
         return view('internship.internship-submission', $data);
         
     }
 
     public function submissionAccept($id) {
         $data = InternshipSubmission::find($id);
-        $data->status = '3';
+        $data->status = '2';
         $data->save();
         // $data->advisors()->attach($request->advisor_id);
-     
-
+    
         // $notification = array(
         //     'message' => 'Advisor berhasil ditetapkan',
         //     'alert-type' => 'success'
@@ -34,19 +36,19 @@ class InternshipController extends Controller
 
     }
 
-    public function submissionReject(Request $request, $id) {
+    public function submissionReject($id) {
     
-        // $data = InternshipSubmission::find($id);
-        // $data->text_rejection = $request->text_rejection;
-        // $data->save();
-
+        $data = InternshipSubmission::find($id);
+        $data->status = '3';
+        $data->save();
+        // $data->advisors()->attach($request->advisor_id);
+    
         // $notification = array(
-        //     'message' => 'Catatan berhasil ditambahkan',
+        //     'message' => 'Advisor berhasil ditetapkan',
         //     'alert-type' => 'success'
         // );
         
-        // return redirect()->route('internship.submission')->with($notification);
-
+        return redirect()->route('internship.submission');
     }
 
 

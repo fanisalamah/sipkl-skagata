@@ -19,6 +19,7 @@ class CreateInternshipSubmissionsTable extends Migration
             $table->foreignId('industry_id')->constrained('industries');
             $table->string('url_acceptance');
             $table->enum('status', ['1', '2','3']);
+            $table->foreignId('advisor_id')->nullable()->constrained('advisors');
             $table->timestamps();
         });
     }

@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="{{ asset('assets/sweetalert2/sweetalert2.min.css') }}">    
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
     
-   
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"> </script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" ></script>
 
 </head>
@@ -131,6 +131,30 @@
         $(function() {
             $('[data-toggle="tooltip"]').tooltip()
         })
+    </script>
+
+    {{-- ajax filter --}}
+    <script type="text/javascript"> 
+        $(document).ready(function() {
+            $("#fetchval").on('change' ,function () {
+                var value = $(this).val();
+
+                $.ajax({
+                    url:"fetch.php",
+                    type:"POST",
+                    data: 'request' + value;
+                    beforeSend:function(){
+                        $(".container").html("<span>Working... </span>");
+                    },
+
+                    success:function(data) {
+                        $(".container").html(data);
+                    }
+                    
+                });
+            });
+        });
+
     </script>
 </body>
 
