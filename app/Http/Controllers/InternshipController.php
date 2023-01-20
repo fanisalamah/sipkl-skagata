@@ -53,7 +53,12 @@ class InternshipController extends Controller
 
 
     public function internshipData() {
-        return view('internship.internship-data');
+
+        $data['allDataSub'] = InternshipSubmission::with('students', 'advisors', 'industries')->where('status', '1')->get();
+        $data['advisors'] = Advisor::all();
+        $data['departements'] = Departement::all();
+        $data['students'] = Student::with('departements');
+        return view('internship.internship-data', $data);
     }
 
     public function internshipReport() {

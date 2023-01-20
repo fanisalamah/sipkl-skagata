@@ -17,7 +17,7 @@
                             <li class="breadcrumb-item"><a href="#">Praktik Kerja Lapangan</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Data</li>
                         </ol>
-                    </nav>
+                    </nav>  
                 </div>
             </div>
         </div>
