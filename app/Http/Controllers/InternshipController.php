@@ -66,8 +66,9 @@ class InternshipController extends Controller
     }
 
     public function internshipLogbook($id) {
-        $data['internships'] = InternshipSubmission::with('students', 'advisors', 'industries')->where('status', '2')->get();
-        return view('internship.internship-logbooks');
+        $data['internships'] = InternshipSubmission::find($id);
+        
+        return view('internship.internship-logbooks', $data);
 
 
     }

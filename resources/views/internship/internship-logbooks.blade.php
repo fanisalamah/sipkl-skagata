@@ -23,44 +23,58 @@
         </div>
         <section class="section">
             <div class="d-flex p-1 mb-2">
+                
                 <div class="flex-fill m-1 p-1">
+                    <span style="font-size: 12px;">     
                     <table>
+                        
                         <tr>
                             <td>Nama Siswa&emsp;</td>
                             <td>:</td>
-                            <td>&emsp;Fani Salamah</td>
+                            <td>&emsp;{{ $internships->students->name }}</td>
                             
                         </tr>
                         <tr>
                             <td>NIS</td>
                             <td>:</td>
-                            <td>&emsp;28535</td>
+                            <td>&emsp;{{ $internships->students->nis }}</td>
                             
                         </tr>
                     </table>
+                </span> 
                 </div>
                 <div class="flex-fill m-1 p-1">
+                    <span style="font-size: 12px;">     
                     <table>
                         <tr>
                             <td>Industri&emsp;</td>
                             <td>:</td>
-                            <td>&emsp;Abankirenk</td>
+                            <td>&emsp;{{ $internships->industries->name }}</td>
                             
                         </tr>
                         <tr>
                             <td>Alamat&emsp;</td>
                             <td>:</td>
-                            <td>&emsp;Berbah</td>
+                            <td>&emsp;{{ $internships->industries->address }}</td>
                             
                         </tr>
                     </table>
+                </span>
                 </div>
                 <div class="flex-fill m-1 p-1">
-                  Advisor&emsp;:&emsp;Arif Eka
+                    <span style="font-size: 12px;">     
+                    @if($internships->advisor_id == 0)
+                        Advisor&emsp;:&emsp;Pembimbing belum diset
+                        @else
+                        Advisor&emsp;:&emsp;{{ $internships->advisors->name }}
+                        
+                    @endif
+                     
+                    </span>
                 </div>
                
               
-                
+            
             
             </div>
             <div class="card">
@@ -69,7 +83,7 @@
                    
                  
                      
-                    <table class="table table-striped" id="">
+                    {{-- <table class="table table-striped" id="">
                         <thead>
                             <tr>
                                 <th>No. </th>
@@ -88,7 +102,7 @@
                             
                         </tbody>
                         
-                    </table>
+                    </table> --}}
 
 
 
