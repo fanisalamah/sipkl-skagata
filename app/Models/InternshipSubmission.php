@@ -10,7 +10,8 @@ class InternshipSubmission extends Model
     use HasFactory;
     
     public function advisors() {
-        return $this->belongsToMany(InternshipSubmission::class, 'advisor_internshipsubmission', 'internshipsubmission_id', 'advisor_id');
+        // return $this->belongsToMany(InternshipSubmission::class, 'advisor_internshipsubmission', 'internshipsubmission_id', 'advisor_id');
+        return $this->belongsTo(Advisor::class, 'advisor_id', 'id');
     }
 
     public function students()

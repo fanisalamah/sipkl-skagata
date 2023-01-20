@@ -80,16 +80,16 @@
 </li>
 
 <li
-    class="sidebar-item  has-sub {{ request()->is('internship/submission') || request()->is('internship/data')  ? 'active' : '' }}">
+    class="sidebar-item  has-sub {{ Request::is('internship*')?'active':'' }}">
     <a href="#" class='sidebar-link'>
-        <i class="bi bi-file-earmark-medical-fill"></i>
+        <i class="bi bi-file-earmark-medical-fill"></i> 
         <span>PKL</span>
     </a>
-    <ul class="submenu {{ request()->is('internship/submission') || request()->is('internship/data')  ? 'active' : '' }}">
+    <ul class="submenu {{  Request::is('internship*')?'active':'' }}">
         <li class="submenu-item {{ request()->is('internship/submission') ? 'active' : '' }}">
             <a href="{{ route('internship.submission') }}">Pengajuan PKL</a>
         </li>
-        <li class="submenu-item {{ request()->is('internship/data') ? 'active' : '' }}">
+        <li class="submenu-item {{ Request::is('internship/data*')?'active':'' }}">
             <a href="{{ route('internship.data') }}">Daftar Siswa PKL</a>
         </li>
     </ul>

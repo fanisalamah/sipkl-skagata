@@ -36,44 +36,27 @@
                             </tr>
                         </thead>
                         <tbody>
-                           
+                            @foreach($internships as $key => $internship )
                             <tr>
-                                <td width="5%">1</td>
-                                <td>Fani Salamah</td>
-                                <td>Multimedia</td>
-                                <td>Abankirenk Videografi</td>
-                                <td>Jalan Magelang</td>
+                                <td width="5%">{{ $key+1 }}</td>
+                                <td width="15%"> <a href="{{ route('internship.logbook',  $internship->id) }}"> {{ $internship->students->name}} </a></td>
+                                <td>{{ $internship->students->departement->name }}</td>
+                                <td>{{ $internship->industries->name }}</td>
+                                <td>{{ $internship->industries->address }}</td>
+                                @if($internship->advisor_id === null) 
+                                <td width="23%"> <span class="label label-warning" style="background-color: #f39c12; font-size:15px; font-weight:bold; color:white;
+                                    border-top-left-radius: 5px;border-top-right-radius: 5px;border-bottom-right-radius: 5px;border-bottom-left-radius: 5px; display:align-center;"> &nbsp; Belum ada pembimbing &nbsp;</span></td>
+                                @else
+                                <td width="23%">{{ $internship->advisors->name }}</td>
+                                @endif
+
                                 
-                                <td>Bpak Guru</td>
                             </tr>
+                            @endforeach
                         </tbody>
+                        
                     </table>
-{{-- Modal --}}
 
-<div class="modal fade" id="rejectSubmission" tabindex="-1" aria-labelledby="rejectSubmissionLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="rejectSubmissionLabel">Catatan</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form>
-            <div class="mb-3">
-              <label for="message-text" class="col-form-label">Berikan catatan penolakan:</label>
-              <textarea class="form-control" id="message-text"></textarea>
-            </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Send message</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  {{-- Akhir Modal --}}
 
 
 

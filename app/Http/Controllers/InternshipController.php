@@ -14,9 +14,9 @@ class InternshipController extends Controller
 {
     public function internshipSubmission (Request $request) {
         $data['allDataSub'] = InternshipSubmission::with('students', 'advisors', 'industries')->where('status', '1')->get();
-        $data['advisors'] = Advisor::all();
-        $data['departements'] = Departement::all();
-        $data['students'] = Student::with('departements');
+        // $data['advisors'] = Advisor::all();
+        // $data['departements'] = Departement::all();
+        // $data['students'] = Student::with('departements');
         return view('internship.internship-submission', $data);
         
     }
@@ -54,14 +54,22 @@ class InternshipController extends Controller
 
     public function internshipData() {
 
-        $data['allDataSub'] = InternshipSubmission::with('students', 'advisors', 'industries')->where('status', '1')->get();
+        $data['internships'] = InternshipSubmission::with('students', 'advisors', 'industries')->where('status', '2')->get();
         $data['advisors'] = Advisor::all();
-        $data['departements'] = Departement::all();
-        $data['students'] = Student::with('departements');
+        // $data['departements'] = Departement::all();
+        // $data['students'] = Student::with('departements');
         return view('internship.internship-data', $data);
     }
 
     public function internshipReport() {
         return view('internship.internship-report');
     }
+
+    public function internshipLogbook($id) {
+        $data['internships'] = InternshipSubmission::with('students', 'advisors', 'industries')->where('status', '2')->get();
+        return view('internship.internship-logbooks');
+
+
+    }
 }
+    
