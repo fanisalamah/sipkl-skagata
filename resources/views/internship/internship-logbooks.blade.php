@@ -108,8 +108,11 @@
                                 <td width="40%"> {{ $logbook->activity }}
                                 </td>
                                 <td>{{ $logbook->url_attachment }}</td>
+                                @if($logbook->note == null)
+                                <td width="20%">Belum ada catatan dari Pembimbing</td>
+                                @else
                                 <td width="20%">{{ $logbook->note }}</td>
-                                
+                                @endif
                             </tr>
                             @endforeach
                         </tbody>

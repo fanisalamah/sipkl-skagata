@@ -6,6 +6,7 @@ use App\Models\Advisor;
 use Brian2694\Toastr\Facades\Toastr;
 use App\Models\Departement;
 use App\Models\Industry;
+use App\Models\InternshipSubmission;
 use App\Models\Student;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -20,6 +21,7 @@ class AdminController extends Controller
         $data['student'] = Student::all();
         $data['advisor'] = Advisor::all();
         $data['industry'] = Industry::all();
+        $data['internship_submission'] = InternshipSubmission::all();
         
         return view('admin.index', $data);
     }
