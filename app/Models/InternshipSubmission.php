@@ -23,5 +23,10 @@ class InternshipSubmission extends Model
         return $this->belongsTo(Industry::class, 'id');
     }
 
+    public function internshipLogbooks() {
+        return $this->hasMany(InternshipLogbooks::class);
+    }
+
+
 }
 

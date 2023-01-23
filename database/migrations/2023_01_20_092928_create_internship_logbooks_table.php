@@ -15,6 +15,11 @@ class CreateInternshipLogbooksTable extends Migration
     {
         Schema::create('internship_logbooks', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('internship_submission_id')->constrained('internship_submissions');
+            $table->date('date');
+            $table->text('activity');
+            $table->string('url_attachment');
+            $table->string('note');
             $table->timestamps();
         });
     }
