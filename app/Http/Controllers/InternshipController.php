@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Advisor;
 use App\Models\Departement;
 use App\Models\Industry;
+use App\Models\InternshipLogbooks;
 use App\Models\InternshipSubmission;
 use App\Models\Student;
 use App\Models\User;
@@ -67,7 +68,7 @@ class InternshipController extends Controller
 
     public function internshipLogbook($id) {
         $data['internships'] = InternshipSubmission::find($id);
-        
+        $data['logbooks'] = InternshipLogbooks::all()->where('internship_submission_id', $id);
         return view('internship.internship-logbooks', $data);
 
 

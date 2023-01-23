@@ -80,13 +80,13 @@
 
                 </div>
        <br>         
-       
+       <button class="btn btn-primary mb-2" type=""> Export </button>
             <div class="card">
                 
                 <div class="card-body">
                    
                  
-                   <button class="btn btn-primary mb-2" type=""> Export </button>
+                 
                    <span style="font-size: 14px;">     
                     <table class="table table-striped" id="">
                         
@@ -101,18 +101,17 @@
                             </tr>
                         </thead>
                         <tbody>
-                            
+                            @foreach($logbooks as $key => $logbook)
                             <tr>
                                 <td> 1</td>
-                                <td width="15%"> 12 Januari 2023</td>
-                                <td width="40%"> Mendengarkan diskusi dari mentor mengenai design sprint dan metode pengembangan scrum. Daily scrum dan kenalan dengan
-                                    scrum master
+                                <td width="15%"> {{ $logbook->date }}</td>
+                                <td width="40%"> {{ $logbook->activity }}
                                 </td>
-                                <td> Lampiran.pdf</td>
-                                <td width="20%"> Belum ada catatan</td>
+                                <td>{{ $logbook->url_attachment }}</td>
+                                <td width="20%">{{ $logbook->note }}</td>
                                 
                             </tr>
-                            
+                            @endforeach
                         </tbody>
                     
                     </table>

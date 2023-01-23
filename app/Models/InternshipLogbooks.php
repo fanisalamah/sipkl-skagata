@@ -10,6 +10,6 @@ class InternshipLogbooks extends Model
     use HasFactory;
     
     public function internshipSubmission() {
-        return $this->belongsTo(InternshipSubmission::class);
+        return $this->belongsTo(InternshipSubmission::class, 'internship_submission_id', 'id');
     }
 }
