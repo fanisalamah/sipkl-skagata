@@ -4,13 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use InternshipReport;
 
 class InternshipSubmission extends Model
 {
     use HasFactory;
     
     public function advisors() {
-        // return $this->belongsToMany(InternshipSubmission::class, 'advisor_internshipsubmission', 'internshipsubmission_id', 'advisor_id');
+        
         return $this->belongsTo(Advisor::class, 'advisor_id', 'id');
     }
 
@@ -31,6 +32,8 @@ class InternshipSubmission extends Model
         return $this->hasMany(InternshipMonthlyReport::class);
     }
 
-
+    public function InternshipReport() {
+        return $this->hasOne(InternshipReport::class);
+    }
 }
 

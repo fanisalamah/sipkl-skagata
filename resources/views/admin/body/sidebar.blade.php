@@ -103,13 +103,13 @@
         </a>
     </li>
 
-    {{-- <li
+    <li
         class="sidebar-item  {{ request()->is('internship/report') ? 'active' : '' }}">
         <a href="{{ route('internship.report') }}" class='sidebar-link'>
             <i class="bi bi-file-bar-graph-fill"></i>
             <span>Laporan PKL Siswa</span>
         </a>
-    </li> --}}
+    </li>
 
     
     

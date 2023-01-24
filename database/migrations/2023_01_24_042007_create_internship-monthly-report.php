@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class InternshipMonthlyReport extends Migration
+class CreateInternshipMonthlyReport extends Migration
 {
     /**
      * Run the migrations.

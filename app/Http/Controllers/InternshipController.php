@@ -7,6 +7,7 @@ use App\Models\Departement;
 use App\Models\Industry;
 use App\Models\InternshipLogbooks;
 use App\Models\InternshipMonthlyReport;
+use App\Models\InternshipReports;
 use App\Models\InternshipSubmission;
 use App\Models\Student;
 use App\Models\User;
@@ -58,9 +59,6 @@ class InternshipController extends Controller
         return view('internship.internship-data', $data);
     }
 
-    public function internshipReport() {
-        return view('internship.internship-report');
-    }
 
     public function internshipLogbook($id) {
         $data['internships'] = InternshipSubmission::find($id);
@@ -74,6 +72,13 @@ class InternshipController extends Controller
 
         return view('internship.internship-monthly-report', $data);
 
+    }
+
+    public function internshipReport() {
+        $data['internshipReports'] = InternshipReports::all();
+        $data['internshipSubmissions'] = InternshipSubmission::all();
+
+        return view('internship.internship-report', $data);
     }
 }
     

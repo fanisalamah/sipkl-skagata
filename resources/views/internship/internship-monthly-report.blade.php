@@ -45,7 +45,11 @@
                                 <td> {{ $monthlyReport->InternshipSubmission->students->name }}</td>
                                 <td> {{ $monthlyReport->InternshipSubmission->students->departement->name }}</td>
                                 <td> {{ $monthlyReport->InternshipSubmission->industries->name }} </td>
-                                <td> {{ $monthlyReport->InternshipSubmission->advisors->name }}</td>
+                                @if($monthlyReport->InternshipSubmission->advisor_id === null) 
+                                <td> Pembimbing belum ditentukan</td>
+                                @else 
+                                <td> {{ $monthlyReport->InternshipSubmission->advisors->name }}</td> 
+                                @endif
                                 <td> {{ $monthlyReport->title }}</td>
                                 <td> <a href="{{ $monthlyReport->url_file }}" target="__blank"
                                     style="background-color:#198754;color:white; text-decoration:none; padding:5px 6px 5px 6px;border-radius:5px;"> Preview file </a> </td>
