@@ -71,7 +71,10 @@ class InternshipController extends Controller
         $data['logbooks'] = InternshipLogbooks::all()->where('internship_submission_id', $id);
         return view('internship.internship-logbooks', $data);
 
+    }
 
+    public function monthlyReport() {
+        $data['monthly-report'] = 0;
     }
 }
     

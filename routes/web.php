@@ -70,8 +70,9 @@ Route::group(['middleware' => ['auth:web']], function() {
         Route::put('/submission_accept/{id}', [InternshipController::class, 'submissionAccept'])->name('submission.accept');
         Route::put('/submission_reject/{id}', [InternshipController::class, 'submissionReject'])->name('submission.reject');
         Route::get('/data', [InternshipController::class, 'internshipData'])->name('internship.data');
-        Route::get('/report', [InternshipController::class, 'internshipReport'])->name('internship.report');
         Route::get('/data/logbook/{id}', [InternshipController::class, 'internshipLogbook'])->name('internship.logbook');
+        Route::get('/monthly-report', [InternshipController::class, 'monthlyReport'])->name('internship.monthly.report');
+        // Route::get('/report', [InternshipController::class, 'internshipReport'])->name('internship.report');
     });
     
     

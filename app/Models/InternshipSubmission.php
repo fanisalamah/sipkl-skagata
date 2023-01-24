@@ -27,6 +27,10 @@ class InternshipSubmission extends Model
         return $this->hasMany(InternshipLogbooks::class);
     }
 
+    public function InternshipMonthlyReport() {
+        return $this->hasMany(InternshipMonthlyReport::class);
+    }
+
 
 }
 
