@@ -6,10 +6,12 @@ use App\Models\Advisor;
 use App\Models\Departement;
 use App\Models\Industry;
 use App\Models\InternshipLogbooks;
+use App\Models\InternshipMonthlyReport;
 use App\Models\InternshipSubmission;
 use App\Models\Student;
 use App\Models\User;
 use Illuminate\Http\Request;
+
 
 class InternshipController extends Controller
 {
@@ -42,12 +44,6 @@ class InternshipController extends Controller
         $data = InternshipSubmission::find($id);
         $data->status = '3';
         $data->save();
-        // $data->advisors()->attach($request->advisor_id);
-    
-        // $notification = array(
-        //     'message' => 'Advisor berhasil ditetapkan',
-        //     'alert-type' => 'success'
-        // );
         
         return redirect()->route('internship.submission');
     }
@@ -74,7 +70,10 @@ class InternshipController extends Controller
     }
 
     public function monthlyReport() {
-        $data['monthly-report'] = 0;
+        $data['monthlyReports'] = InternshipMonthlyReport::all();
+
+        return view('internship.internship-monthly-report', $data);
+
     }
 }
     

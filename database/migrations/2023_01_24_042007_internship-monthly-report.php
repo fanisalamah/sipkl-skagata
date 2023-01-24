@@ -13,7 +13,7 @@ class InternshipMonthlyReport extends Migration
      */
     public function up()
     {
-        Schema::create('internship_monthly_report', function (Blueprint $table) {
+        Schema::create('internship_monthly_reports', function (Blueprint $table) {
             $table->id();
             $table->foreignId('internship_submission_id')->constrained('internship_submissions');
             $table->string('title');
@@ -30,6 +30,6 @@ class InternshipMonthlyReport extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('internship_monthly_report');
+        Schema::dropIfExists('internship_monthly_reports');
     }
 }
