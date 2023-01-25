@@ -49,7 +49,7 @@
                             <div class="col-md-6 col-12">
                                 <div class="form-group mandatory">
                                     <div>
-                                        <label for="formFileLg" class="form-label">Upload Surat Penerimaan (PDF)</label>
+                                        <label for="formFileLg" class="form-label">Upload Dokumen Penerimaan (PDF)</label>
                                         <input class="form-control form-control-lg" id="url_acceptance" name="url_acceptance" type="file">
                                       </div>
                                       

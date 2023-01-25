@@ -53,7 +53,7 @@
             <a href="{{ route('student.internship-submission') }}">Pengajuan PKL</a>
         </li>
         <li class="submenu-item {{ request()->is('internship/data') ? 'active' : '' }}">
-            <a href="{{ route('internship.data') }}">Daftar Pengajuan</a>
+            <a href="{{ route('internship.data') }}">Status Pengajuan</a>
         </li>
     </ul>
 </li>  
