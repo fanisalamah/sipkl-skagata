@@ -35,7 +35,7 @@
                                     <div class="search-select-box">
                                         <select data-live-search="true" name="industry_id" > 
                                             <option selected="" disabled> Pilih Industri </option>
-                                            @foreach($data['industries'] as $key => $industry )
+                                            @foreach($industries as $key => $industry )
                                             
                                             <option value="{{ $industry->id }}"> {{ $industry->name }}</option>    
                                             @endforeach

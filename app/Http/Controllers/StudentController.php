@@ -21,16 +21,16 @@ class StudentController extends Controller
     }
     
     public function internshipSubmission () {
-        $data['submissions'] = InternshipSubmission::with('students', 'advisors', 'industries')->get();
-        $data['advisors'] = Advisor::all();
         $data['industries'] = Industry::all();
-        return view('student.internship-view.internship-submission', compact('data'));
+        return view('student.internship-view.internship-submission', $data);
         
     }
 
-    public function storeSubmission(Request $request) {
+    public function storeSubmission(Request $request, $id) {
         $data = InternshipSubmission::with('students', 'advisors', 'industries')->get();
         $data->student()->attach($request->student_id);
+        // $data->internshipSubmission =
+        $data->save();
      
 
         $notification = array(
