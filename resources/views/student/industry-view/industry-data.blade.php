@@ -34,7 +34,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($allData as $key => $industri )
+                            @foreach($industries as $key => $industri )
                             <tr>
                                 <td width="5%">{{ $key + 1 }}</td>
                                 <td width="35%">{{  $industri->name }}</td>

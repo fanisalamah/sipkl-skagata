@@ -17,7 +17,7 @@ class StudentController extends Controller
 
     public function industriData() {
         $data['industries'] = Industry::all();
-        return view('student.industry-view.industry-data', compact('$data'));
+        return view('student.industry-view.industry-data', $data);
     }
     
     public function internshipSubmission () {
