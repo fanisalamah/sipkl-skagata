@@ -80,5 +80,9 @@ class InternshipController extends Controller
 
         return view('internship.internship-report', $data);
     }
+
+    public function storeInternshipSubmission(Request $request, $id) {
+
+    }
 }
     

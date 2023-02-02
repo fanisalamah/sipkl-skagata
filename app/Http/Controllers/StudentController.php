@@ -41,4 +41,7 @@ class StudentController extends Controller
         return redirect()->route('student.internship-submission')->with($notification);
     }
 
+       // create laravel function storeSubmission in controller 
 }
+
+ 

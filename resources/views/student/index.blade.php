@@ -21,19 +21,17 @@
         </div>
         <section class="section">
             <div class="card">
-                <div class="card-header">
-                    <h4 class="card-title">Alur Pengajuan PKL</h4>
-                </div>
+                
                 <div class="card-body">
-                    Nanti disini dikasih ilustrasi desain nya, flownya gimana
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur quas omnis laudantium tempore
-                    exercitationem, expedita aspernatur sed officia asperiores unde tempora maxime odio reprehenderit
-                    distinctio incidunt! Vel aspernatur dicta consequatur! 
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur quas omnis laudantium tempore
-                    exercitationem, expedita aspernatur sed officia asperiores unde tempora maxime odio reprehenderit
-                    distinctio incidunt! Vel aspernatur dicta consequatur! Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur quas omnis laudantium tempore
-                    exercitationem, expedita aspernatur sed officia asperiores unde tempora maxime odio reprehenderit
-                    distinctio incidunt! Vel aspernatur dicta consequatur!
+                    <h4 class="card-title">Alur Pengajuan PKL</h4>
+                        <ol>
+                            <li>Informasi tentang daftar industri melalui laman <span style="color:#198754; font-weight:bold;">Data Industri </span> </li>
+                            <li>Pengajuan PKL dapat dilakukan melalui laman <span style="color:#198754; font-weight:bold;">Pengajuan PKL</span> dengan
+                            menyertakan <i>Letter of Acceptance(LOA)</i> dari industri yang bersangkutan </li>
+                            <li>Pengajuan PKL dapat dilakukan melalui laman <span style="color:#198754; font-weight:bold;">Pengajuan PKL</span> dengan
+                                menyertakan <i>Letter of Acceptance(LOA)</i> dari industri yang bersangkutan </li>
+                        </ol>
+                    
                 </div>
             </div>
         </section>
