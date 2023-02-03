@@ -93,7 +93,7 @@ Route::group(['middleware' => ['auth:student']], function() {
         Route::get('/dashboard', [StudentController::class, 'index'])->name('student.dashboard');
         Route::get('/industries/data', [StudentController::class, 'industriData'])->name('student.industry-data');
         Route::get('/internship/submission', [StudentController::class, 'internshipSubmission'])->name('student.internship-submission');
-        Route::post('/internship/submission/store', [StudentController::class, 'storeSubmission'])->name('student.internship-store');
+        Route::post('/internship/submission/store/{id}', [StudentController::class, 'storeSubmission'])->name('student.internship-store');
 
 
     });

@@ -27,11 +27,18 @@ class StudentController extends Controller
     }
 
     public function storeSubmission(Request $request, $id) {
-        $data = InternshipSubmission::with('students', 'advisors', 'industries')->get();
-        $data->student()->attach($request->student_id);
-        // $data->internshipSubmission =
+                
+        $data = new InternshipSubmission();
+        $data->student_id = $request->student_id;
+        $data->industry_id = $request->industry_id;
+        $data->url_acceptance = $request->
+        $data->status = $request->status;
+        
+        
+        // $data->student()->attach($request->student_id);
+        
         $data->save();
-     
+        
 
         $notification = array(
             'message' => 'Pengajuan PKL berhasil ditetapkan',
@@ -41,7 +48,7 @@ class StudentController extends Controller
         return redirect()->route('student.internship-submission')->with($notification);
     }
 
-       // create laravel function storeSubmission in controller 
+       
 }
 
  

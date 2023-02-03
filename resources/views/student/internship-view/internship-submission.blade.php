@@ -24,16 +24,17 @@
         <section class="section">
             <div class="card">
                 <div class="card-body">
-                    <form method="POST" action="{{ route('student.internship-store') }}">
+                    <form method="POST" action="{{ route('student.internship-store', Auth::id()); }}">
                         @csrf
                         <div class="row">
 
                             <input type="hidden" id="student_id" name="student_id" value="{{ Auth::id(); }}">
+                            <input type="hidden" id="status" name="status" value="1">
                             <div class="col-md-6 col-12">
                                 <div class="form-group mandatory">
                                     <label for="name" class="form-label">Pilih Industri Tempat PKL </label>
                                     <div class="search-select-box">
-                                        <select data-live-search="true" name="industry_id" > 
+                                        <select data-live-search="true" name="industry_id" id="industry_id"> 
                                             <option selected="" disabled> Pilih Industri </option>
                                             @foreach($industries as $key => $industry )
                                             
@@ -49,7 +50,7 @@
                             <div class="col-md-6 col-12">
                                 <div class="form-group mandatory">
                                     <div>
-                                        <label for="formFileLg" class="form-label">Upload Dokumen Penerimaan (PDF)</label>
+                                        <label for="url_acceptance" class="form-label">Upload Dokumen Penerimaan (PDF)</label>
                                         <input class="form-control form-control-lg" id="url_acceptance" name="url_acceptance" type="file">
                                       </div>
                                       
