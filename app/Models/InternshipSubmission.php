@@ -35,5 +35,10 @@ class InternshipSubmission extends Model
     public function InternshipReport() {
         return $this->hasOne(InternshipReport::class);
     }
+
+    public static function getDocumentPath() {
+        return url('/LetterOfAcceptance');
+    }
+
 }
 

@@ -27,18 +27,43 @@ class StudentController extends Controller
     }
 
     public function storeSubmission(Request $request, $id) {
+
+        // $validatedData = $request->validate([
+        //     'student_id' => 'required',
+        //     'industry_id' => 'required',
+        //     'url_acceptance' => 'mimes: pdf'
+        // ]);
+
+
+        $data = $request->file('file');
+        $url_acceptance = $data->getClientOriginalName();
+        $data->move('LetterOfAcceptance', $url_acceptance);
+
+        
+
+        
                 
+        // $data = InternshipSubmission::with('students', 'advisors', 'industries');
         $data = new InternshipSubmission();
         $data->student_id = $request->student_id;
         $data->industry_id = $request->industry_id;
-        $data->url_acceptance = $request->
         $data->status = $request->status;
+        
+        $data->url_acceptance = $url_acceptance;
+        
+        
+        
+        $data->save();
         
         
         // $data->student()->attach($request->student_id);
         
-        $data->save();
         
+        
+
+
+
+
 
         $notification = array(
             'message' => 'Pengajuan PKL berhasil ditetapkan',

@@ -59,12 +59,12 @@ class AdminController extends Controller
     }
 
     public function storeAdvisor(Request $request) {
-        $validatedData = $request->validate([
-            'departement_id' => 'required',
-            'email' => 'required|unique:users',
-            'name' => 'required',
+            $validatedData = $request->validate([
+                'departement_id' => 'required',
+                'email' => 'required|unique:users',
+                'name' => 'required',
 
-        ]);
+            ]);
 
         $data = new Advisor();
         $data->departement_id = $request->departement_id;

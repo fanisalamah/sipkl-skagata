@@ -24,7 +24,7 @@
         <section class="section">
             <div class="card">
                 <div class="card-body">
-                    <form method="POST" action="{{ route('student.internship-store', Auth::id()); }}">
+                    <form method="POST" action="{{ route('student.internship-store', Auth::id()); }}" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
 
@@ -51,7 +51,7 @@
                                 <div class="form-group mandatory">
                                     <div>
                                         <label for="url_acceptance" class="form-label">Upload Dokumen Penerimaan (PDF)</label>
-                                        <input class="form-control form-control-lg" id="url_acceptance" name="url_acceptance" type="file">
+                                        <input class="form-control form-control-lg" id="url_acceptance" name="file" type="file">
                                       </div>
                                       
                                 </div>
