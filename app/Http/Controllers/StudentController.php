@@ -8,6 +8,7 @@ use App\Models\InternshipSubmission;
 use Illuminate\Http\Request;
 use App\Models\Student;
 use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Validator as FacadesValidator;
 
 class StudentController extends Controller
@@ -41,9 +42,10 @@ class StudentController extends Controller
         if($request->hasFile('file')) {
             
             $fileNameWithExt = $request->file('file')->getClientOriginalName();
-            $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+            // $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+            
             $extension = $request->file('file')->getClientOriginalExtension();
-            $fileNameSimpan = $fileName.'_'.time().'.'.$extension;
+            $fileNameSimpan = Str::random(32).'.'.$extension;
             $path = $request->file('file')->storeAs('LetterOfAcceptance', $fileNameSimpan);
 
         } else {
