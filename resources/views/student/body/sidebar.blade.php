@@ -43,17 +43,17 @@
 
 
 <li
-    class="sidebar-item  has-sub {{ request()->is('student/internship/submission')  ? 'active' : '' }}">
+    class="sidebar-item  has-sub {{ request()->is('student/internship/*')  ? 'active' : '' }}">
     <a href="#" class='sidebar-link'>
         <i class="bi bi-file-earmark-medical-fill"></i>
         <span>PKL</span>
     </a>
-    <ul class="submenu {{ request()->is('student/internship/submission') ? 'active' : '' }}">
+    <ul class="submenu {{ request()->is('student/internship/*') ? 'active' : '' }}">
         <li class="submenu-item {{ request()->is('student/internship/submission') ? 'active' : '' }}">
             <a href="{{ route('student.internship-submission') }}">Pengajuan PKL</a>
         </li>
-        <li class="submenu-item {{ request()->is('internship/data') ? 'active' : '' }}">
-            <a href="{{ route('internship.data') }}">Status Pengajuan</a>
+        <li class="submenu-item {{ request()->is('student/internship/status') ? 'active' : '' }}">
+            <a href="{{ route('student.internship-status') }}">Status Pengajuan</a>
         </li>
     </ul>
 </li>  

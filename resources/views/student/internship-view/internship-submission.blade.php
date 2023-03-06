@@ -34,11 +34,11 @@
                                 <div class="form-group mandatory">
                                     <label for="name" class="form-label">Pilih Industri Tempat PKL </label>
                                     <div class="search-select-box">
-                                        <select data-live-search="true" name="industry_id" id="industry_id"> 
+                                        <select data-live-search="true" name="industry_id" id="industry_id" required> 
                                             <option selected="" disabled> Pilih Industri </option>
                                             @foreach($industries as $key => $industry )
                                             
-                                            <option value="{{ $industry->id }}"> {{ $industry->name }}</option>    
+                                            <option value="{{ $industry->id }}" > {{ $industry->name }}</option>    
                                             @endforeach
                                             
                                         </select>
@@ -51,7 +51,7 @@
                                 <div class="form-group mandatory">
                                     <div>
                                         <label for="url_acceptance" class="form-label">Upload Dokumen Penerimaan (PDF)</label>
-                                        <input class="form-control form-control-lg" id="url_acceptance" name="file" type="file">
+                                        <input class="form-control form-control-lg" id="url_acceptance" name="file" type="file" data-parsley-required="true">
                                       </div>
                                       
                                 </div>

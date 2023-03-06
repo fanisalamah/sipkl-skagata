@@ -7,9 +7,10 @@ use App\Models\Industry;
 use App\Models\InternshipSubmission;
 use Illuminate\Http\Request;
 use App\Models\Student;
-use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Validator as FacadesValidator;
+use Illuminate\Support\Facades\Validator;
+
 
 class StudentController extends Controller
 {   
@@ -31,11 +32,11 @@ class StudentController extends Controller
 
     public function storeSubmission(Request $request, $id) {
 
-        $validator = FacadesValidator::make($request->all(), [
+        $validator = Validator::make($request->all(), [
             'student_id' => 'required',
             'industry_id' => 'required',
             'status' => 'required',
-            'url_acceptance' => 'required|mimetypes:application/pdf|max:10000'
+            'url_acceptance' => 'required|mimes:application/pdf|max:1024'
         ]);
 
 
@@ -45,26 +46,63 @@ class StudentController extends Controller
             // $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
             
             $extension = $request->file('file')->getClientOriginalExtension();
-            $fileNameSimpan = Str::random(32).'.'.$extension;
-            $path = $request->file('file')->storeAs('LetterOfAcceptance', $fileNameSimpan);
+            $fileSize = $request->file('file')->getSize();
+
+
+            if($extension === 'pdf') {
+                
+                    $fileNameSimpan = Str::random(32).'.'.$extension;
+                    $path = $request->file('file')->storeAs('LetterOfAcceptance', $fileNameSimpan);    
+
+            }
+
+            else {
+                $notification = array(
+                    'message' => 'Pilih dokumen PDF dengan maksimal ukuran 1MB',
+                    'alert-type' => 'error'
+                );
+                return redirect()->back()->with($notification);
+            }
+
 
         } else {
-            $fileNameSimpan = 'nofile.pdf';
+            $notification = array(
+                'message' => 'Pengajuan gagal! Lampirkan Dokumen Penerimaan',
+                'alert-type' => 'error'
+            );
+            return redirect()->back()->with($notification);
         }
 
-        $data = new InternshipSubmission();
-        $data->student_id = $request->student_id;
-        $data->industry_id = $request->industry_id;
-        $data->status = $request->status;
-        $data->url_acceptance = $fileNameSimpan;                           
-        $data->save();
+        if(isset($request->industry_id)) {
+            $data = new InternshipSubmission();
+            $data->student_id = $request->student_id;
+            $data->industry_id = $request->industry_id;
+            $data->status = $request->status;
+            $data->url_acceptance = $fileNameSimpan;                           
+            $data->save();
+            
+            $notification = array(
+                'message' => 'Pengajuan PKL berhasil ditetapkan',
+                'alert-type' => 'success'
+            );
+            
+            return redirect()->route('student.internship-submission')->with($notification);
+        } else {
+            $notification = array(
+                'message' => 'Pengajuan gagal! Pilih industri',
+                'alert-type' => 'error'
+            );
+            return redirect()->back()->with($notification);
+        }
+
         
-        $notification = array(
-            'message' => 'Pengajuan PKL berhasil ditetapkan',
-            'alert-type' => 'success'
-        );
+    }
+
+    public function internshipStatus() {
         
-        return redirect()->route('student.internship-submission')->with($notification);
+        $data['internshipSubmission'] = InternshipSubmission::all();
+        return view('student.internship-view.internship-status', $data);
+
     }
 
        

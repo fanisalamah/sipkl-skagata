@@ -94,6 +94,7 @@ Route::group(['middleware' => ['auth:student']], function() {
         Route::get('/industries/data', [StudentController::class, 'industriData'])->name('student.industry-data');
         Route::get('/internship/submission', [StudentController::class, 'internshipSubmission'])->name('student.internship-submission');
         Route::post('/internship/submission/store/{id}', [StudentController::class, 'storeSubmission'])->name('student.internship-store');
+        Route::get('/internship/status', [StudentController::class, 'internshipStatus'])->name('student.internship-status');
 
 
     });
