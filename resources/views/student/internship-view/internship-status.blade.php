@@ -37,39 +37,48 @@
                         <thead>
                             <tr>
                                 <th width="7%">No. </th>
-                                <th>Nama Industri</th>
-                                <th width="28%">Alamat</th>
+                                <th>Industri</th>
+                                <th width="28%">Dokumen Penerimaan</th>
                                 <th>Status</th>
                                 <th width="19%">Advisor</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {{-- @foreach($allData as $key => $industri )
+                            @foreach($internshipSubmissions as $key => $submissions )
+                            
                             <tr>
-                                <td width="5%">{{ $key + 1 }}</td>
-                                <td>{{  $industri->name }}</td>
-                                <td>{{  $industri->address }}</td>
-                                <td width="18%">
-                                    <a href="{{ route('industri.edit', $industri->id) }}" class="btn btn-info"> Edit </a>
-                                    <button type="button" class="btn btn-danger" id="delete"
-                                    onclick="sweetConfirm('/industries/delete/{{ $industri->id }}', 'Industri')">Hapus</button>                                   
-                                </td>
-                            </tr>
-                            @endforeach --}}
-
-                            @foreach($internshipSubmission as $key => $submission )
-                            <tr>
-                                <td width="5%">{{ $key + 1 }}</td>
-                                <td> {{ $submission->industries->name }}</td>
-                                <td> {{ $submission->industries->address }}</td>
-                                <td><span class="badge badge-warning">Waiting</span> </td>
-                                <td> Belum diset</td>
+                                <td width="4%"> {{ $key+1 }}</td>
+                                <td> {{ $submissions->industries->name }} <br>
+                                     <span style="font-size:12px;"> {{ $submissions->industries->address }} </span></td>
+                                <td>  <a href="{{ Storage::url('LetterOfAcceptance/'. $submissions->url_acceptance ) }}" class="btn btn-info" target="__blank"> <i class="bi bi-eye"></i>  Lihat Lampiran </a> </td>
+                            @if($submissions->status == 1) 
+                                <td> <span class="badge badge-warning">Waiting</span> </td>
+                            @endif
+                            @if ($submissions->status == 2) 
+                                <td> <span class="badge badge-success">Accepted</span> </td>
+                            @endif
+                            @if ($submissions->status == 3) 
+                                <td> <span class="badge badge-danger">Rejected</span> </td>
+                            @endif
                                 <td>
-                                    <a href="" class="btn btn-info"> Edit </a>
-                                        <button type="submit" class="btn btn-danger" id="delete"
-                                        onclick="sweetConfirm('/', 'Data Siswa')">Hapus</button>                                   
+                                        @if($submissions->advisor_id == 0)
+                                        <span class="badge badge-secondary">Not set</span> 
+                                            @else
+                                            {{ $submissions->advisors->name }}
+                                            
+                                        @endif
                                 </td>
+                                <td width="8%">
+                                    
+                                    <button type="button" class="btn btn-danger" id="delete" 
+                                    @if($submissions->advisor_id != null) 
+                                        <?= 'disabled'?>
+                                    @endif
+                                    onclick="sweetConfirm('/submissions/delete/{{ $submissions->id }}', 'Pengajuan PKL')">Hapus</button>                                   
+                                </td>
+                                
+
                             </tr>
                             @endforeach
                             

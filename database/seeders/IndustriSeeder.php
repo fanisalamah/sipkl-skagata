@@ -24,5 +24,10 @@ class IndustriSeeder extends Seeder
             'address' => 'Jalan Godean km 10 Ngijon, Sleman'
         ]);
 
+        DB::table('industries')->insert([
+            'name' => 'Printship',
+            'address' => 'Jalan AM Sangaji, Jetis'
+        ]);
+
     }
 }

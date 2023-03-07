@@ -31,5 +31,13 @@ class InternshipSubmissionSeeder extends Seeder
             'advisor_id' => null
         ]);
 
+        DB::table('internship_submissions')->insert([
+            'student_id' => '2',
+            'industry_id' => '3',
+            'url_acceptance' => 'ASDASDASD.pdf',
+            'status' => '2',
+            'advisor_id' => null
+        ]);
+
     }
 }

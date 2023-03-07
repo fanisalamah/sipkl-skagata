@@ -8,6 +8,7 @@ use App\Models\InternshipSubmission;
 use Illuminate\Http\Request;
 use App\Models\Student;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Validator;
 
@@ -32,12 +33,12 @@ class StudentController extends Controller
 
     public function storeSubmission(Request $request, $id) {
 
-        $validator = Validator::make($request->all(), [
-            'student_id' => 'required',
-            'industry_id' => 'required',
-            'status' => 'required',
-            'url_acceptance' => 'required|mimes:application/pdf|max:1024'
-        ]);
+        // $validator = Validator::make($request->all(), [
+        //     'student_id' => 'required',
+        //     'industry_id' => 'required',
+        //     'status' => 'required',
+        //     'url_acceptance' => 'required|mimes:application/pdf|max:1024'
+        // ]);
 
 
         if($request->hasFile('file')) {
@@ -52,7 +53,7 @@ class StudentController extends Controller
             if($extension === 'pdf') {
                 
                     $fileNameSimpan = Str::random(32).'.'.$extension;
-                    $path = $request->file('file')->storeAs('LetterOfAcceptance', $fileNameSimpan);    
+                    $path = $request->file('file')->storeAs('/public/LetterOfAcceptance', $fileNameSimpan);    
 
             }
 
@@ -86,7 +87,7 @@ class StudentController extends Controller
                 'alert-type' => 'success'
             );
             
-            return redirect()->route('student.internship-submission')->with($notification);
+            return redirect()->route('student.internship-status')->with($notification);
         } else {
             $notification = array(
                 'message' => 'Pengajuan gagal! Pilih industri',
@@ -100,9 +101,13 @@ class StudentController extends Controller
 
     public function internshipStatus() {
         
-        $data['internshipSubmission'] = InternshipSubmission::all();
+        $data['internshipSubmissions'] = InternshipSubmission::where('student_id', Auth::id())->get();
         return view('student.internship-view.internship-status', $data);
 
+    }
+
+    public function getFilePath() {
+        return Storage::url('public' . DIRECTORY_SEPARATOR . 'LetterOfAcceptance');
     }
 
        

@@ -9,6 +9,10 @@ use InternshipReport;
 class InternshipSubmission extends Model
 {
     use HasFactory;
+
+    protected $guarded = [
+        'id'
+    ];
     
     public function advisors() {
         
@@ -21,7 +25,7 @@ class InternshipSubmission extends Model
     }
 
     public function industries() {
-        return $this->belongsTo(Industry::class, 'id');
+        return $this->belongsTo(Industry::class, 'industry_id','id');
     }
 
     public function internshipLogbooks() {
