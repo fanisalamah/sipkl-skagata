@@ -64,7 +64,7 @@
 					   type: "post",
 
 					   data: {
-					   '_method': 'deleteUser'
+					   '_method': 'deleteSubmission'
 					   },
 					   url: endpointUrl,
 					   data: isConfirm.value,

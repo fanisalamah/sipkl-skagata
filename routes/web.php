@@ -95,12 +95,11 @@ Route::group(['middleware' => ['auth:student']], function() {
         Route::get('/internship/submission', [StudentController::class, 'internshipSubmission'])->name('student.internship-submission');
         Route::post('/internship/submission/store/{id}', [StudentController::class, 'storeSubmission'])->name('student.internship-store');
         Route::get('/internship/status', [StudentController::class, 'internshipStatus'])->name('student.internship-status');
+        Route::post('/internship/submission/delete/{id}', [StudentController::class, 'deleteSubmission'])->name('student.delete-submission');
         
-        
-
-
     });
     
+    // Route::get('download/{url}', [StudentController::class, 'previewLOA'])->name('student.preview-LOA');
     
 
 });

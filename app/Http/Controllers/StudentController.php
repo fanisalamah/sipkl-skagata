@@ -6,7 +6,10 @@ use App\Models\Advisor;
 use App\Models\Industry;
 use App\Models\InternshipSubmission;
 use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
 use App\Models\Student;
+use Facade\FlareClient\Http\Response;
+use Illuminate\Http\Response as HttpResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -106,11 +109,17 @@ class StudentController extends Controller
 
     }
 
-    public function getFilePath() {
-        return Storage::url('public' . DIRECTORY_SEPARATOR . 'LetterOfAcceptance');
-    }
+    public function deleteSubmission($id) {
+        
+        $submission = InternshipSubmission::find($id);
+        Storage::disk('public')->delete('LetterOfAcceptance/'. $submission->url_acceptance);
+        $submission->delete();
 
-       
+        
+
+        return redirect()->route('student.internship-status');
+
+    }
 }
 
  

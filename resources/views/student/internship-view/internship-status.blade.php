@@ -51,7 +51,8 @@
                                 <td width="4%"> {{ $key+1 }}</td>
                                 <td> {{ $submissions->industries->name }} <br>
                                      <span style="font-size:12px;"> {{ $submissions->industries->address }} </span></td>
-                                <td>  <a href="{{ Storage::url('LetterOfAcceptance/'. $submissions->url_acceptance ) }}" class="btn btn-info" target="__blank"> <i class="bi bi-eye"></i>  Lihat Lampiran </a> </td>
+                                <td>  <a href="{{ Storage::url('LetterOfAcceptance/'. $submissions->url_acceptance)}}"
+                                    class="btn btn-info" target="__blank"> <i class="bi bi-eye"></i>  Lihat Lampiran </a> </td>
                             @if($submissions->status == 1) 
                                 <td> <span class="badge badge-warning">Waiting</span> </td>
                             @endif
@@ -70,12 +71,11 @@
                                         @endif
                                 </td>
                                 <td width="8%">
-                                    
                                     <button type="button" class="btn btn-danger" id="delete" 
                                     @if($submissions->advisor_id != null) 
                                         <?= 'disabled'?>
                                     @endif
-                                    onclick="sweetConfirm('/submissions/delete/{{ $submissions->id }}', 'Pengajuan PKL')">Hapus</button>                                   
+                                    onclick="sweetConfirm('/student/internship/submission/delete/{{ $submissions->id }}', 'Pengajuan PKL')">Hapus</button>                                   
                                 </td>
                                 
 
