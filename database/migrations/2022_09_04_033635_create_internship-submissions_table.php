@@ -15,11 +15,11 @@ class CreateInternshipSubmissionsTable extends Migration
     {
         Schema::create('internship_submissions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('student_id')->constrained('students');
-            $table->foreignId('industry_id')->constrained('industries');
+            $table->foreignId('student_id')->constrained('students')->onDelete('cascade');
+            $table->foreignId('industry_id')->constrained('industries')->onDelete('cascade');
             $table->string('url_acceptance');
             $table->enum('status', ['1', '2','3']);
-            $table->foreignId('advisor_id')->nullable()->constrained('advisors');
+            $table->foreignId('advisor_id')->nullable()->constrained('advisors')->onDelete('cascade');
             $table->timestamps();
         });
     }

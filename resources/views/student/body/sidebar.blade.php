@@ -79,8 +79,16 @@
                 <li
                     class="sidebar-item  {{ request()->is('internship/report') ? 'active' : '' }}">
                     <a href="{{ route('internship.report') }}" class='sidebar-link'>
+                        <i class="bi bi-folder2-open"></i>
+                        <span>Form Laporan Bulanan</span>
+                    </a>
+                </li>
+
+                <li
+                    class="sidebar-item  {{ request()->is('internship/report') ? 'active' : '' }}">
+                    <a href="{{ route('internship.report') }}" class='sidebar-link'>
                         <i class="bi bi-journal-richtext"></i>
-                        <span>Laporan PKL</span>
+                        <span>Laporan dan Nilai</span>
                     </a>
                 </li>
                     @endif
