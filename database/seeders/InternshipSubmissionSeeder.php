@@ -32,7 +32,7 @@ class InternshipSubmissionSeeder extends Seeder
         ]);
 
         DB::table('internship_submissions')->insert([
-            'student_id' => '2',
+            'student_id' => '1',
             'industry_id' => '3',
             'url_acceptance' => 'ASDASDASD.pdf',
             'status' => '2',

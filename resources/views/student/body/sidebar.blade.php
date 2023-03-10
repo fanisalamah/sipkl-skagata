@@ -20,52 +20,71 @@
 </div>
 
 <div class="sidebar-menu">
-<ul class="menu"> 
+        <ul class="menu"> 
     
-    <li class="sidebar-title">Menu</li>
-    <li
-        class="sidebar-item {{ request()->is('student/dashboard') ? 'active' : '' }} ">
-        <a href="{{ route('student.dashboard') }}" class='sidebar-link'>
-            <i class="bi bi-grid-fill"></i>
+             <li class="sidebar-title">Menu</li>
+                <li
+                    class="sidebar-item {{ request()->is('student/dashboard') ? 'active' : '' }} ">
+                    <a href="{{ route('student.dashboard') }}" class='sidebar-link'>
+                        <i class="bi bi-grid-fill"></i>
+                        
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+
+                <li
+                    class="sidebar-item {{ request()->is('student/industries/data') ? 'active' : '' }} ">
+                    <a href="{{ route('student.industry-data') }}" class='sidebar-link'>
+                        <i class="bi bi-clipboard-data-fill"></i>
+                        
+                        <span>Data Industri</span>
+                    </a>
+                </li>
+
+
+                <li
+                    class="sidebar-item  has-sub {{ request()->is('student/internship/*')  ? 'active' : '' }}">
+                    <a href="#" class='sidebar-link'>
+                        <i class="bi bi-file-earmark-medical-fill"></i>
+                        <span>Pengajuan PKL</span>
+                    </a>
+                    <ul class="submenu {{ request()->is('student/internship/*') ? 'active' : '' }}">
+                        <li class="submenu-item {{ request()->is('student/internship/submission') ? 'active' : '' }}">
+                            <a href="{{ route('student.internship-submission') }}">Pengajuan PKL</a>
+                        </li>
+                        <li class="submenu-item {{ request()->is('student/internship/status') ? 'active' : '' }}">
+                            <a href="{{ route('student.internship-status') }}">Status Pengajuan</a>
+                        </li>
+                    </ul>
+                </li>  
+    
+
+
+                @php
+                use App\Models\InternshipSubmission;
+                $submissions = InternshipSubmission::where('student_id', Auth::id())->where('status', 2)->get();
+                @endphp
+                
+                @foreach($submissions as $submission)                     
+                    @if($submission->advisor_id != null)
             
-            <span>Dashboard</span>
-        </a>
-    </li>
+                <li
+                    class="sidebar-item  {{ request()->is('internship/report') ? 'active' : '' }}">
+                    <a href="{{ route('internship.report') }}" class='sidebar-link'>
+                        <i class="bi bi-journal-richtext"></i>
+                        <span>Logbook PKL</span>
+                    </a>
+                </li>
 
-    <li
-        class="sidebar-item {{ request()->is('student/industries/data') ? 'active' : '' }} ">
-        <a href="{{ route('student.industry-data') }}" class='sidebar-link'>
-            <i class="bi bi-clipboard-data-fill"></i>
-            
-            <span>Data Industri</span>
-        </a>
-    </li>
-
-
-<li
-    class="sidebar-item  has-sub {{ request()->is('student/internship/*')  ? 'active' : '' }}">
-    <a href="#" class='sidebar-link'>
-        <i class="bi bi-file-earmark-medical-fill"></i>
-        <span>PKL</span>
-    </a>
-    <ul class="submenu {{ request()->is('student/internship/*') ? 'active' : '' }}">
-        <li class="submenu-item {{ request()->is('student/internship/submission') ? 'active' : '' }}">
-            <a href="{{ route('student.internship-submission') }}">Pengajuan PKL</a>
-        </li>
-        <li class="submenu-item {{ request()->is('student/internship/status') ? 'active' : '' }}">
-            <a href="{{ route('student.internship-status') }}">Status Pengajuan</a>
-        </li>
-    </ul>
-</li>  
-    
-    
-    <li
-        class="sidebar-item  {{ request()->is('internship/report') ? 'active' : '' }}">
-        <a href="{{ route('internship.report') }}" class='sidebar-link'>
-            <i class="bi bi-file-bar-graph-fill"></i>
-            <span>Laporan PKL Siswa</span>
-        </a>
-    </li>
+                <li
+                    class="sidebar-item  {{ request()->is('internship/report') ? 'active' : '' }}">
+                    <a href="{{ route('internship.report') }}" class='sidebar-link'>
+                        <i class="bi bi-journal-richtext"></i>
+                        <span>Laporan PKL</span>
+                    </a>
+                </li>
+                    @endif
+                @endforeach
 
     
     
