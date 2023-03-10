@@ -9,7 +9,7 @@
             <div class="row">
                 <div class="col-12 col-md-6 order-md-1 order-last">
                     <h3>Status Pengajuan <br>Praktik Kerja Lapangan</h3>
-                    <p class="text-subtitle text-muted"> Status Pengajuan Praktik Kerja Lapangan</p>
+                    <p class="text-subtitle text-muted"> SMK Negeri 3 Yogyakarta</p>
                 </div>
                 <div class="col-12 col-md-6 order-md-2 order-first">
                     <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
@@ -38,7 +38,7 @@
                             <tr>
                                 <th width="7%">No. </th>
                                 <th>Industri</th>
-                                <th width="28%">Dokumen Penerimaan</th>
+                                <th width="20%">Dokumen Penerimaan</th>
                                 <th>Status</th>
                                 <th width="19%">Advisor</th>
                                 <th>Aksi</th>
@@ -51,10 +51,10 @@
                                 <td width="4%"> {{ $key+1 }}</td>
                                 <td> {{ $submissions->industries->name }} <br>
                                      <span style="font-size:12px;"> {{ $submissions->industries->address }} </span></td>
-                                <td>  <a href="{{ Storage::url('LetterOfAcceptance/'. $submissions->url_acceptance)}}"
-                                    class="btn btn-info" target="__blank"> <i class="bi bi-eye"></i>  Lihat Lampiran </a> </td>
+                                <td>  <a href="{{ Storage::url('LetterOfAcceptance/'. $submissions->acceptance_file)}}"
+                                    class="badge text-bg-success" target="__blank" style="font-size:14px;"> <i class="bi bi-eye"></i>  Lihat Lampiran </a> </td>
                             @if($submissions->status == 1) 
-                                <td> <span class="badge badge-warning">Waiting</span> </td>
+                                <td> <span class="badge badge-secondary">Waiting</span> </td>
                             @endif
                             @if ($submissions->status == 2) 
                                 <td> <span class="badge badge-success">Accepted</span> </td>

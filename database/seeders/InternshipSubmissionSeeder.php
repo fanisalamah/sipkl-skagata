@@ -18,7 +18,7 @@ class InternshipSubmissionSeeder extends Seeder
         DB::table('internship_submissions')->insert([
             'student_id' => '1',
             'industry_id' => '1',
-            'url_acceptance' => 'bukti diterima.pdf',
+            'acceptance_file' => 'bukti diterima.pdf',
             'status' => '1',
             'advisor_id' => null
         ]);
@@ -26,18 +26,12 @@ class InternshipSubmissionSeeder extends Seeder
         DB::table('internship_submissions')->insert([
             'student_id' => '2',
             'industry_id' => '2',
-            'url_acceptance' => 'bukti diterima.pdf',
+            'acceptance_file' => 'bukti diterima.pdf',
             'status' => '1',
             'advisor_id' => null
         ]);
 
-        DB::table('internship_submissions')->insert([
-            'student_id' => '1',
-            'industry_id' => '3',
-            'url_acceptance' => 'ASDASDASD.pdf',
-            'status' => '2',
-            'advisor_id' => null
-        ]);
+      
 
     }
 }

@@ -6,6 +6,7 @@ use App\Helper\FileHelper;
 use App\Helper\RedirectHelper;
 use App\Models\Advisor;
 use App\Models\Industry;
+use App\Models\InternshipLogbooks;
 use App\Models\InternshipSubmission;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
@@ -65,7 +66,7 @@ class StudentController extends Controller
             $data->student_id = $request->student_id;
             $data->industry_id = $request->industry_id;
             $data->status = $request->status;
-            $data->url_acceptance = $fileNameSimpan;                           
+            $data->acceptance_file = $fileNameSimpan;                           
             $data->save();
             
             $notification = array(
@@ -102,7 +103,7 @@ class StudentController extends Controller
     public function deleteSubmission($id) {
         
         $submission = InternshipSubmission::find($id);
-        Storage::disk('public')->delete('LetterOfAcceptance/'. $submission->url_acceptance);
+        Storage::disk('public')->delete('LetterOfAcceptance/'. $submission->acceptance_file);
         $submission->delete();
 
         
@@ -114,7 +115,10 @@ class StudentController extends Controller
     public function logbookHarian() {
 
         $data['internships'] = InternshipSubmission::where('student_id', Auth::id())->where('status', 2)->get();
-        
+        $internship = InternshipSubmission::
+      
+        $data['logbooks'] = InternshipLogbooks::where('internship_submission_id', InternshipSubmission::id());
+
         return view('student.internship-view.internship-logbook', $data);
 
     }

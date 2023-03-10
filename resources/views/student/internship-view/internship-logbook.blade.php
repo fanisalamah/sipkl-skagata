@@ -24,16 +24,16 @@
         <section class="section">
             <div class="card">
                 <div class="card-header">
-                    <div class="container">
+                    <div class="container" style="font-size:14px;">
                         <div class="row">
                             @foreach($internships as $key => $internship)
                             <div class="col">Nama : {{ Auth::user()->name }}</div>
-                            <div class="col"> Industri : {{ $internship->industries->name }}</div>
+                            <div class="col-6"> Industri : {{ $internship->industries->name }}</div>
                             <div class="col"> Jurusan : {{ Auth::user()->departement->name }}</div>
                         </div>
                         <div class="row">
                             <div class="col">NIS : {{ Auth::user()->nis }}</div>
-                            <div class="col"> Alamat : {{ $internship->industries->address }}</div>
+                            <div class="col-6"> Alamat : {{ $internship->industries->address }}</div>
                             <div class="col">  Advisor : {{ $internship->advisors->name }} </div>
                             @endforeach
                         </div>
@@ -58,13 +58,13 @@
                             
                         </thead>
                         <tbody>
-                            
+                            @foreach($logbooks as $key => $logbook)
                             <tr style="font-size:15px;">
-                                <td width="1%"> 1 </td>
-                                <td width="17%"> 12 Desember 2023 </td>
-                                <td> Konfigurasi jaringan blaidkh kajsdhkajdsha ajsdhkahsdkha kajsdhkajdskjh</td>
-                                <td> <a href="{{ Storage::url('LetterOfAcceptance/')}}"
-                                    class="btn btn-info" target="__blank" style="font-size:14px;"> <i class="bi bi-eye"></i>  Pratinjau </a>  </td>
+                                <td width="1%"> {{ $key+1 }} </td>
+                                <td width="17%"> {{ $logbook->date }} </td>
+                                <td> {{ $logbook->activity }}</td>
+                                <td> <a href="{{ Storage::url('internship/attachment')}}"
+                                    class="badge text-bg-success" target="__blank" style="font-size:14px;"> <i class="bi bi-eye"></i>  Pratinjau </a>  </td>
                                 <td style="font-style:italic;"> Belum ada catatan dari advisor</td>
                                 <td width="18%">
                                     <a href="" class="btn btn-info"> Edit </a>
@@ -72,6 +72,7 @@
                                         onclick="sweetConfirm('/student/delete/', 'Data Siswa')">Hapus</button>                                   
                                 </td>
                             </tr>
+                            @endforeach
                            
                             
                         </tbody>

@@ -18,7 +18,7 @@ class CreateInternshipLogbooksTable extends Migration
             $table->foreignId('internship_submission_id')->constrained('internship_submissions');
             $table->date('date');
             $table->text('activity');
-            $table->string('url_attachment');
+            $table->string('attachment_file');
             $table->string('note');
             $table->timestamps();
         });

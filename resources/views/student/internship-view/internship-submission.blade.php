@@ -8,8 +8,8 @@
         <div class="page-title">
             <div class="row">
                 <div class="col-12 col-md-6 order-md-1 order-last">
-                    <h3>Pengajuan Praktik Kerja Lapangan</h3>
-                    <p class="text-subtitle text-muted"> Pengajuan Praktik Kerja Lapangan</p>
+                    <h3>Pengajuan <br>Praktik Kerja Lapangan</h3>
+                    <p class="text-subtitle text-muted"> SMK Negeri 3 Yogyakarta</p>
                 </div>
                 <div class="col-12 col-md-6 order-md-2 order-first">
                     <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
@@ -50,8 +50,8 @@
                             <div class="col-md-6 col-12">
                                 <div class="form-group mandatory">
                                     <div>
-                                        <label for="url_acceptance" class="form-label">Upload Dokumen Penerimaan (PDF)</label>
-                                        <input class="form-control form-control-lg" id="url_acceptance" name="file" type="file" data-parsley-required="true">
+                                        <label for="acceptance_file" class="form-label">Upload Dokumen Penerimaan (PDF max. 1MB)</label>
+                                        <input class="form-control form-control-lg" id="acceptance_file" name="file" type="file" data-parsley-required="true">
                                       </div>
                                       
                                 </div>
@@ -63,7 +63,7 @@
                                 
                                     <div class="col-12 d-flex justify-content-end">
                                         <button type="submit" class="btn btn-primary me-1 mb-1">Submit</button>
-                                        <button type="reset" class="btn btn-light-secondary me-1 mb-1">Reset</button>
+                                        {{-- <button type="reset" class="btn btn-light-secondary me-1 mb-1">Reset</button> --}}
                                     </div>
                                 
                             </div>
