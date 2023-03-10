@@ -38,7 +38,7 @@
                             @endforeach
                         </div>
                     </div>
-                    .
+                    
                 </div>
                 <div class="card-body">
                     <table class="table table-striped" id="">
