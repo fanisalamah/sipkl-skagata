@@ -69,7 +69,7 @@
                     @if($submission->advisor_id != null)
             
                 <li
-                    class="sidebar-item  {{ request()->is('internship/logbook') ? 'active' : '' }}">
+                    class="sidebar-item  {{ request()->is('student/logbook') ? 'active' : '' }}">
                     <a href="{{ route('student.logbook') }}" class='sidebar-link'>
                         <i class="bi bi-journal-richtext"></i>
                         <span>Logbook</span>

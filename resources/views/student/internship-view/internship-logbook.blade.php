@@ -39,59 +39,44 @@
                         </div>
                     </div>
                     
+                     <a href="" class="btn btn-primary" style="margin-top:10px;"> <i class="bi bi-plus"></i> Tambah catatan </a>
+                    <a href="" class="btn btn-secondary" style="margin-top:10px;">Export </a>
                 </div>
+
                 <div class="card-body">
                     <table class="table table-striped" id="">
+                        
                         <thead>
-                            <tr>
+                            <tr style="font-size:14px;">
                                 <th width="7%">No. </th>
-                                <th>Industri</th>
-                                <th width="28%">Dokumen Penerimaan</th>
-                                <th>Status</th>
-                                <th width="19%">Advisor</th>
-                                <th>Aksi</th>
+                                <th>Tanggal</th>
+                                <th width="28%">Kegiatan</th>
+                                <th>Lampiran</th>
+                                <th width="25%">Catatan</th>
+                                <th width="9%">Aksi</th>
                             </tr>
+                            
                         </thead>
                         <tbody>
-                            {{-- @foreach($internshipSubmissions as $key => $submissions ) --}}
                             
-                            <tr>
-                                {{-- <td width="4%"> {{ $key+1 }}</td>
-                                <td> {{ $submissions->industries->name }} <br>
-                                     <span style="font-size:12px;"> {{ $submissions->industries->address }} </span></td>
-                                <td>  <a href="{{ Storage::url('LetterOfAcceptance/'. $submissions->url_acceptance)}}"
-                                    class="btn btn-info" target="__blank"> <i class="bi bi-eye"></i>  Lihat Lampiran </a> </td>
-                            @if($submissions->status == 1) 
-                                <td> <span class="badge badge-warning">Waiting</span> </td>
-                            @endif
-                            @if ($submissions->status == 2) 
-                                <td> <span class="badge badge-success">Accepted</span> </td>
-                            @endif
-                            @if ($submissions->status == 3) 
-                                <td> <span class="badge badge-danger">Rejected</span> </td>
-                            @endif
-                                <td>
-                                        @if($submissions->advisor_id == 0)
-                                        <span class="badge badge-secondary">Not set</span> 
-                                            @else
-                                            {{ $submissions->advisors->name }}
-                                            
-                                        @endif
+                            <tr style="font-size:15px;">
+                                <td width="1%"> 1 </td>
+                                <td width="17%"> 12 Desember 2023 </td>
+                                <td> Konfigurasi jaringan blaidkh kajsdhkajdsha ajsdhkahsdkha kajsdhkajdskjh</td>
+                                <td> <a href="{{ Storage::url('LetterOfAcceptance/')}}"
+                                    class="btn btn-info" target="__blank" style="font-size:14px;"> <i class="bi bi-eye"></i>  Pratinjau </a>  </td>
+                                <td style="font-style:italic;"> Belum ada catatan dari advisor</td>
+                                <td width="18%">
+                                    <a href="" class="btn btn-info"> Edit </a>
+                                        <button type="submit" class="btn btn-danger" id="delete"
+                                        onclick="sweetConfirm('/student/delete/', 'Data Siswa')">Hapus</button>                                   
                                 </td>
-                                <td width="8%">
-                                    <button type="button" class="btn btn-danger" id="delete" 
-                                    @if($submissions->advisor_id != null) 
-                                        <?= 'disabled'?>
-                                    @endif
-                                    onclick="sweetConfirm('/student/internship/submission/delete/{{ $submissions->id }}', 'Pengajuan PKL')">Hapus</button>                                   
-                                </td>
-                                 --}}
-
                             </tr>
                            
                             
                         </tbody>
                     </table>
+                
                 </div>
                 </div>
             </div>

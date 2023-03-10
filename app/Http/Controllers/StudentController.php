@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Helper\FileHelper;
+use App\Helper\RedirectHelper;
 use App\Models\Advisor;
 use App\Models\Industry;
 use App\Models\InternshipSubmission;
@@ -10,6 +12,7 @@ use Illuminate\Http\RedirectResponse;
 use App\Models\Student;
 use Facade\FlareClient\Http\Response;
 use Illuminate\Http\Response as HttpResponse;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -36,46 +39,26 @@ class StudentController extends Controller
 
     public function storeSubmission(Request $request, $id) {
 
-        // $validator = Validator::make($request->all(), [
-        //     'student_id' => 'required',
-        //     'industry_id' => 'required',
-        //     'status' => 'required',
-        //     'url_acceptance' => 'required|mimes:application/pdf|max:1024'
-        // ]);
+        // dd($request->all());
+        $validator = Validator::make($request->all(), [
+            'student_id' => 'required',
+            'industry_id' => 'required',
+            'status' => 'required',
+            'file' => 'required|mimes:pdf|max:1024'
+        ]);
 
+        if($validator->fails()){
+            $errors = $validator->errors()->all(':message');
+            return RedirectHelper::redirectBack(implode(' ',$errors), 'error');
+
+        }
 
         if($request->hasFile('file')) {
             
-            $fileNameWithExt = $request->file('file')->getClientOriginalName();
-            // $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
-            
-            $extension = $request->file('file')->getClientOriginalExtension();
-            $fileSize = $request->file('file')->getSize();
+           $fileNameSimpan = $this->uploadSubmission($request->file('file'));
+ 
+        } 
 
-
-            if($extension === 'pdf') {
-                
-                    $fileNameSimpan = Str::random(32).'.'.$extension;
-                    $path = $request->file('file')->storeAs('/public/LetterOfAcceptance', $fileNameSimpan);    
-
-            }
-
-            else {
-                $notification = array(
-                    'message' => 'Pilih dokumen PDF dengan maksimal ukuran 1MB',
-                    'alert-type' => 'error'
-                );
-                return redirect()->back()->with($notification);
-            }
-
-
-        } else {
-            $notification = array(
-                'message' => 'Pengajuan gagal! Lampirkan Dokumen Penerimaan',
-                'alert-type' => 'error'
-            );
-            return redirect()->back()->with($notification);
-        }
 
         if(isset($request->industry_id)) {
             $data = new InternshipSubmission();
@@ -98,8 +81,15 @@ class StudentController extends Controller
             );
             return redirect()->back()->with($notification);
         }
+    }
 
+
+    public function uploadSubmission(UploadedFile $uploadedFile) {
+        $file = new FileHelper();
+        $fileName = $file->handle($uploadedFile, InternshipSubmission::getUploadPath());
+        return $fileName;
         
+
     }
 
     public function internshipStatus() {
