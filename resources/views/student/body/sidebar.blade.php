@@ -69,14 +69,14 @@
                     @if($submission->advisor_id != null)
             
                 <li
-                    class="sidebar-item  {{ request()->is('internship/report') ? 'active' : '' }}">
-                    <a href="{{ route('internship.report') }}" class='sidebar-link'>
+                    class="sidebar-item  {{ request()->is('internship/logbook') ? 'active' : '' }}">
+                    <a href="{{ route('student.logbook') }}" class='sidebar-link'>
                         <i class="bi bi-journal-richtext"></i>
-                        <span>Logbook PKL</span>
+                        <span>Logbook</span>
                     </a>
                 </li>
 
-                <li
+                {{-- <li
                     class="sidebar-item  {{ request()->is('internship/report') ? 'active' : '' }}">
                     <a href="{{ route('internship.report') }}" class='sidebar-link'>
                         <i class="bi bi-folder2-open"></i>
@@ -90,7 +90,7 @@
                         <i class="bi bi-journal-richtext"></i>
                         <span>Laporan dan Nilai</span>
                     </a>
-                </li>
+                </li> --}}
                     @endif
                 @endforeach
 

@@ -120,6 +120,14 @@ class StudentController extends Controller
         return redirect()->route('student.internship-status');
 
     }
+
+    public function logbookHarian() {
+
+        $data['internships'] = InternshipSubmission::where('student_id', Auth::id())->where('status', 2)->get();
+        
+        return view('student.internship-view.internship-logbook', $data);
+
+    }
 }
 
  
