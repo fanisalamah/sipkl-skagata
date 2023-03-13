@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use App\Models\Student;
 use Facade\FlareClient\Http\Response;
+use Illuminate\Database\Query\Builder;
 use Illuminate\Http\Response as HttpResponse;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Auth;
@@ -114,10 +115,21 @@ class StudentController extends Controller
 
     public function logbookHarian() {
 
-        $data['internships'] = InternshipSubmission::where('student_id', Auth::id())->where('status', 2)->get();
-        $internship = InternshipSubmission::
-      
-        $data['logbooks'] = InternshipLogbooks::where('internship_submission_id', InternshipSubmission::id());
+        // $data['internships'] = InternshipSubmission::where('student_id', Auth::id())->where('status', 2)->get();
+        // $data = InternshipSubmission::with('internship_logbooks')
+        // ->whereHas('status', function (Builder $query) {
+        //     $query->where('status', '=', 2);
+        // })
+        // ->get();
+
+
+        $data = InternshipSubmission::with('internshipLogbooks')
+                ->whereHas('students', function ($query) {
+                    $query->where('status', '=', 2);
+                })->get();
+
+        dd($data);
+
 
         return view('student.internship-view.internship-logbook', $data);
 
