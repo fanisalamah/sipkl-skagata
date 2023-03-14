@@ -68,9 +68,16 @@
                                 
                                 <td width="17%"> {{ $logbook->date }} </td>
                                 <td> {{ $logbook->activity }}</td>
-                                <td> <a href="{{ Storage::url('internship/attachment/'. $logbook->attachment_file)}}"
+                                <td> <a href="{{ Storage::url('internship/logbook/'. $logbook->attachment_file)}}"
                                     class="badge text-bg-success" target="__blank" style="font-size:14px;"> <i class="bi bi-eye"></i>  Pratinjau </a>  </td>
+                                
+                                
+                                @if($logbook->note == null || $logbook->note == '')
+                                <td style="font-style:italic;"> Belum ada catatan</td>
+                                @else
                                 <td style="font-style:italic;"> {{ $logbook->note }}</td>
+                                @endif
+                                
                                 <td width="18%">
                                     <a href="" class="btn btn-info"> Edit </a>
                                         <button type="submit" class="btn btn-danger" id="delete"

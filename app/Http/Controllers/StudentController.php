@@ -115,20 +115,13 @@ class StudentController extends Controller
 
     public function logbookHarian() {
 
-        
-        // $data = InternshipSubmission::with('internship_logbooks')
-        // ->whereHas('status', function (Builder $query) {
-        //     $query->where('status', '=', 2);
-        // })
-        // ->get();
-
         $data['internships'] = InternshipSubmission::where('student_id', Auth::id())->where('status', 2)->get();
         $data['submissions'] = InternshipSubmission::with('internshipLogbooks')
                 ->whereHas('students', function ($query) {
                     $query->where('status', '=', 2) && ('student_id' == Auth::id());
                 })->get();
 
-                // ini query untuk semua student yang statusnya 2, dan idnya auth id
+                // ini query untuk semua student yang statusnya 2 (accepted), dan idnya sesuai id user yang login
 
 
 
