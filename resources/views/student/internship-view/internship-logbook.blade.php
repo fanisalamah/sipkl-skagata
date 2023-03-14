@@ -59,12 +59,16 @@
                         </thead>
                         <tbody>
                             @foreach($submissions as $key => $submission)
+                            @php $i=1 @endphp
                                 @foreach($submission->internshipLogbooks as $logbook)
+                                
                             <tr style="font-size:15px;">
-                                <td width="1%"> {{ $key+1 }} </td>
+                                
+                                <td width="1%"> {{ $i++ }} </td>
+                                
                                 <td width="17%"> {{ $logbook->date }} </td>
                                 <td> {{ $logbook->activity }}</td>
-                                <td> <a href="{{ Storage::url('internship/attachment')}}"
+                                <td> <a href="{{ Storage::url('internship/attachment/'. $logbook->attachment_file)}}"
                                     class="badge text-bg-success" target="__blank" style="font-size:14px;"> <i class="bi bi-eye"></i>  Pratinjau </a>  </td>
                                 <td style="font-style:italic;"> {{ $logbook->note }}</td>
                                 <td width="18%">
@@ -72,8 +76,11 @@
                                         <button type="submit" class="btn btn-danger" id="delete"
                                         onclick="sweetConfirm('/student/delete/', 'Data Siswa')">Hapus</button>                                   
                                 </td>
+                                
                             </tr>
+                            
                             @endforeach
+                            
                             @endforeach
                            
                             
