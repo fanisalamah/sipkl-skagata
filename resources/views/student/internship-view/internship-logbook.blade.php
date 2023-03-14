@@ -58,20 +58,21 @@
                             
                         </thead>
                         <tbody>
-                            @foreach($logbooks as $key => $logbook)
+                            @foreach($submissions as $key => $submission)
                             <tr style="font-size:15px;">
                                 <td width="1%"> {{ $key+1 }} </td>
-                                <td width="17%"> {{ $logbook->date }} </td>
-                                <td> {{ $logbook->activity }}</td>
+                                <td width="17%"> {{ $submission->internshipLogbooks->date }} </td>
+                                <td> {{ $submission->internshipLogbooks->activity }}</td>
                                 <td> <a href="{{ Storage::url('internship/attachment')}}"
                                     class="badge text-bg-success" target="__blank" style="font-size:14px;"> <i class="bi bi-eye"></i>  Pratinjau </a>  </td>
-                                <td style="font-style:italic;"> Belum ada catatan dari advisor</td>
+                                <td style="font-style:italic;"> {{ $submission->internshipLogbooks  ->note }}</td>
                                 <td width="18%">
                                     <a href="" class="btn btn-info"> Edit </a>
                                         <button type="submit" class="btn btn-danger" id="delete"
                                         onclick="sweetConfirm('/student/delete/', 'Data Siswa')">Hapus</button>                                   
                                 </td>
                             </tr>
+                            
                             @endforeach
                            
                             
