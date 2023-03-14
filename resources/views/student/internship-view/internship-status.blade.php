@@ -51,7 +51,7 @@
                                 <td width="4%"> {{ $key+1 }}</td>
                                 <td> {{ $submissions->industries->name }} <br>
                                      <span style="font-size:12px;"> {{ $submissions->industries->address }} </span></td>
-                                <td>  <a href="{{ Storage::url('LetterOfAcceptance/'. $submissions->acceptance_file)}}"
+                                <td>  <a href="{{ Storage::url('internship/letter-of-acceptance/'. $submissions->acceptance_file)}}"
                                     class="badge text-bg-success" target="__blank" style="font-size:14px;"> <i class="bi bi-eye"></i>  Lihat Lampiran </a> </td>
                             @if($submissions->status == 1) 
                                 <td> <span class="badge badge-secondary">Waiting</span> </td>

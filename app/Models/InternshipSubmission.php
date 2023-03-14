@@ -41,7 +41,7 @@ class InternshipSubmission extends Model
     }
 
     public static function getUploadPath() {
-        return '/internship/letter-of-acceptance';
+        return '/public/internship/letter-of-acceptance';
     }
 
   

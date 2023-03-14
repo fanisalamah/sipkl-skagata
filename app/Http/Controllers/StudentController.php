@@ -104,7 +104,7 @@ class StudentController extends Controller
     public function deleteSubmission($id) {
         
         $submission = InternshipSubmission::find($id);
-        Storage::disk('public')->delete('LetterOfAcceptance/'. $submission->acceptance_file);
+        Storage::disk('public')->delete('internship/letter-of-acceptance/'. $submission->acceptance_file);
         $submission->delete();
 
         
