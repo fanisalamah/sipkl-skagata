@@ -97,6 +97,7 @@ Route::group(['middleware' => ['auth:student']], function() {
         Route::get('/internship/status', [StudentController::class, 'internshipStatus'])->name('student.internship-status');
         Route::post('/internship/submission/delete/{id}', [StudentController::class, 'deleteSubmission'])->name('student.delete-submission');
         Route::get('/logbook', [StudentController::class, 'logbookHarian'])->name('student.logbook');
+        Route::get('/logbook/add', [StudentController::class, 'addLogbook'])->name('student.add-logbook');
         
     });
     

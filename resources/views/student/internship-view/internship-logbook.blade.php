@@ -39,7 +39,7 @@
                         </div>
                     </div>
                     
-                     <a href="" class="btn btn-primary" style="margin-top:10px;"> <i class="bi bi-plus"></i> Tambah catatan </a>
+                     <a href="" class="btn btn-primary" style="margin-top:10px;"> <i class="bi bi-plus"></i> Tambah logbook </a>
                     <a href="" class="btn btn-secondary" style="margin-top:10px;">Export </a>
                 </div>
 
@@ -69,13 +69,13 @@
                                 <td width="17%"> {{ $logbook->date }} </td>
                                 <td> {{ $logbook->activity }}</td>
                                 <td> <a href="{{ Storage::url('internship/logbook/'. $logbook->attachment_file)}}"
-                                    class="badge text-bg-success" target="__blank" style="font-size:14px;"> <i class="bi bi-eye"></i>  Pratinjau </a>  </td>
+                                    class="badge text-bg-success" target="__blank" style="font-size:14px;"> <i class="bi bi-eye"></i>  Lihat Lampiran </a>  </td>
                                 
                                 
                                 @if($logbook->note == null || $logbook->note == '')
-                                <td style="font-style:italic;"> Belum ada catatan</td>
+                                <td style="font-style:italic;"> Tidak ada catatan</td>
                                 @else
-                                <td style="font-style:italic;"> {{ $logbook->note }}</td>
+                                <td> {{ $logbook->note }}</td>
                                 @endif
                                 
                                 <td width="18%">

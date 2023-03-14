@@ -61,7 +61,6 @@ class StudentController extends Controller
  
         } 
 
-
         if(isset($request->industry_id)) {
             $data = new InternshipSubmission();
             $data->student_id = $request->student_id;
@@ -127,6 +126,12 @@ class StudentController extends Controller
 
         return view('student.internship-view.internship-logbook', $data);
 
+    }
+
+    public function addLogbook() {
+        
+
+        return view('student.internship-view.internship-add-logbook');
     }
 }
 
