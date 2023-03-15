@@ -167,6 +167,13 @@ class StudentController extends Controller
         return $fileName;
     }
 
+    public function editLogbook($id) {
+
+        $editData['logbook'] = InternshipLogbooks::find($id);
+    return view('student.internship-view.internship-edit-logbook', $editData);
+
+    }
+
 
 }
 

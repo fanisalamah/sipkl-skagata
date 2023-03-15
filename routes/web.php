@@ -99,10 +99,9 @@ Route::group(['middleware' => ['auth:student']], function() {
         Route::get('/logbook', [StudentController::class, 'logbookHarian'])->name('student.logbook');
         Route::get('/logbook/add', [StudentController::class, 'addLogbook'])->name('student.add-logbook');
         Route::post('/logbook/store', [StudentController::class, 'storeLogbook'])->name('logbook.store');
-        
+        Route::get('/logbook/edit/{id}', [StudentController::class, 'editLogbook'])->name('logbook.edit');
     });
     
-    // Route::get('download/{url}', [StudentController::class, 'previewLOA'])->name('student.preview-LOA');
     
 
 });

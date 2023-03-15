@@ -79,7 +79,7 @@
                                 @endif
                                 
                                 <td width="18%">
-                                    <a href="" class="btn btn-info"> Edit </a>
+                                    <a href="{{ route('logbook.edit', $logbook->id) }}" class="btn btn-info"> Edit </a>
                                         <button type="submit" class="btn btn-danger" id="delete"
                                         onclick="sweetConfirm('/student/delete/', 'Data Siswa')">Hapus</button>                                   
                                 </td>
