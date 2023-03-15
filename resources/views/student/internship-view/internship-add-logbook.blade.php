@@ -27,7 +27,7 @@
                   <div class="card-body">
                     
                       
-                    <form class="form" method="POST" action="{{ route('logbook.store') }}">
+                    <form class="form" method="POST" action="{{ route('logbook.store') }}" enctype="multipart/form-data">
                       @csrf
                       <div class="row">
                         {{-- <input type="hidden" name="internship_submission_id" id="internship_submission_id" value=""> --}}
@@ -42,7 +42,7 @@
                           <div class="form-group">
                             <label for="file">Lampiran (Max 1MB)</label>
                             <div class="mb-3">                                
-                              <input class="form-control form-control-lg" id="acceptance_file" name="file" type="file" data-parsley-required="true">
+                              <input class="form-control form-control-lg" id="file" name="file" type="file" data-parsley-required="true">
                               </div> 
                           </div>
                         </div>

@@ -24,7 +24,7 @@
         <section class="section">
             <div class="card">
                 <div class="card-body">
-                    <form method="POST" action="{{ route('student.internship-store', Auth::id()); }}" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('student.internship-store', Auth::id()); }}" enctype="multipart/form-data" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
 

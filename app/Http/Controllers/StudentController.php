@@ -131,7 +131,7 @@ class StudentController extends Controller
         $validator = Validator::make($request->all(), [
             'date' => 'required',
             'activity' => 'required',
-            'file' => 'required|mimes:pdf|max:1024'
+            'file' => 'required|mimes:pdf|max:1024',
         ]);
 
         if($validator->fails()) {
@@ -148,6 +148,7 @@ class StudentController extends Controller
         $data->internship_submission_id = $dataPKL[0]->id;
         $data->date = $request->date;
         $data->activity = $request->activity;
+        $data->note = '';
         $data->attachment_file = $fileNameSimpan;
         $data->save();
         
