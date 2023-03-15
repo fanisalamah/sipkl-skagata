@@ -18,8 +18,9 @@ class InternshipLogbooks extends Model
     }
 
     public static function getUploadPath() {
-        return '/internship/logbook';
+        return '/public/internship/logbook';
     }
 
+    
 
 }

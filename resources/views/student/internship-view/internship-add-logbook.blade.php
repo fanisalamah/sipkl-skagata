@@ -25,9 +25,12 @@
             <div class="card">
                 <div class="card-content">
                   <div class="card-body">
-                    <form class="form">
+                    
+                      
+                    <form class="form" method="POST" action="{{ route('logbook.store') }}">
+                      @csrf
                       <div class="row">
-
+                        {{-- <input type="hidden" name="internship_submission_id" id="internship_submission_id" value=""> --}}
                         <div class="col-md-6 col-12">
                           <div class="form-group">
                             <label for="date">Tanggal</label>
@@ -37,24 +40,23 @@
 
                         <div class="col-md-6 col-12">
                           <div class="form-group">
-                            <label for="last-name-column">Lampiran</label>
+                            <label for="file">Lampiran (Max 1MB)</label>
                             <div class="mb-3">                                
-                                <input class="form-control" type="file" id="formFile">
+                              <input class="form-control form-control-lg" id="acceptance_file" name="file" type="file" data-parsley-required="true">
                               </div> 
                           </div>
                         </div>
 
                         </div>
-
                         <div class="row">
                             <div class="col-md-6 col-12">
-                                <div class="form-group">
-                                  <label for="activity">Uraian Kegiatan</label>
-                                  <div class="form-group with-title mb-3">
-                                      <textarea class="form-control" id="activity" style="height: 168px;"></textarea>
+                                
+                                  
+                                  <div class="form-group mb-3">
+                                    <label for="activity">Uraian Kegiatan</label>
+                                    <textarea class="form-control" name="activity" id="activity" rows="5"></textarea>
+                                  </div>
                                       
-                                    </div>
-                                      </div>
                                     </div>
                                     <div class="col-md-6 col-12">
                                         <button type="submit" class="btn btn-primary me-1 mb-1">
@@ -65,20 +67,15 @@
                                           </button>
                                       </div>
                         </div>
-
-
+                        </form>
                           </div>
                         </div>
                         
-                        <div class="col-12 d-flex justify-content-end">
-                          
-                        </div>
                       </div>
-                    </form>
+                    
                   </div>
                 </div>
-              </div>
-            </div>
+             
     
         </section>
     </div>

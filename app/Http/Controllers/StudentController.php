@@ -39,9 +39,8 @@ class StudentController extends Controller
         
     }
 
-    public function storeSubmission(Request $request, $id) {
-
-        // dd($request->all());
+    public function storeSubmission(Request $request) {
+        
         $validator = Validator::make($request->all(), [
             'student_id' => 'required',
             'industry_id' => 'required',
@@ -56,9 +55,7 @@ class StudentController extends Controller
         }
 
         if($request->hasFile('file')) {
-            
            $fileNameSimpan = $this->uploadSubmission($request->file('file'));
- 
         } 
 
         if(isset($request->industry_id)) {
@@ -89,7 +86,6 @@ class StudentController extends Controller
         $file = new FileHelper();
         $fileName = $file->handle($uploadedFile, InternshipSubmission::getUploadPath());
         return $fileName;
-        
 
     }
 
@@ -122,17 +118,55 @@ class StudentController extends Controller
 
                 // ini query untuk semua student yang statusnya 2 (accepted), dan idnya sesuai id user yang login
 
-
-
         return view('student.internship-view.internship-logbook', $data);
 
     }
 
     public function addLogbook() {
-        
-
         return view('student.internship-view.internship-add-logbook');
     }
+
+    public function storeLogbook(Request $request) {
+        
+        $validator = Validator::make($request->all(), [
+            'date' => 'required',
+            'activity' => 'required',
+            'file' => 'required|mimes:pdf|max:1024'
+        ]);
+
+        if($validator->fails()) {
+            $errors = $validator->errors()->all(':message');
+            return RedirectHelper::redirectBack(implode(' ', $errors), 'error');
+        }
+
+        if($request->hasFile('file')) {
+            $fileNameSimpan = $this->uploadLogbook($request->file('file'));
+        }
+
+        $data = new InternshipLogbooks();
+        $dataPKL = InternshipSubmission::where('student_id', Auth::id())->where('status', 2)->get(); 
+        $data->internship_submission_id = $dataPKL[0]->id;
+        $data->date = $request->date;
+        $data->activity = $request->activity;
+        $data->attachment_file = $fileNameSimpan;
+        $data->save();
+        
+
+        $notification = array(  
+            'message' => 'Data logbook berhasil diinput',
+            'alert-type' => 'success'
+        );
+        
+        return redirect()->route('student.logbook')->with($notification);
+    } 
+
+    public function uploadLogbook(UploadedFile $uploadedFile) {
+        $file = new FileHelper();
+        $fileName = $file->handle($uploadedFile, InternshipLogbooks::getUploadPath());
+        return $fileName;
+    }
+
+
 }
 
  

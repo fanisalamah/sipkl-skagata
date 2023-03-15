@@ -39,7 +39,7 @@
                         </div>
                     </div>
                     
-                     <a href="" class="btn btn-primary" style="margin-top:10px;"> <i class="bi bi-plus"></i> Tambah logbook </a>
+                     <a href="{{ route('student.add-logbook') }}" class="btn btn-primary" style="margin-top:10px;"> <i class="bi bi-plus"></i> Tambah logbook </a>
                     <a href="" class="btn btn-secondary" style="margin-top:10px;">Export </a>
                 </div>
 
