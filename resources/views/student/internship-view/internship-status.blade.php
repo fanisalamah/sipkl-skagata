@@ -33,7 +33,7 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <table class="table table-striped" id="">
+                    <table class="table table-striped" id="table1">
                         <thead>
                             <tr>
                                 <th width="7%">No. </th>

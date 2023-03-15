@@ -48,7 +48,7 @@
                         
                         <thead>
                             <tr style="font-size:14px;">
-                                <th width="7%">No. </th>
+                                <th width="5%">No. </th>
                                 <th>Tanggal</th>
                                 <th width="28%">Kegiatan</th>
                                 <th>Lampiran</th>
@@ -75,7 +75,7 @@
                                 @if($logbook->note == null || $logbook->note == '')
                                 <td style="font-style:italic;"> Tidak ada catatan</td>
                                 @else
-                                <td> {{ $logbook->note }}</td>
+                                <td style="font-weight:bold;"> {{ $logbook->note }}</td>
                                 @endif
                                 
                                 <td width="18%">

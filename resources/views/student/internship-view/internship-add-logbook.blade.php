@@ -32,15 +32,15 @@
                       <div class="row">
                         {{-- <input type="hidden" name="internship_submission_id" id="internship_submission_id" value=""> --}}
                         <div class="col-md-6 col-12">
-                          <div class="form-group">
-                            <label for="date">Tanggal</label>
+                          <div class="form-group mandatory">
+                            <label for="date">Tanggal<span style="color:#DF2E38;">*</span></label>
                             <input type="date" id="date" class="form-control" placeholder="Pilih tanggal" name="date">
                           </div>
                         </div>
 
                         <div class="col-md-6 col-12">
-                          <div class="form-group">
-                            <label for="file">Lampiran (Max 1MB)</label>
+                          <div class="form-group mandatory">
+                            <label for="file">Bukti Kegiatan (PDF, JPG, JPEG, PNG, Max 1MB)<span style="color:#DF2E38;">*</span></label>
                             <div class="mb-3">                                
                               <input class="form-control form-control-lg" id="file" name="file" type="file" data-parsley-required="true">
                               </div> 
@@ -53,7 +53,7 @@
                                 
                                   
                                   <div class="form-group mb-3">
-                                    <label for="activity">Uraian Kegiatan</label>
+                                    <label for="activity mandatory">Uraian Kegiatan<span style="color:#DF2E38;">*</span></label>
                                     <textarea class="form-control" name="activity" id="activity" rows="5"></textarea>
                                   </div>
                                       

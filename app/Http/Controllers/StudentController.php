@@ -116,7 +116,7 @@ class StudentController extends Controller
                     $query->where('status', '=', 2) && ('student_id' == Auth::id());
                 })->get();
 
-                // ini query untuk semua student yang statusnya 2 (accepted), dan idnya sesuai id user yang login
+            // ini query untuk semua student yang statusnya 2 (accepted), dan idnya sesuai id user yang login
 
         return view('student.internship-view.internship-logbook', $data);
 
@@ -131,7 +131,7 @@ class StudentController extends Controller
         $validator = Validator::make($request->all(), [
             'date' => 'required',
             'activity' => 'required',
-            'file' => 'required|mimes:pdf|max:1024',
+            'file' => 'mimes:pdf,jpg,jpeg,png|max:1024',
         ]);
 
         if($validator->fails()) {
