@@ -101,6 +101,7 @@ Route::group(['middleware' => ['auth:student']], function() {
         Route::post('/logbook/store', [StudentController::class, 'storeLogbook'])->name('logbook.store');
         Route::get('/logbook/edit/{id}', [StudentController::class, 'editLogbook'])->name('logbook.edit');
         Route::put('/logbook/update/{id}', [StudentController::class, 'updateLogbook'])->name('logbook.update');
+        Route::post('/logbook/delete/{id}', [StudentController::class, 'deleteLogbook'])->name('logbook.delete');
     });
     
     

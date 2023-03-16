@@ -88,12 +88,10 @@
                                 <td style="font-weight:bold;"> {{ $logbook->note }}</td>
                                 @endif
                                 
-                                <td width="18%">
-                                    <a href="{{ route('logbook.edit', $logbook->id) }}" class="badge text-bg-success" style="padding:10px;"> Edit </a>
-                                    <a href="{{ route('logbook.edit', $logbook->id) }}" class="badge text-bg-danger" id="delete" style="padding:10px;"
-                                        onclick="sweetConfirm('/student/delete/', 'Data Siswa')"> Delete </a>
-                                        {{-- <button type="submit" class="badge text-bg-danger" id="delete"
-                                        onclick="sweetConfirm('/student/delete/', 'Data Siswa')">Hapus</button>                                    --}}
+                                <td width="20%">
+                                    <a href="{{ route('logbook.edit', $logbook->id) }}" class="btn btn-info"> Edit </a>
+                                    <button type="button" class="btn btn-danger" id="delete"
+                                    onclick="sweetConfirm('/student/logbook/delete/{{ $logbook->id }}', 'Data Logbook')">Hapus</button>  
                                 </td>
                                 
                             </tr>

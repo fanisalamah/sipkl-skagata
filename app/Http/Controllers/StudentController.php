@@ -101,9 +101,7 @@ class StudentController extends Controller
         
         $submission = InternshipSubmission::find($id);
         Storage::disk('public')->delete('internship/letter-of-acceptance/'. $submission->acceptance_file);
-        $submission->delete();
-
-        
+        $submission->delete();        
 
         return redirect()->route('student.internship-status');
 
@@ -206,6 +204,15 @@ class StudentController extends Controller
         );
         
         return redirect()->route('student.logbook')->with($notification);
+
+    }
+
+    public function deleteLogbook($id) {
+        $logbook = InternshipLogbooks::find($id);
+        Storage::disk('public')->delete('internship/logbook/'. $logbook->attachment_file);
+        $logbook->delete();
+
+        return redirect()->route('student.internship-logbook');
 
     }
 
