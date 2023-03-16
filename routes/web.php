@@ -102,6 +102,8 @@ Route::group(['middleware' => ['auth:student']], function() {
         Route::get('/logbook/edit/{id}', [StudentController::class, 'editLogbook'])->name('logbook.edit');
         Route::put('/logbook/update/{id}', [StudentController::class, 'updateLogbook'])->name('logbook.update');
         Route::post('/logbook/delete/{id}', [StudentController::class, 'deleteLogbook'])->name('logbook.delete');
+        Route::get('/monthly-report', [StudentController::class, 'monthlyReport'])->name('monthly.report');
+        
     });
     
     

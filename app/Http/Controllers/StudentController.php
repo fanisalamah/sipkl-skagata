@@ -221,6 +221,11 @@ class StudentController extends Controller
         }
     }
 
+    public function monthlyReport() {
+        $data['internships'] = InternshipSubmission::where('student_id', Auth::id())->where('status', 2)->get();
+        //         
+        return view('student.internship-view.internship-monthly-report', $data);
+    }
 
 }
 
