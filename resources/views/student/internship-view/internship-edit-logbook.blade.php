@@ -27,8 +27,9 @@
                   <div class="card-body">
                     
                       
-                    <form class="form" method="POST" action="{{ route('logbook.store') }}" enctype="multipart/form-data">
+                    <form class="form" method="POST" action="{{ route('logbook.update', $logbook->id) }}" enctype="multipart/form-data">
                       @csrf
+                      @method('put')
                       <div class="row">
                         {{-- <input type="hidden" name="internship_submission_id" id="internship_submission_id" value=""> --}}
                         <div class="col-md-6 col-12">
@@ -60,7 +61,7 @@
                                     </div>
                                     <div class="col-md-6 col-12">
                                         <button type="submit" class="btn btn-primary me-1 mb-1">
-                                            Submit
+                                            Update
                                           </button>
                                           <button type="reset" class="btn btn-light-secondary me-1 mb-1">
                                             Reset

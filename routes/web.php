@@ -100,6 +100,7 @@ Route::group(['middleware' => ['auth:student']], function() {
         Route::get('/logbook/add', [StudentController::class, 'addLogbook'])->name('student.add-logbook');
         Route::post('/logbook/store', [StudentController::class, 'storeLogbook'])->name('logbook.store');
         Route::get('/logbook/edit/{id}', [StudentController::class, 'editLogbook'])->name('logbook.edit');
+        Route::put('/logbook/update/{id}', [StudentController::class, 'updateLogbook'])->name('logbook.update');
     });
     
     

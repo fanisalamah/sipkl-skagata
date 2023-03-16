@@ -168,9 +168,29 @@ class StudentController extends Controller
     }
 
     public function editLogbook($id) {
-
         $editData['logbook'] = InternshipLogbooks::find($id);
-    return view('student.internship-view.internship-edit-logbook', $editData);
+        return view('student.internship-view.internship-edit-logbook', $editData);
+    }
+
+    public function updateLogbook(Request $request, $id) {
+        $logbooks = InternshipLogbooks::find($id);
+        $logbooks->date = $request->date;
+        $logbooks->activity = $request->activity;
+        
+        if($request->hasFile('file')) {
+            $fileNameSimpan = $this->uploadLogbook($request->file('file'));
+            $logbooks->attachment_file = $fileNameSimpan;
+        }
+         
+        
+        $logbooks->save();
+        
+        $notification = array(  
+            'message' => 'Data logbook berhasil diupdate',
+            'alert-type' => 'success'
+        );
+        
+        return redirect()->route('student.logbook')->with($notification);
 
     }
 

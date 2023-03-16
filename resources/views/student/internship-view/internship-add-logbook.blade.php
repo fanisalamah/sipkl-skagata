@@ -54,7 +54,7 @@
                                   
                                   <div class="form-group mb-3">
                                     <label for="activity mandatory">Uraian Kegiatan<span style="color:#DF2E38;">*</span></label>
-                                    <textarea class="form-control" name="activity" id="activity" rows="5"></textarea>
+                                    <textarea class="form-control" name="activity" id="activity" rows="5" placeholder="Uraikan kegiatan PKL kalian disini"></textarea>
                                   </div>
                                       
                                     </div>
