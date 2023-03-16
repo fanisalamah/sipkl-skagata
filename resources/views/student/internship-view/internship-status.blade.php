@@ -38,7 +38,7 @@
                             <tr>
                                 <th width="7%">No. </th>
                                 <th>Industri</th>
-                                <th width="20%">Dokumen Penerimaan</th>
+                                <th width="12%">Dokumen</th>
                                 <th>Status</th>
                                 <th width="19%">Advisor</th>
                                 <th>Aksi</th>
@@ -52,19 +52,19 @@
                                 <td> {{ $submissions->industries->name }} <br>
                                      <span style="font-size:12px;"> {{ $submissions->industries->address }} </span></td>
                                 <td>  <a href="{{ Storage::url('internship/letter-of-acceptance/'. $submissions->acceptance_file)}}"
-                                    class="badge text-bg-success" target="__blank" style="font-size:14px;"> <i class="bi bi-eye"></i>  Lihat Lampiran </a> </td>
+                                    class="badge text-bg-success" target="__blank" style="font-size:14px;padding:10px;"> <i class="bi bi-eye"></i>  Preview </a> </td>
                             @if($submissions->status == 1) 
-                                <td> <span class="badge badge-secondary">Waiting</span> </td>
+                                <td> <span class="badge badge-secondary" style="padding:10px;">Waiting</span> </td>
                             @endif
                             @if ($submissions->status == 2) 
-                                <td> <span class="badge badge-success">Accepted</span> </td>
+                                <td> <span class="badge badge-success" style="padding:10px;">Accepted</span> </td>
                             @endif
                             @if ($submissions->status == 3) 
-                                <td> <span class="badge badge-danger">Rejected</span> </td>
+                                <td> <span class="badge badge-danger" style="padding:10px;">Rejected</span> </td>
                             @endif
                                 <td>
                                         @if($submissions->advisor_id == 0)
-                                        <span class="badge badge-secondary">Not set</span> 
+                                        <span class="badge badge-secondary" style="padding:10px;">Not set</span> 
                                             @else
                                             {{ $submissions->advisors->name }}
                                             

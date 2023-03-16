@@ -44,7 +44,7 @@
                 </div>
 
                 <div class="card-body">
-                    <table class="table table-striped" id="">
+                    <table class="table table-striped" id="table1">
                         
                         <thead>
                             <tr style="font-size:14px;">
@@ -60,7 +60,7 @@
                         <tbody>
                             @foreach($submissions as $key => $submission)
                             @php $i=1 @endphp
-                                @foreach($submission->internshipLogbooks as $logbook)
+                                @foreach($submission->internshipLogbooks->sortByDesc('date') as $logbook)
                                 
                             <tr style="font-size:15px;">
                                 
@@ -69,7 +69,7 @@
                                 <td width="17%"> {{ $logbook->date }} </td>
                                 <td> {{ $logbook->activity }}</td>
                                 <td> <a href="{{ Storage::url('internship/logbook/'. $logbook->attachment_file)}}"
-                                    class="badge text-bg-success" target="__blank" style="font-size:14px;"> <i class="bi bi-eye"></i>  Lihat Lampiran </a>  </td>
+                                    class="badge text-bg-success" target="__blank" style="font-size:14px; padding:10px;"> <i class="bi bi-eye"></i>  Preview </a>  </td>
                                 
                                 
                                 @if($logbook->note == null || $logbook->note == '')
@@ -79,9 +79,11 @@
                                 @endif
                                 
                                 <td width="18%">
-                                    <a href="{{ route('logbook.edit', $logbook->id) }}" class="btn btn-info"> Edit </a>
-                                        <button type="submit" class="btn btn-danger" id="delete"
-                                        onclick="sweetConfirm('/student/delete/', 'Data Siswa')">Hapus</button>                                   
+                                    <a href="{{ route('logbook.edit', $logbook->id) }}" class="badge text-bg-success" style="padding:10px;"> Edit </a>
+                                    <a href="{{ route('logbook.edit', $logbook->id) }}" class="badge text-bg-danger" id="delete" style="padding:10px;"
+                                        onclick="sweetConfirm('/student/delete/', 'Data Siswa')"> Delete </a>
+                                        {{-- <button type="submit" class="badge text-bg-danger" id="delete"
+                                        onclick="sweetConfirm('/student/delete/', 'Data Siswa')">Hapus</button>                                    --}}
                                 </td>
                                 
                             </tr>

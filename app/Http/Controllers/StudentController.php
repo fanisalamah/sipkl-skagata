@@ -114,6 +114,7 @@ class StudentController extends Controller
         $data['submissions'] = InternshipSubmission::with('internshipLogbooks')
                 ->whereHas('students', function ($query) {
                     $query->where('status', '=', 2) && ('student_id' == Auth::id());
+                    
                 })->get();
 
             // ini query untuk semua student yang statusnya 2 (accepted), dan idnya sesuai id user yang login
@@ -131,7 +132,7 @@ class StudentController extends Controller
         $validator = Validator::make($request->all(), [
             'date' => 'required',
             'activity' => 'required',
-            'file' => 'mimes:pdf,jpg,jpeg,png|max:1024',
+            'file' => 'required|mimes:pdf,jpg,jpeg,png|max:1024',
         ]);
 
         if($validator->fails()) {
@@ -173,6 +174,18 @@ class StudentController extends Controller
     }
 
     public function updateLogbook(Request $request, $id) {
+        $validator = Validator::make($request->all(), [
+            'date' => 'required',
+            'activity' => 'required',
+            'file' => 'required|mimes:pdf,jpg,jpeg,png|max:1024',
+        ]);
+
+        if($validator->fails()) {
+            $errors = $validator->errors()->all(':message');
+            return RedirectHelper::redirectBack(implode(' ', $errors), 'error');
+        }
+
+
         $logbooks = InternshipLogbooks::find($id);
         $logbooks->date = $request->date;
         $logbooks->activity = $request->activity;
@@ -181,8 +194,7 @@ class StudentController extends Controller
             $fileNameSimpan = $this->uploadLogbook($request->file('file'));
             $logbooks->attachment_file = $fileNameSimpan;
         }
-         
-        
+
         $logbooks->save();
         
         $notification = array(  
