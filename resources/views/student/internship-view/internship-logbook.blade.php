@@ -87,11 +87,12 @@
                                 @else
                                 <td style="font-weight:bold;"> {{ $logbook->note }}</td>
                                 @endif
-                                
+                                {{-- <form class="form" method="POST" action="{{ route('logbook.delete', $logbook->id) }}" enctype="multipart/form-data">
+                                    @csrf --}}
                                 <td width="20%">
                                     <a href="{{ route('logbook.edit', $logbook->id) }}" class="btn btn-info"> Edit </a>
-                                    <button type="button" class="btn btn-danger" id="delete"
-                                    onclick="sweetConfirm('/student/logbook/delete/{{ $logbook->id }}', 'Data Logbook')">Hapus</button>  
+                                    <button type="submit" class="btn btn-danger" id="delete"
+                                    onclick="sweetConfirm('/student/logbook/delete/{{ $logbook->id }}', 'Data Logbook')"> Hapus</button>  
                                 </td>
                                 
                             </tr>

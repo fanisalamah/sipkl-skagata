@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Validator;
-
+use Illuminate\Support\Facades\File; 
 
 class StudentController extends Controller
 {   
@@ -208,12 +208,17 @@ class StudentController extends Controller
     }
 
     public function deleteLogbook($id) {
-        $logbook = InternshipLogbooks::find($id);
-        Storage::disk('public')->delete('internship/logbook/'. $logbook->attachment_file);
-        $logbook->delete();
+        try {
 
-        return redirect()->route('student.internship-logbook');
+            $logbook = InternshipLogbooks::find($id);
+            Storage::disk('public')->delete('internship/logbook/'. $logbook->attachment_file);
+            $logbook->delete();
+            return redirect()->route('student.logbook');
+        }
 
+        catch(\Exception $e) {
+            $e->getMessage();
+        }
     }
 
 
