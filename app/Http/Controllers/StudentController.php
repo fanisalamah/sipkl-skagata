@@ -11,6 +11,7 @@ use App\Models\InternshipSubmission;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use App\Models\Student;
+use Carbon\Carbon;
 use Facade\FlareClient\Http\Response;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Http\Response as HttpResponse;
@@ -109,13 +110,15 @@ class StudentController extends Controller
     }
 
     public function logbookHarian() {
-
+        
         $data['internships'] = InternshipSubmission::where('student_id', Auth::id())->where('status', 2)->get();
         $data['submissions'] = InternshipSubmission::with('internshipLogbooks')
                 ->whereHas('students', function ($query) {
                     $query->where('status', '=', 2) && ('student_id' == Auth::id());
                     
                 })->get();
+        
+        
 
             // ini query untuk semua student yang statusnya 2 (accepted), dan idnya sesuai id user yang login
 

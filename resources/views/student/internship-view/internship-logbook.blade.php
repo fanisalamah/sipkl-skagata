@@ -66,7 +66,17 @@
                                 
                                 <td width="1%"> {{ $i++ }} </td>
                                 
-                                <td width="17%"> {{ $logbook->date }} </td>
+                                <td width="17%">
+                                @php
+                                
+                                    $date = Carbon::parse($logbook->date)->locale('id') ;
+                                    $date->settings(['formatFunction' => 'translatedFormat']);
+                                    echo $date->format('j F Y');
+
+                                @endphp
+                                    
+                                </td>
+
                                 <td> {{ $logbook->activity }}</td>
                                 <td> <a href="{{ Storage::url('internship/logbook/'. $logbook->attachment_file)}}"
                                     class="badge text-bg-success" target="__blank" style="font-size:14px; padding:10px;"> <i class="bi bi-eye"></i>  Preview </a>  </td>

@@ -67,7 +67,7 @@ return [
     |
     */
 
-    'timezone' =>  env('APP_TIMEZONE'),
+    'timezone' =>  env('APP_TIMEZONE'), 'Asia/Jakarta',
 
     /*
     |--------------------------------------------------------------------------
@@ -165,6 +165,7 @@ return [
         EloquentFilter\ServiceProvider::class,
         
         
+        
 
         /*
          * Package Service Providers...
@@ -240,6 +241,7 @@ return [
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
         'Toastr'  => Brian2694\Toastr\Facades\Toastr::class,
+        'Carbon' => 'Carbon\Carbon',
 
     ],
 
