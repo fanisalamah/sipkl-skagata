@@ -246,9 +246,10 @@ class StudentController extends Controller
             'file' => 'required|mimes:pdf|max:1024',
         ]);
 
-        if($validator->fails()) {
-            $errors= $validator->errors()->all(':message');
-            return RedirectHelper::redirectBack($errors, 'error');
+        if($validator->fails()){
+            $errors = $validator->errors()->all(':message');
+            return RedirectHelper::redirectBack(implode(' ',$errors), 'error');
+
         }
 
         if($request->hasFile('file')) {

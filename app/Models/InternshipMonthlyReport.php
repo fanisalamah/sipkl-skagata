@@ -16,6 +16,6 @@ class InternshipMonthlyReport extends Model
 
     public static function getUploadPath() {
 
-        return '/public/intership/monthly-report';
+        return '/public/internship/monthly-report';
     }
 }

@@ -95,23 +95,29 @@
             </div>
 
                 <div class="card-body">
-                    <table class="table table-striped" id="table1">
+                    <table class="table table-striped" id="">
                         <thead>
                             <tr>
                                 <th width="9%">No. </th>
                                 <th width="50%">Judul</th>
-                                <th>File</th>    
+                                <th>File</th> 
+                                <th width="20%">Aksi</th>    
                             </tr>
                         </thead>
                             
                         <tbody>
-                            @foreach($monthly_report as $key => $mr)
-                            <tr>
-                                <td> {{ $key+1 }} </td>
-                                <td> {{ $mr->title }}</td>
-                                <td> {{ $mr->file }}</td>
-                            </tr>
-                            @endforeach
+                            
+
+                              @foreach($monthly_report as $key => $mr)  
+                              <tr>
+                                  <td> {{ $key+1 }} </td>
+                                  <td> {{ $mr->title }}</td>
+                                  <td> <a href="{{ Storage::url('internship/monthly-report/'. $mr->file)}}"
+                                      class="badge text-bg-success" target="__blank" style="font-size:14px; padding:10px;"> <i class="bi bi-eye"></i>  Preview </a>  </td>
+                                  
+                                  <td>/////</td>
+                              </tr>
+                              @endforeach    
 
                         </tbody>
                         
