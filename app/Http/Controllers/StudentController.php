@@ -223,8 +223,18 @@ class StudentController extends Controller
 
     public function monthlyReport() {
         $data['internships'] = InternshipSubmission::where('student_id', Auth::id())->where('status', 2)->get();
-        //         
+        
         return view('student.internship-view.internship-monthly-report', $data);
+    }
+
+    public function downloadForm() {
+
+        $path = storage_path('app\public\internship\monthly-report\laporan-bulanan.docx');
+        $fileName = 'laporan-bulanan.docx';
+        $headers = ['Content-Type: application/docx'];
+        return response()->download($path, $fileName, $headers);
+        
+
     }
 
 }

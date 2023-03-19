@@ -17,7 +17,7 @@ class CreateInternshipMonthlyReport extends Migration
             $table->id();
             $table->foreignId('internship_submission_id')->constrained('internship_submissions');
             $table->string('title');
-            $table->string('url_file');
+            $table->string('file');
             $table->timestamps();
         });
         

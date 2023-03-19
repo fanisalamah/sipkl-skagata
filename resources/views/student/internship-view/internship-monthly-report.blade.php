@@ -1,14 +1,11 @@
 @extends('student.student-master')
 @section('student')
-
-
 <div id="main-content">
-                
     <div class="page-heading">
         <div class="page-title">
             <div class="row">
                 <div class="col-12 col-md-6 order-md-1 order-last">
-                    <h3>Download Form Laporan Bulanan <br>Praktik Kerja Lapangan</h3>
+                    <h3>Form Laporan Bulanan <br>Praktik Kerja Lapangan</h3>
                     <p class="text-subtitle text-muted"> Laporan Bulanan Praktik Kerja Lapangan</p>
                 </div>
                 <div class="col-12 col-md-6 order-md-2 order-first">
@@ -38,19 +35,51 @@
                             @endforeach
                         </div>
                     </div>
+
+                      <a href="{{ route('download.monthly.report') }}" class="btn btn-primary" style="margin-top:10px;">   <i class="bi bi-cloud-arrow-down-fill"></i> Download Form </a>
+                      <a href="#" class="btn btn-secondary" style="margin-top:10px;" data-bs-toggle="modal" data-bs-target="#exampleModal">   <i class="bi bi-cloud-arrow-up-fill"></i> Upload Form </a>
                     
                      
                 </div>
 
+                 <!-- Modal -->
+                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Upload Form Laporan Bulanan</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+
+                        <form action="{{ route('upload.advisor') }}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                        <div class="modal-body">
+                        
+                            <div class="form-group">
+                                <input type="file" name="file" required>
+                            </div>
+
+
+                        </div>
+                        
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </form>    
+                    </div>
+                
+                    </div>
+            </div>
+
                 <div class="card-body">
-                    <table class="table table-striped" id="table1">
+                    <table class="table table-striped" id="">
                         
                         <thead>
                             <tr style="font-size:14px;">
                                 <th width="5%">No. </th>
-                                <th>Tanggal</th>
-                                <th width="28%">Kegiatan</th>
-                                <th>Lampiran</th>
+                                <th>Nama Dokumen</th>
+                                
                                 <th width="25%">Catatan</th>
                                 <th width="9%">Aksi</th>
                             </tr>
