@@ -113,9 +113,13 @@
                                   <td> {{ $key+1 }} </td>
                                   <td> {{ $mr->title }}</td>
                                   <td> <a href="{{ Storage::url('internship/monthly-report/'. $mr->file)}}"
-                                      class="badge text-bg-success" target="__blank" style="font-size:14px; padding:10px;"> <i class="bi bi-eye"></i>  Preview </a>  </td>
+                                      class="badge text-bg-success" target="__blank" style="font-size:14px; padding:10px;"> <i class="bi bi-eye"></i>  Preview file </a>  </td>
                                   
-                                  <td>/////</td>
+                                  <td width="20%">
+                                    <a href="{{ route('logbook.edit', $mr->id) }}" class="btn btn-info"> Edit </a>
+                                    <button type="submit" class="btn btn-danger" id="delete"
+                                    onclick="sweetConfirm('/student/logbook/delete/{{ $mr->id }}', 'Data Logbook')"> Hapus</button>  
+                                  </td>
                               </tr>
                               @endforeach    
 
