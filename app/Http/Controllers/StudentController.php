@@ -276,7 +276,19 @@ class StudentController extends Controller
         $file = new FileHelper();
         $fileName = $file->handle($uploadedFile, InternshipMonthlyReport::getUploadPath());
         return $fileName;
+    }
 
+    public function deleteForm($id) {
+        try {
+            $monthlyReport = InternshipMonthlyReport::find($id);
+            Storage::disk('public')->delete('internship/monthly-report/'. $monthlyReport->file);
+            $monthlyReport->delete();
+            return redirect()->route('monthly.report');
+        }
+
+        catch(\Exception $e) {
+            $e->getMessage();
+        }
     }
 
 }

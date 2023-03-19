@@ -118,7 +118,7 @@
                                   <td width="20%">
                                     <a href="{{ route('logbook.edit', $mr->id) }}" class="btn btn-info"> Edit </a>
                                     <button type="submit" class="btn btn-danger" id="delete"
-                                    onclick="sweetConfirm('/student/logbook/delete/{{ $mr->id }}', 'Data Logbook')"> Hapus</button>  
+                                    onclick="sweetConfirm('/student/delete/monthly-report/{{ $mr->id }}', 'Laporan Bulanan')"> Hapus</button>  
                                   </td>
                               </tr>
                               @endforeach    
