@@ -7,6 +7,7 @@ use App\Helper\RedirectHelper;
 use App\Models\Advisor;
 use App\Models\Industry;
 use App\Models\InternshipLogbooks;
+use App\Models\InternshipMonthlyReport;
 use App\Models\InternshipSubmission;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
@@ -223,7 +224,9 @@ class StudentController extends Controller
 
     public function monthlyReport() {
         $data['internships'] = InternshipSubmission::where('student_id', Auth::id())->where('status', 2)->get();
-        
+        $internship = InternshipSubmission::where('student_id', Auth::id())->where('status', 2)->get(); 
+        $data['monthly_report'] = InternshipMonthlyReport::where('internship_submission_id', $internship[0]->id)->get();
+
         return view('student.internship-view.internship-monthly-report', $data);
     }
 
@@ -234,6 +237,44 @@ class StudentController extends Controller
         $headers = ['Content-Type: application/docx'];
         return response()->download($path, $fileName, $headers);
         
+
+    }
+
+    public function storeForm(Request $request) {
+        $validator = Validator::make($request->all(), [
+            'title' => 'required',
+            'file' => 'required|mimes:pdf|max:1024',
+        ]);
+
+        if($validator->fails()) {
+            $errors= $validator->errors()->all(':message');
+            return RedirectHelper::redirectBack($errors, 'error');
+        }
+
+        if($request->hasFile('file')) {
+            $fileNameSimpan = $this->uploadMonthlyReport($request->file('file'));
+        }
+
+        $data = new InternshipMonthlyReport();
+        $id_internship = InternshipSubmission::where('student_id', Auth::id())->where('status', 2)->get(); 
+        $data->internship_submission_id = $id_internship[0]->id;
+        $data->title = $request->title;
+        $data->file = $fileNameSimpan;
+        $data->save();
+
+        $notification = array(
+            'message' => 'Laporan bulanan berhasil diupload',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('monthly.report')->with($notification);
+
+    }
+
+    public function uploadMonthlyReport(UploadedFile $uploadedFile) {
+        $file = new FileHelper();
+        $fileName = $file->handle($uploadedFile, InternshipMonthlyReport::getUploadPath());
+        return $fileName;
 
     }
 

@@ -104,6 +104,7 @@ Route::group(['middleware' => ['auth:student']], function() {
         Route::post('/logbook/delete/{id}', [StudentController::class, 'deleteLogbook'])->name('logbook.delete');
         Route::get('/monthly-report', [StudentController::class, 'monthlyReport'])->name('monthly.report');
         Route::get('/download/monthly-report', [StudentController::class, 'downloadForm'])->name('download.monthly.report');
+        Route::post('/store/monthly-report', [StudentController::class, 'storeForm'])->name('store.monthly.report');
         
     });
     

@@ -13,4 +13,9 @@ class InternshipMonthlyReport extends Model
 
         return $this->belongsTo(InternshipSubmission::class);
     }
+
+    public static function getUploadPath() {
+
+        return '/public/intership/monthly-report';
+    }
 }
