@@ -106,6 +106,8 @@ Route::group(['middleware' => ['auth:student']], function() {
         Route::get('/download/monthly-report', [StudentController::class, 'downloadForm'])->name('download.monthly.report');
         Route::post('/store/monthly-report', [StudentController::class, 'storeForm'])->name('store.monthly.report');
         Route::post('/delete/monthly-report/{id}', [StudentController::class, 'deleteForm'])->name('delete.monthly.report');
+        Route::get('/edit/monthly-report/{id}', [StudentController::class, 'editForm'])->name('edit.monthly.report');
+        Route::put('/update/monthly-report/{id}', [StudentController::class, 'updateForm'])->name('update.monthly.report');
         
     });
     

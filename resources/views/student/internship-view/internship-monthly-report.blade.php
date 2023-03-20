@@ -41,9 +41,11 @@
                     
                      
                 </div>
+                   
 
                  <!-- Modal -->
-                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                 @foreach($monthly_report as $key => $mr)
+                <div class="modal fade" id="editModal-{{ $mr->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -51,8 +53,9 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
 
-                        <form action="{{ route('store.monthly.report') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('store.monthly.report', $mr->id) }}" method="POST" enctype="multipart/form-data">
                             @csrf
+                            @method('put')
                         <div class="modal-body">
                             
                             <div class="form-group">
@@ -60,6 +63,7 @@
                                     <h6>Judul</h6>
                                     <fieldset class="form-group">
                                       <select class="form-select" id="title" name="title" required>
+                                        <option value="{{ $mr->title }}" selected> {{ $mr->title }}  </option>
                                         <option value="Laporan Bulan ke-1">Laporan Bulan ke-1</option>
                                         <option value="Laporan Bulan ke-2">Laporan Bulan ke-2</option>
                                         <option value="Laporan Bulan ke-3">Laporan Bulan ke-3</option>
@@ -69,13 +73,9 @@
 
                                   <div class="col-md-12 mb-4">
                                     <h6>Upload File (PDF, Maks. 1 MB)</h6>
-                                    <input class="form-control" type="file" id="file" name="file">
+                                    <input class="form-control" type="file" id="file" name="file" value="{{ $mr->file }}">
                                   </div>
                             </div>
-                            {{-- <div class="form-group">
-                                <label> Upload file</label>
-                                <input type="file" name="file" required>
-                            </div> --}}
                             <div class="mb-3">
                                 
                               </div>
@@ -93,6 +93,60 @@
                 
                     </div>
             </div>
+            @endforeach
+
+              <!-- Modal -->
+              <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Upload Form Laporan Bulanan</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <form action="{{ route('store.monthly.report') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                    <div class="modal-body">
+                        
+                        <div class="form-group">
+                            <div class="col-md-12 mb-4">
+                                <h6>Judul</h6>
+                                <fieldset class="form-group">
+                                  <select class="form-select" id="title" name="title" required>
+                                    <option value="Laporan Bulan ke-1">Laporan Bulan ke-1</option>
+                                    <option value="Laporan Bulan ke-2">Laporan Bulan ke-2</option>
+                                    <option value="Laporan Bulan ke-3">Laporan Bulan ke-3</option>
+                                  </select>
+                                </fieldset>
+                              </div>
+
+                              <div class="col-md-12 mb-4">
+                                <h6>Upload File (PDF, Maks. 1 MB)</h6>
+                                <input class="form-control" type="file" id="file" name="file">
+                              </div>
+                        </div>
+                        {{-- <div class="form-group">
+                            <label> Upload file</label>
+                            <input type="file" name="file" required>
+                        </div> --}}
+                        <div class="mb-3">
+                            
+                          </div>
+
+
+
+                    </div>
+                    
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>    
+                </div>
+            
+                </div>
+        </div>
+
 
                 <div class="card-body">
                     <table class="table table-striped" id="">
@@ -101,14 +155,18 @@
                                 <th width="9%">No. </th>
                                 <th width="50%">Judul</th>
                                 <th>File</th> 
-                                <th width="20%">Aksi</th>    
+                                <th width="15%">Aksi</th>    
                             </tr>
                         </thead>
                             
                         <tbody>
                             
+                                @if($monthly_report->isEmpty())
+                                <tr> <td colspan="4" style="text-align:center;"> Data tidak ditemukan</td></tr>
 
+                                @else
                               @foreach($monthly_report as $key => $mr)  
+                              
                               <tr>
                                   <td> {{ $key+1 }} </td>
                                   <td> {{ $mr->title }}</td>
@@ -116,12 +174,15 @@
                                       class="badge text-bg-success" target="__blank" style="font-size:14px; padding:10px;"> <i class="bi bi-eye"></i>  Preview file </a>  </td>
                                   
                                   <td width="20%">
-                                    <a href="{{ route('logbook.edit', $mr->id) }}" class="btn btn-info"> Edit </a>
+                                    <a href="#" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#editModal-{{ $mr->id }}"  > Edit </a>
                                     <button type="submit" class="btn btn-danger" id="delete"
                                     onclick="sweetConfirm('/student/delete/monthly-report/{{ $mr->id }}', 'Laporan Bulanan')"> Hapus</button>  
                                   </td>
                               </tr>
+
                               @endforeach    
+                              @endif
+                              
 
                         </tbody>
                         

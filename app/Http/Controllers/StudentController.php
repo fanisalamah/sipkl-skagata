@@ -291,6 +291,16 @@ class StudentController extends Controller
         }
     }
 
+    public function editForm($id) {
+        $editData['monthly_report'] = InternshipMonthlyReport::find($id);
+    }
+
+    public function updateForm(Request $request, $id) {
+
+
+    }
+    
+
 }
 
  
