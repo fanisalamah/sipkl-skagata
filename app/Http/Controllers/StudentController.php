@@ -179,7 +179,7 @@ class StudentController extends Controller
         $validator = Validator::make($request->all(), [
             'date' => 'required',
             'activity' => 'required',
-            'file' => 'required|mimes:pdf,jpg,jpeg,png|max:1024',
+            'file' => 'mimes:pdf,jpg,jpeg,png|max:1024',
         ]);
 
         if($validator->fails()) {
@@ -296,6 +296,35 @@ class StudentController extends Controller
     }
 
     public function updateForm(Request $request, $id) {
+        $validator = Validator::make($request->all(), [
+            'title' => 'required',
+            'file' => 'mimes:pdf|max:1024',
+        ]);
+
+        if($validator->fails()){
+            $errors = $validator->errors()->all(':message');
+            return RedirectHelper::redirectBack(implode(' ',$errors), 'error');
+        }
+
+        $monthlyReport = InternshipMonthlyReport::find($id);    
+        $monthlyReport->title = $request->title;
+
+        if($request->hasFile('file')) {
+            $fileNameSimpan = $this->uploadMonthlyReport($request->file('file'));
+            $monthlyReport->file = $fileNameSimpan;
+        }
+
+        $monthlyReport->save();
+
+           
+        $notification = array(  
+            'message' => 'Laporan bulanan berhasil diupdate',
+            'alert-type' => 'success'
+        );
+        
+        return redirect()->route('monthly.report')->with($notification);
+
+
 
 
     }
