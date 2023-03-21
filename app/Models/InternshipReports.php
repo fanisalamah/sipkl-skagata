@@ -12,4 +12,8 @@ class InternshipReports extends Model
     public function InternshipSubmission() {
         return $this->belongsTo(InternshipSubmission::class);
     }
+
+    public static function getUploadPath() {
+        return '/public/internship/report';
+    }
 }

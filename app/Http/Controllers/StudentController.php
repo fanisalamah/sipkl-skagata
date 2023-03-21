@@ -8,6 +8,7 @@ use App\Models\Advisor;
 use App\Models\Industry;
 use App\Models\InternshipLogbooks;
 use App\Models\InternshipMonthlyReport;
+use App\Models\InternshipReports;
 use App\Models\InternshipSubmission;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
@@ -334,15 +335,50 @@ class StudentController extends Controller
         );
         
         return redirect()->route('monthly.report')->with($notification);
-
-
-
-
     }
 
         public function report() {
+            $data['internships'] = InternshipSubmission::where('student_id', Auth::id())->where('status', 2)->get();
+            $internship = InternshipSubmission::where('student_id', Auth::id())->where('status', 2)->get(); 
+            $data['reports'] = InternshipReports::where('internship_submission_id', $internship[0]->id)->get();
+            return view('student.internship-view.internship-report', $data);
+        }
+
+        public function storeReport(Request $request) {
+            $validator = Validator::make($request->all(), [
+                'title' => 'required',
+                'file' => 'required|mimes:pdf|max:3072',
+            ]);
+
+            if($validator->fails()) {
+                $errors = $validator->errors()->all(':message');
+                return RedirectHelper::redirectBack(implode('', $errors), 'eror');
+            }
             
-            return view('student.internship-view.internship-report');
+            if($request->hasFile('file')) {
+                $fileNameSimpan = $this->uploadReport($request->file('file'));
+            }
+
+            $data = new InternshipReports();
+            $id_internship = InternshipSubmission::where('student_id', Auth::id())->where('status', 2)->get(); 
+            $data->internship_submission_id = $id_internship[0]->id;
+            $data->title = $request->title;
+            $data->url_file = $fileNameSimpan;
+            $data->save();
+
+            $notification = array(
+                'message' => 'Laporan akhir berhasil diupload',
+                'alert-type' => 'success'
+            );
+    
+            return redirect()->route('internship.report')->with($notification);
+
+        }
+
+        public function uploadReport(UploadedFile $uploadedFile) {
+            $file = new FileHelper();
+            $fileName = $file->handle($uploadedFile, InternshipReports::getUploadPath());
+            return $fileName;
         }
 
 }

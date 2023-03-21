@@ -149,7 +149,7 @@
                         <thead>
                             <tr>
                                 <th width="9%">No. </th>
-                                <th width="50%">Judul</th>
+                                <th width="30%">Judul</th>
                                 <th>File</th> 
                                 <th width="15%">Aksi</th>    
                             </tr>

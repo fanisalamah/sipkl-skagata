@@ -18,8 +18,8 @@ class CreateInternshipReports extends Migration
             $table->foreignId('internship_submission_id')->constrained('internship_submissions');
             $table->string('title');
             $table->string('url_file');
-            $table->integer('score_industry');
-            $table->integer('score_school');
+            $table->integer('score_industry')->nullable();
+            $table->integer('score_school')->nullable();
             $table->float('final_score')->nullable();
             $table->timestamps();
            
