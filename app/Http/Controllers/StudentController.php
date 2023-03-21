@@ -316,6 +316,11 @@ class StudentController extends Controller
         $monthlyReport->title = $request->title;
 
         if($request->hasFile('file')) {
+            $oldFile = $monthlyReport->file;
+            
+            if($request->hasFile('file') != null) {
+                Storage::disk('public')->delete('internship/monthly-report/'. $oldFile);
+            }
             $fileNameSimpan = $this->uploadMonthlyReport($request->file('file'));
             $monthlyReport->file = $fileNameSimpan;
         }
