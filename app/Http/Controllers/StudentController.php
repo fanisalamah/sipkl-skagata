@@ -187,14 +187,20 @@ class StudentController extends Controller
             return RedirectHelper::redirectBack(implode(' ', $errors), 'error');
         }
 
-
         $logbooks = InternshipLogbooks::find($id);
         $logbooks->date = $request->date;
         $logbooks->activity = $request->activity;
         
-        if($request->hasFile('file')) {
+        if($request->hasFile('file') != null ) {
+            $oldFile = $logbooks->attachment_file;
+
+            if($logbooks->attachment_file) {
+                Storage::disk('public')->delete('internship/logbook/'. $oldFile);
+            }
+
             $fileNameSimpan = $this->uploadLogbook($request->file('file'));
             $logbooks->attachment_file = $fileNameSimpan;
+
         }
 
         $logbooks->save();
