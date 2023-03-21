@@ -35,10 +35,13 @@
                             @endforeach
                         </div>
                     </div>
-
-                      <a href="#" class="btn btn-primary" style="margin-top:10px;" data-bs-toggle="modal" data-bs-target="#exampleModal">   <i class="bi bi-cloud-arrow-up-fill"></i> Upload Laporan </a>
+                        
                     
-                     
+                    
+                    @if(count($reports) == 0)
+                    <a href="#" class="btn btn-primary" style="margin-top:10px;" data-bs-toggle="modal" data-bs-target="#exampleModal">   <i class="bi bi-cloud-arrow-up-fill"></i> Upload Laporan </a>
+                    @endif
+                    
                 </div>
                    
 
@@ -90,7 +93,7 @@
                         <thead>
                             <tr>
                                 <th>No. </th>
-                                <th >Judul</th>
+                                <th width="30%" >Judul</th>
                                 <th>File Laporan</th> 
                                 <th>Nilai Akhir</th>    
                                 <th width="5%">Aksi</th>    

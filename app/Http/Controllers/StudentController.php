@@ -341,6 +341,7 @@ class StudentController extends Controller
             $data['internships'] = InternshipSubmission::where('student_id', Auth::id())->where('status', 2)->get();
             $internship = InternshipSubmission::where('student_id', Auth::id())->where('status', 2)->get(); 
             $data['reports'] = InternshipReports::where('internship_submission_id', $internship[0]->id)->get();
+            // dd($data['reports']);
             return view('student.internship-view.internship-report', $data);
         }
 
