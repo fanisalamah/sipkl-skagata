@@ -84,13 +84,13 @@
                     </a>
                 </li>
 
-                {{-- <li
-                    class="sidebar-item  {{ request()->is('internship/report') ? 'active' : '' }}">
+                <li
+                    class="sidebar-item  {{ request()->is('student/report') ? 'active' : '' }}">
                     <a href="{{ route('internship.report') }}" class='sidebar-link'>
                         <i class="bi bi-journal-richtext"></i>
                         <span>Laporan dan Nilai</span>
                     </a>
-                </li> --}}
+                </li>
                     @endif
                 @endforeach
 

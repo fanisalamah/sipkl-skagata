@@ -339,7 +339,11 @@ class StudentController extends Controller
 
 
     }
-    
+
+        public function report() {
+            
+            return view('student.internship-view.internship-report');
+        }
 
 }
 
