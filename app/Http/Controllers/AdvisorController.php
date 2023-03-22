@@ -27,14 +27,16 @@ class AdvisorController extends Controller
 
     public function storeStudent(Request $request) {
         $validator = Validator::make($request->all(), [
-            'departement_id' => 'required',
-            'email' => 'required|unique:users',
+            'nis' => 'required|unique:users',
             'name' => 'required',
+            'email' => 'required|unique:users',
+            'password' => 'required',
+            'departement_id' => 'required',
         ]);
 
         if($validator->fails()) {
             $errors = $validator->errors()->all(':message');
-            return RedirectHelper::redirectBack(implode('', $errors), 'eror');
+            return RedirectHelper::redirectBack(implode(' ', $errors), 'error');
         }
 
         $data = new Student();
