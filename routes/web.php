@@ -83,6 +83,12 @@ Route::group(['middleware' => ['auth:web']], function() {
 Route::group(['middleware' => ['auth:advisor']], function() {
     Route::prefix('advisor')->group(function() {
         Route::get('/dashboard', [AdvisorController::class, 'index'])->name('advisor.dashboard');  
+        Route::get('/student/data', [AdvisorController::class, 'studentData'])->name('advisor.student.data');
+        Route::get('/student/add', [AdvisorController::class, 'addStudent'])->name('advisor.student.add');
+        Route::post('/student/store', [AdvisorController::class, 'storeStudent'])->name('advisor.student.store');
+        Route::get('/student/edit/{id}', [AdvisorController::class, 'editStudent'])->name('advisor.student.edit');
+        Route::put('/student/update/{id}', [AdvisorController::class, 'updateStudent'])->name('advisor.student.update');
+        Route::post('/student/delete/{id}', [AdminController::class, 'deleteStudent'])->name('advisor.student.delete');
 
     });
     

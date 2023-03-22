@@ -35,11 +35,11 @@
     class="sidebar-item has-sub">
     <a href="#" class='sidebar-link'>
         <i class="bi bi-people-fill"></i>
-        <span>Data Siswa</span>
+        <span>Manajemen Siswa</span>
     </a>
     <ul class="submenu ">
         <li class="submenu-item ">
-            <a href="{{ route('student.data') }}">Data Siswa</a>
+            <a href="{{ route('advisor.student.data') }}">Data Siswa</a>
         </li>
         <li class="submenu-item ">
             <a href="{{ route('student.add') }}">Tambah Data Siswa</a>
