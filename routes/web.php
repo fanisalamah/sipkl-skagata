@@ -29,7 +29,7 @@ Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 // yang bisa diakses admin
 Route::group(['middleware' => ['auth:web']], function() {
     
-    Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');  
+        Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');  
         Route::get('/template_advisor', [Excel::class, 'download_local'])->name('download.template.advisor');
         Route::get('/template_student', [Excel::class, 'download_local'])->name('download.template.student');
         Route::post('/import_advisor', [Excel::class, 'upload_local_advisor'])->name('upload.advisor');
@@ -89,7 +89,8 @@ Route::group(['middleware' => ['auth:advisor']], function() {
         Route::get('/student/edit/{id}', [AdvisorController::class, 'editStudent'])->name('advisor.student.edit');
         Route::put('/student/update/{id}', [AdvisorController::class, 'updateStudent'])->name('advisor.student.update');
         Route::post('/student/delete/{id}', [AdminController::class, 'deleteStudent'])->name('advisor.student.delete');
-
+        Route::get('/template_student', [Excel::class, 'download_local'])->name('advisor.download.template.student');
+        Route::post('/import_student', [Excel::class, 'upload_local_student'])->name('advisor.upload.student');
     });
     
 

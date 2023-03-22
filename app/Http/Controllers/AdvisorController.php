@@ -54,7 +54,23 @@ class AdvisorController extends Controller
     }
 
     public function updateStudent(Request $request, $id) {
-        
+        $data = Student::find($id);
+        $data->departement_id = $request->departement_id;
+        $data->name = $request->name;
+        $data->email = $request->email;
+        $data->save();
+
+        $notification = array(
+            'message' => 'Data Siswa berhasil diupdate',
+            'alert-type' => 'success'
+        );
+        return redirect()->route('advisor.student.data')->with($notification);
+    }
+
+    public function deleteStudent($id)  {
+        $user = Student::find($id);
+        $user->delete();
+        return redirect()->route('advisor.student.data');
     }
 
 
