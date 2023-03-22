@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Helper\RedirectHelper;
 use App\Models\Departement;
 use App\Models\Student;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class AdvisorController extends Controller
 {
@@ -24,11 +26,16 @@ class AdvisorController extends Controller
     }
 
     public function storeStudent(Request $request) {
-        $validatedData = $request->validate([
+        $validator = Validator::make($request->all(), [
             'departement_id' => 'required',
             'email' => 'required|unique:users',
             'name' => 'required',
         ]);
+
+        if($validator->fails()) {
+            $errors = $validator->errors()->all(':message');
+            return RedirectHelper::redirectBack(implode('', $errors), 'eror');
+        }
 
         $data = new Student();
         $data->departement_id = $request->departement_id;

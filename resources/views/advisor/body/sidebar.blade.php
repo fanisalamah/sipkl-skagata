@@ -25,24 +25,24 @@
     {{-- <li class="sidebar-title">Menu</li> --}}
     <li
         class="sidebar-item {{ request()->is('advisor/dashboard') ? 'active' : '' }}  ">
-        <a href="{{ route('admin.dashboard') }}" class='sidebar-link'>
+        <a href="{{ route('advisor.dashboard') }}" class='sidebar-link'>
             <i class="bi bi-grid-fill"></i>
             <span>Dashboard</span>
         </a>
     </li>
 
     <li
-    class="sidebar-item has-sub">
+    class="sidebar-item has-sub {{ request()->is('advisor/student/*') ? 'active' : '' }}">
     <a href="#" class='sidebar-link'>
         <i class="bi bi-people-fill"></i>
         <span>Manajemen Siswa</span>
     </a>
-    <ul class="submenu ">
-        <li class="submenu-item ">
+    <ul class="submenu {{ request()->is('advisor/student/*') ? 'active' : '' }}">
+        <li class="submenu-item {{ request()->is('advisor/student/data') ? 'active' : '' }}">
             <a href="{{ route('advisor.student.data') }}">Data Siswa</a>
         </li>
-        <li class="submenu-item ">
-            <a href="{{ route('student.add') }}">Tambah Data Siswa</a>
+        <li class="submenu-item {{ request()->is('advisor/student/add') ? 'active' : '' }} ">
+            <a href="{{ route('advisor.student.add') }}">Tambah Data Siswa</a>
         </li>
     </ul>
 </li>

@@ -88,7 +88,7 @@ Route::group(['middleware' => ['auth:advisor']], function() {
         Route::post('/student/store', [AdvisorController::class, 'storeStudent'])->name('advisor.student.store');
         Route::get('/student/edit/{id}', [AdvisorController::class, 'editStudent'])->name('advisor.student.edit');
         Route::put('/student/update/{id}', [AdvisorController::class, 'updateStudent'])->name('advisor.student.update');
-        Route::post('/student/delete/{id}', [AdminController::class, 'deleteStudent'])->name('advisor.student.delete');
+        Route::post('/student/delete/{id}', [AdvisorController::class, 'deleteStudent'])->name('advisor.student.delete');
         Route::get('/template_student', [Excel::class, 'download_local'])->name('advisor.download.template.student');
         Route::post('/import_student', [Excel::class, 'upload_local_student'])->name('advisor.upload.student');
     });
