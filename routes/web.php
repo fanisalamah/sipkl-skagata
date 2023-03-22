@@ -81,7 +81,12 @@ Route::group(['middleware' => ['auth:web']], function() {
 
 // yang bisa diakses advisor
 Route::group(['middleware' => ['auth:advisor']], function() {
-    Route::get('/advisor/dashboard', [AdvisorController::class, 'index'])->name('advisor.dashboard');  
+    Route::prefix('advisor')->group(function() {
+        Route::get('/dashboard', [AdvisorController::class, 'index'])->name('advisor.dashboard');  
+
+    });
+    
+
     
 });
 

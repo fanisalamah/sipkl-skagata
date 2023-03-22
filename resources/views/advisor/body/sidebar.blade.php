@@ -12,7 +12,7 @@
 
     
     <div class="sidebar-toggler  x">
-        <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
+    <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
     </div>
 
     
@@ -22,35 +22,20 @@
 <div class="sidebar-menu">
 <ul class="menu"> 
     
-    <li class="sidebar-title">Menu</li>
+    {{-- <li class="sidebar-title">Menu</li> --}}
     <li
-        class="sidebar-item  ">
+        class="sidebar-item {{ request()->is('advisor/dashboard') ? 'active' : '' }}  ">
         <a href="{{ route('admin.dashboard') }}" class='sidebar-link'>
             <i class="bi bi-grid-fill"></i>
             <span>Dashboard</span>
         </a>
-    </li>
-    <li
-        class="sidebar-item has-sub">
-        <a href="#" class='sidebar-link'>
-            <i class="bi bi-person-lines-fill"></i>
-            <span>Manajemen Advisor</span>
-        </a>
-        <ul class="submenu ">
-            <li class="submenu-item ">
-                <a href="{{ route('advisor.data') }}">Data Advisor</a>
-            </li>
-            <li class="submenu-item ">
-                <a href="{{ route('advisor.add') }}">Tambah Data Advisor</a>
-            </li>
-        </ul>
     </li>
 
     <li
     class="sidebar-item has-sub">
     <a href="#" class='sidebar-link'>
         <i class="bi bi-people-fill"></i>
-        <span>Manajemen Siswa</span>
+        <span>Data Siswa</span>
     </a>
     <ul class="submenu ">
         <li class="submenu-item ">
