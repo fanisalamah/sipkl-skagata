@@ -21,14 +21,39 @@ class AdvisorImport implements ToModel, WithHeadingRow
     */
     public function model(array $row)
     {
-        return $advisor = Advisor::create([
-            'name' => $row['name'],
-            'nip' => $row['nip'],
-            'email' => $row['email'],
-            'departement_id' => $row['departement_id'],            
-            'password' => bcrypt($row['password'])
-        ]);
-        $advisor->assignRole('advisor');
+        switch($row['departement_id']) {
+            case('Multimedia'):
+                return $advisor = Advisor::create([
+                    'name' => $row['name'],
+                    'nip' => $row['nip'],
+                    'email' => $row['email'],
+                    'departement_id' => '1',            
+                    'password' => bcrypt($row['password'])
+                ]);
+                $advisor->assignRole('advisor');
+            break; 
+            
+            case('SIJA'):
+                return $advisor = Advisor::create([
+                    'name' => $row['name'],
+                    'nip' => $row['nip'],
+                    'email' => $row['email'],
+                    'departement_id' => '2',            
+                    'password' => bcrypt($row['password'])
+                ]);
+                $advisor->assignRole('advisor');
+            break; 
+        }
+            
+
+        // return $advisor = Advisor::create([
+        //     'name' => $row['name'],
+        //     'nip' => $row['nip'],
+        //     'email' => $row['email'],
+        //     'departement_id' => $row['departement_id'],            
+        //     'password' => bcrypt($row['password'])
+        // ]);
+        // $advisor->assignRole('advisor');
         
     }   
     
