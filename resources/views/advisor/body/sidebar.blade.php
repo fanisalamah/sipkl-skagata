@@ -64,17 +64,17 @@
 </li>
 
 <li
-    class="sidebar-item  has-sub">
+    class="sidebar-item  has-sub {{ request()->is('advisor/internship/*') ? 'active' : '' }}">
     <a href="#" class='sidebar-link'>
         <i class="bi bi-file-earmark-medical-fill"></i>
-        <span>PKL</span>
+        <span>Menu PKL</span>
     </a>
-    <ul class="submenu ">
-        <li class="submenu-item ">
-            <a href="{{ route('internship.submission') }}">Pengajuan PKL</a>
+    <ul class="submenu  {{ request()->is('advisor/internship/*') ? 'active' : '' }} ">
+        <li class="submenu-item {{ request()->is('advisor/internship/submission') ? 'active' : '' }}">
+            <a href="{{ route('advisor.internship.submission') }}">Pengajuan PKL</a>
         </li>
         <li class="submenu-item ">
-            <a href="{{ route('internship.data') }}">Daftar Siswa PKL</a>
+            {{-- <a href="{{ route('internship.data') }}">Daftar Siswa PKL</a> --}}
         </li>
     </ul>
 </li>  

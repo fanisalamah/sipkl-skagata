@@ -7,6 +7,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdvisorController;
 use App\Http\Controllers\StudentController;
+use App\Models\Advisor;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -98,9 +99,10 @@ Route::group(['middleware' => ['auth:advisor']], function() {
         Route::get('/industries/edit/{id}', [IndustryController::class, 'editIndustriAdv'])->name('advisor.industri.edit');
         Route::put('/industries/update/{id}', [IndustryController::class, 'updateIndustriAdv'])->name('advisor.industri.update');
         Route::post('/industries/delete/{id}', [IndustryController::class, 'deleteIndustri'])->name('advisor.industri.delete');
-
         Route::get('/template_industri', [Excel::class, 'download_local'])->name('download.template.industri');
         Route::post('/import_industri', [Excel::class, 'upload_local_industry'])->name('upload.industri');
+
+        Route::get('/internship/submission', [AdvisorController::class, 'internshipSubmission'])->name('advisor.internship.submission');
 
     });
     

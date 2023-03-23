@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Helper\RedirectHelper;
 use App\Models\Departement;
+use App\Models\InternshipSubmission;
 use App\Models\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -92,6 +93,18 @@ class AdvisorController extends Controller
         $user = Student::find($id);
         $user->delete();
         return redirect()->route('advisor.student.data');
+    }
+
+    public function internshipSubmission() {
+        $data['allDataSub'] = InternshipSubmission::with('students', 'advisors', 'industries')
+        ->whereHas('advisors', function ($query) {
+            $query->where('status', '=', 2) && ('advisor_id' == null);
+            
+        })->get();
+        // $data['advisors'] = Advisor::all();
+        // $data['departements'] = Departement::all();
+        // $data['students'] = Student::with('departements');
+        return view('advisor.internship-view.internship-submission', $data);
     }
 
 

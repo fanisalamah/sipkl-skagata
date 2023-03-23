@@ -19,7 +19,7 @@ class CreateInternshipSubmissionsTable extends Migration
             $table->foreignId('industry_id')->constrained('industries')->onDelete('cascade');
             $table->string('acceptance_file');
             $table->enum('status', ['1', '2','3']);
-            $table->foreignId('advisor_id')->nullable()->constrained('advisors')->onDelete('cascade');
+            $table->foreignId('advisor_id')->nullable()->constrained('advisors')->onDelete('cascade')->onUpdate('cascade')->nullOnDelete();
             $table->timestamps();
         });
     }
