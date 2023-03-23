@@ -91,6 +91,17 @@ Route::group(['middleware' => ['auth:advisor']], function() {
         Route::post('/student/delete/{id}', [AdvisorController::class, 'deleteStudent'])->name('advisor.student.delete');
         Route::get('/template_student', [Excel::class, 'download_local'])->name('advisor.download.template.student');
         Route::post('/import_student', [Excel::class, 'upload_local_student'])->name('advisor.upload.student');
+
+        Route::get('/industries/data', [IndustryController::class, 'industriDataAdv'])->name('advisor.industri.data');
+        Route::get('/industries/add', [IndustryController::class, 'addIndustriAdv'])->name('advisor.industri.add');
+        Route::post('/industries/store', [IndustryController::class, 'storeIndustriAdv'])->name('advisor.industri.store');
+        Route::get('/industries/edit/{id}', [IndustryController::class, 'editIndustriAdv'])->name('advisor.industri.edit');
+        Route::put('/industries/update/{id}', [IndustryController::class, 'updateIndustriAdv'])->name('advisor.industri.update');
+        Route::post('/industries/delete/{id}', [IndustryController::class, 'deleteIndustri'])->name('advisor.industri.delete');
+
+        Route::get('/template_industri', [Excel::class, 'download_local'])->name('download.template.industri');
+        Route::post('/import_industri', [Excel::class, 'upload_local_industry'])->name('upload.industri');
+
     });
     
 

@@ -48,17 +48,17 @@
 </li>
 
     <li
-    class="sidebar-item  has-sub">
+    class="sidebar-item  has-sub  {{ request()->is('advisor/industries/*') ? 'active' : '' }}">
     <a href="#" class='sidebar-link'>
         <i class="bi bi-clipboard-data-fill"></i>
         <span>Manajemen Industri</span>
     </a>
-    <ul class="submenu ">
-        <li class="submenu-item ">
-            <a href="{{ route('industri.data') }}">Data Industri</a>
+    <ul class="submenu {{ request()->is('advisor/industries/*') ? 'active' : '' }} ">
+        <li class="submenu-item {{ request()->is('advisor/industries/data') ? 'active' : '' }}">
+            <a href="{{ route('advisor.industri.data') }}">Data Industri</a>
         </li>
-        <li class="submenu-item ">
-            <a href="{{ route('industri.add') }}">Tambah Industri</a>
+        <li class="submenu-item {{ request()->is('advisor/industries/add') ? 'active' : '' }}">
+            <a href="{{ route('advisor.industri.add') }}">Tambah Industri</a>
         </li>
     </ul>
 </li>

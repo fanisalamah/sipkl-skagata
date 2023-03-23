@@ -63,6 +63,18 @@ class AdvisorController extends Controller
     }
 
     public function updateStudent(Request $request, $id) {
+        $validator = Validator::make($request->all(), [
+            'nis' => 'required|unique:users',
+            'name' => 'required',
+            'email' => 'required|unique:users',
+            'departement_id' => 'required',
+        ]);
+
+        if($validator->fails()) {
+            $errors = $validator->errors()->all(':message');
+            return RedirectHelper::redirectBack(implode(' ', $errors), 'error');
+        }
+
         $data = Student::find($id);
         $data->departement_id = $request->departement_id;
         $data->name = $request->name;
