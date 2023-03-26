@@ -73,9 +73,10 @@
         <li class="submenu-item {{ request()->is('advisor/internship/submission') ? 'active' : '' }}">
             <a href="{{ route('advisor.internship.submission') }}">Daftar Siswa PKL</a>
         </li>
-        <li class="submenu-item ">
-            {{-- <a href="{{ route('internship.data') }}">Daftar Siswa PKL</a> --}}
+        <li class="submenu-item {{ request()->is('advisor/internship/monitoring') ? 'active' : '' }}">
+            <a href="{{ route('advisor.internship.monitoring') }}">Monitoring PKL</a>
         </li>
+        
     </ul>
 </li>  
     

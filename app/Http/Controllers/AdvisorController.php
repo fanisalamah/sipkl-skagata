@@ -162,5 +162,8 @@ class AdvisorController extends Controller
         return redirect()->route('advisor.internship.submission')->with($notification);
     }
 
+    public function internshipMonitoring() {
+        return view('advisor.internship-view.internship-monitoring');
+    }
 
 }

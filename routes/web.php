@@ -104,6 +104,7 @@ Route::group(['middleware' => ['auth:advisor']], function() {
         Route::get('/internship/submission', [AdvisorController::class, 'internshipSubmission'])->name('advisor.internship.submission');
         Route::get('/internship/submission/{id}', [AdvisorController::class, 'filterJurusan']);
         Route::post('/internship/submission/', [AdvisorController::class, 'updateSubmission'])->name('update.advisor');
+        Route::get('/internship/monitoring/', [AdvisorController::class, 'internshipMonitoring'])->name('advisor.internship.monitoring');
 
     });
     
