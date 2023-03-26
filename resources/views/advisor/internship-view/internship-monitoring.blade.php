@@ -10,7 +10,7 @@
                 <div class="col-12 col-md-6 order-md-1 order-last">
                     <h3>Monitoring Siswa Bimbingan <br>
                         Praktik Kerja Lapangan</h3>
-                    <p class="text-subtitle text-muted">Lakukan monitoring terhadap logbook harian siswa bimbingan anda</p>
+                    <p class="text-subtitle text-muted">Lakukan monitoring terhadap logbook siswa bimbingan anda</p>
                 </div>
                 <div class="col-12 col-md-6 order-md-2 order-first">
                     <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
@@ -28,7 +28,7 @@
                 
                 <div class="card-body" > 
                 
-                    <table class="table table-striped" id="" >
+                    <table class="table table-striped" id="table1" >
                     {{-- <table class="table table-striped" > --}}
                     
                         <thead>
@@ -38,19 +38,20 @@
                                 <th >Nama Siswa</th>
                                 <th >Jurusan</th>
                                 <th >Industri</th>
-                                <th >Aksi</th>
+                                <th width="15%" >Aksi</th>
                                 
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach($internships as $key => $internship)
                             <tr>
-                                <td> 1 </td>
-                                <td> Fani Salamah</td>
-                                <td> Multimedia </td>
-                                <td> iNews TV</td>
-                                <td> Cek Logbook</td>
+                                <td> {{ $key+1 }} </td>
+                                <td> {{ $internship->students->name }}</td>
+                                <td> {{ $internship->students->departement->name }}</td>
+                                <td> {{ $internship->industries->name }}</td>
+                                <td><a href="#" class="badge text-bg-success" target="_blank"> Lihat Logbook </a> </td>
                             </tr>
-                            
+                            @endforeach
                         </tbody>
                         
                     </table>

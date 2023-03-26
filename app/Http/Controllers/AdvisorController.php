@@ -163,7 +163,12 @@ class AdvisorController extends Controller
     }
 
     public function internshipMonitoring() {
-        return view('advisor.internship-view.internship-monitoring');
+        $data['internships'] = InternshipSubmission::with('students', 'industries')
+        ->whereHas('students', function ($query) {
+            $query->where('status', '=', 2)->where('advisor_id', '=', Auth::user()->id );
+        })->get();
+
+        return view('advisor.internship-view.internship-monitoring', $data);
     }
 
 }
