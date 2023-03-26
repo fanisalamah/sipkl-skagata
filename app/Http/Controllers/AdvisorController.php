@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Helper\RedirectHelper;
 use App\Models\Departement;
+use App\Models\InternshipLogbooks;
 use App\Models\InternshipSubmission;
 use App\Models\Student;
 use Illuminate\Http\Request;
@@ -159,7 +160,7 @@ class AdvisorController extends Controller
             'alert-type' => 'success'
         );
         
-        return redirect()->route('advisor.internship.submission')->with($notification);
+        return redirect()->route('advisor.internship.monitoring')->with($notification);
     }
 
     public function internshipMonitoring() {
@@ -169,6 +170,11 @@ class AdvisorController extends Controller
         })->get();
 
         return view('advisor.internship-view.internship-monitoring', $data);
+    }
+
+    public function personalMonitoring($id) {
+        $data['logbooks'] = InternshipLogbooks::find($id);
+        
     }
 
 }
