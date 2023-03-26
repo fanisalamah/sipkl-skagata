@@ -48,29 +48,23 @@
                         <thead>
                             
                             <tr>
-                                <th>No. </th>
+                                <th>Aksi</th>
+                                
                                 <th>Nama Siswa</th>
                                 <th>Jurusan</th>
                                 <th width="30%">Industri</th>
                                 <th>Bukti Diterima</th>
-                                <th>Aksi</th>
+                                
                             </tr>
                         </thead>
                         <tbody>
                             @if($allDataSub->isEmpty())
-                            <tr> <td colspan="6" style="text-align:center;"> Data tidak ditemukan</td></tr>
+                            <tr> <td colspan="5" style="text-align:center;"> Data tidak ditemukan</td></tr>
 
                             @else
                           @foreach($allDataSub as $key => $submission )
                             <tr>
                               
-                                <td width="5%">{{ $key+1 }}</td>
-                                <td>{{ $submission->students->name}}</td>
-                                <td>{{ $submission->students->departement->name }}</td>
-                                <td>{{ $submission->industries->name }} <br>
-                                    <span style="font-size:12px;"> {{ $submission->industries->address }} </span></td>
-                                <td><a href="{{ Storage::url('internship/letter-of-acceptance/'. $submission->acceptance_file)}}" class="badge text-bg-success" target="_blank"> Lihat Lampiran <i class="bi bi-eye"></i> </a> </td>
-                                
                                 <td>
                                     <div class="form-check" >
                                         <div class="custom-control custom-checkbox" >
@@ -78,6 +72,14 @@
                                         </div>
                                     </div>
                                 </td>
+                                
+                                <td>{{ $submission->students->name}}</td>
+                                <td>{{ $submission->students->departement->name }}</td>
+                                <td>{{ $submission->industries->name }} <br>
+                                    <span style="font-size:12px;"> {{ $submission->industries->address }} </span></td>
+                                <td><a href="{{ Storage::url('internship/letter-of-acceptance/'. $submission->acceptance_file)}}" class="badge text-bg-success" target="_blank"> Lihat Lampiran <i class="bi bi-eye"></i> </a> </td>
+                                
+                               
                                 @endforeach
                                 @endif
                             </tr>

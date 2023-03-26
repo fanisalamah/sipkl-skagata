@@ -107,7 +107,7 @@ class AdvisorController extends Controller
         return view('advisor.internship-view.internship-submission', $data);
     }
 
-    public function filterAjax($id) {
+    public function filterJurusan($id) {
         $data['departements'] = Departement::all();
         
         switch($id) {
@@ -131,7 +131,15 @@ class AdvisorController extends Controller
                     $data['allDataSub'] = InternshipSubmission::whereHas('students.departement', function ($query) {
                         $query->where('id', '=', 4)->where('advisor_id', '=', null);
                     })->get();
-                    break;        
+                    break;
+                default:
+                    $data['allDataSub'] = InternshipSubmission::with('students', 'industries')
+                    ->whereHas('students', function ($query) {
+                    $query->where('status', '=', 2)->where('advisor_id', '=', null);
+            
+                    })->get();
+                    
+
                     
         }
 
