@@ -103,6 +103,7 @@ Route::group(['middleware' => ['auth:advisor']], function() {
         Route::post('/import_industri', [Excel::class, 'upload_local_industry'])->name('upload.industri');
 
         Route::get('/internship/submission', [AdvisorController::class, 'internshipSubmission'])->name('advisor.internship.submission');
+        Route::get('/internship/submission/{id}', [AdvisorController::class, 'filterAjax']);
 
     });
     

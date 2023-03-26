@@ -28,7 +28,7 @@ class AdvisorController extends Controller
 
     public function storeStudent(Request $request) {
         $validator = Validator::make($request->all(), [
-            'nis' => 'required|unique:users',
+            'nis' => 'required',
             'name' => 'required',
             'email' => 'required|unique:users',
             'password' => 'required',
@@ -96,15 +96,49 @@ class AdvisorController extends Controller
     }
 
     public function internshipSubmission() {
-        $data['allDataSub'] = InternshipSubmission::with('students', 'advisors', 'industries')
-        ->whereHas('advisors', function ($query) {
-            $query->where('status', '=', 2) && ('advisor_id' == null);
+        $data['allDataSub'] = InternshipSubmission::with('students', 'industries')
+        ->whereHas('students', function ($query) {
+            $query->where('status', '=', 2)->where('advisor_id', '=', null);
             
         })->get();
-        // $data['advisors'] = Advisor::all();
-        // $data['departements'] = Departement::all();
-        // $data['students'] = Student::with('departements');
+        $data['departements'] = Departement::all();
+        
+        
         return view('advisor.internship-view.internship-submission', $data);
+    }
+
+    public function filterAjax($id) {
+        $data['departements'] = Departement::all();
+        
+        switch($id) {
+            case 1:
+                $data['allDataSub'] = InternshipSubmission::whereHas('students.departement', function ($query) {
+                    $query->where('id', '=', 1)->where('advisor_id', '=', null);
+                })->get();
+                break;
+
+                case 2:
+                    $data['allDataSub'] = InternshipSubmission::whereHas('students.departement', function ($query) {
+                        $query->where('id', '=', 2)->where('advisor_id', '=', null);
+                    })->get();
+                    break;
+                case 3:
+                    $data['allDataSub'] = InternshipSubmission::whereHas('students.departement', function ($query) {
+                        $query->where('id', '=', 3)->where('advisor_id', '=', null);
+                    })->get();
+                    break;    
+                case 4:
+                    $data['allDataSub'] = InternshipSubmission::whereHas('students.departement', function ($query) {
+                        $query->where('id', '=', 4)->where('advisor_id', '=', null);
+                    })->get();
+                    break;        
+                    
+        }
+
+        return view('advisor.internship-view.internship-submission', $data);
+
+
+     
     }
 
 
