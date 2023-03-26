@@ -10,7 +10,7 @@
                 <div class="col-12 col-md-6 order-md-1 order-last">
                     <h3>Daftar Siswa <br>
                         Praktik Kerja Lapangan</h3>
-                    <p class="text-subtitle text-muted">SMK Negeri 3  Yogyakarta</p>
+                    <p class="text-subtitle text-muted">Pilih siswa-siswa berikut untuk ditambahkan ke daftar bimbingan</p>
                 </div>
                 <div class="col-12 col-md-6 order-md-2 order-first">
                     <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
@@ -27,6 +27,8 @@
             <div class="card">
                 
                 <div class="card-body" > 
+                    <form id="myForm" action="{{ route('update.advisor') }}" method="POST">
+                        @csrf
                     <table class="table table-striped" id="" >
                     {{-- <table class="table table-striped" > --}}
                         <!-- FILTER button -->
@@ -48,10 +50,9 @@
                         <thead>
                             
                             <tr>
-                                <th>Aksi</th>
-                                
-                                <th>Nama Siswa</th>
-                                <th>Jurusan</th>
+                                <th width="5%">Pilih</th>
+                                <th width="25%">Nama Siswa</th>
+                                <th width="20%">Jurusan</th>
                                 <th width="30%">Industri</th>
                                 <th>Bukti Diterima</th>
                                 
@@ -87,9 +88,11 @@
                         </tbody>
                         
                     </table>
+                    
                     @if($allDataSub->isNotEmpty())
-                    <a href="#" class="btn btn-primary" target="_blank"> Simpan </a>
+                    <a href="#" class="btn btn-primary" id="myButton" target="_blank"> Tambahkan</a>
                     @endif
+                    </form>
                     
                 
                   
@@ -105,3 +108,23 @@
                 </div>
 
 @endsection
+
+<script>
+    const myForm = document.getElementById('myForm');
+    const myButton = document.getElementById('myButton');
+    myButton.addEventListener('click', (event) => {
+      event.preventDefault();
+      const formData = new FormData(myForm);
+      fetch(myForm.action, {
+        method: 'POST',
+        body: formData,
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+    });
+  </script>

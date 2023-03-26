@@ -144,9 +144,15 @@ class AdvisorController extends Controller
         }
 
         return view('advisor.internship-view.internship-submission', $data);
-
-
-     
+    }
+    
+    public function update(Request $request) {
+        $selected = $request->input('selected');
+        $value = $request->input('value');
+        foreach ($selected as $id) {
+            InternshipSubmission::where('id', $id)->update(['advisor_id' => $value]);
+        }
+            return response()->json(['message' => 'Update successful']);
     }
 
 
