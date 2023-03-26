@@ -27,8 +27,7 @@
             <div class="card">
                 
                 <div class="card-body" > 
-                    <form id="myForm" action="{{ route('update.advisor') }}" method="POST">
-                        @csrf
+                
                     <table class="table table-striped" id="" >
                     {{-- <table class="table table-striped" > --}}
                         <!-- FILTER button -->
@@ -64,12 +63,14 @@
 
                             @else
                           @foreach($allDataSub as $key => $submission )
+                          <form id="myForm" action="{{ route('update.advisor', ) }}" method="POST">
+                            @csrf
                             <tr>
                               
                                 <td>
                                     <div class="form-check" >
                                         <div class="custom-control custom-checkbox" >
-                                          <input type="checkbox" class="form-check-input form-check-success" name="customCheck" id="customColorCheck3">  
+                                          <input type="checkbox" class="form-check-input form-check-success" name="selected[]" value="{{ $submission->id }}">  
                                         </div>
                                     </div>
                                 </td>
@@ -90,7 +91,7 @@
                     </table>
                     
                     @if($allDataSub->isNotEmpty())
-                    <a href="#" class="btn btn-primary" id="myButton" target="_blank"> Tambahkan</a>
+                    <button class="btn btn-primary" id="myButton"> Tambahkan</button>
                     @endif
                     </form>
                     
@@ -106,6 +107,7 @@
     
                  
                 </div>
+                
 
 @endsection
 

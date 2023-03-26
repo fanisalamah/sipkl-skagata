@@ -7,6 +7,7 @@ use App\Models\Departement;
 use App\Models\InternshipSubmission;
 use App\Models\Student;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class AdvisorController extends Controller
@@ -146,13 +147,19 @@ class AdvisorController extends Controller
         return view('advisor.internship-view.internship-submission', $data);
     }
     
-    public function update(Request $request) {
+    public function updateSubmission(Request $request) {
+        
         $selected = $request->input('selected');
-        $value = $request->input('value');
+        $value = Auth::user()->id;
         foreach ($selected as $id) {
-            InternshipSubmission::where('id', $id)->update(['advisor_id' => $value]);
+            InternshipSubmission::where('id', $id)->update(['advisor_id' => $value ]);
         }
-            return response()->json(['message' => 'Update successful']);
+        $notification = array(
+            'message' => 'Siswa berhasil ditambahkan ke daftar bimbingan',
+            'alert-type' => 'success'
+        );
+        
+        return redirect()->route('advisor.internship.submission')->with($notification);
     }
 
 
