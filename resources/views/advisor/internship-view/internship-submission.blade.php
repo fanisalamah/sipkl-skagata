@@ -74,7 +74,7 @@
                                 <td>
                                     <div class="form-check" >
                                         <div class="custom-control custom-checkbox" >
-                                          <input type="checkbox" class="form-check-input form-check-success" checked="" name="customCheck" id="customColorCheck3">  
+                                          <input type="checkbox" class="form-check-input form-check-success" name="customCheck" id="customColorCheck3">  
                                         </div>
                                     </div>
                                 </td>
@@ -85,7 +85,9 @@
                         </tbody>
                         
                     </table>
-                    <a href="#" class="badge text-bg-success" target="_blank"> Simpan </a>
+                    @if($allDataSub->isNotEmpty())
+                    <a href="#" class="btn btn-primary" target="_blank"> Simpan </a>
+                    @endif
                     
                 
                   
