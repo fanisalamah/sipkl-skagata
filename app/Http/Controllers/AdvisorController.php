@@ -241,6 +241,8 @@ class AdvisorController extends Controller
         $nilai_10 = $request->aspek5;
 
         $report->score_industry = ($nilai_1 + $nilai_2 + $nilai_3 + $nilai_4 + $nilai_5) / 5;
+        $report->score_school = ($nilai_6 + $nilai_7 + $nilai_8 + $nilai_9 + $nilai_10) / 5;;
+        $report->final_score = ($report->score_industry + $report->score_school)/2;
         $report->save();
 
         $notification = array(

@@ -82,7 +82,6 @@
                               <div class="modal-body">
                               <form action="{{ route('update.score', $report->id) }}" method="POST" enctype="multipart/form-data">
                                   @csrf
-                                  @method('PUT')
                                   <div class="form-group">
                                     <div class="container">
 
@@ -90,7 +89,7 @@
                                             <div class="col-6"> 
                                                 <div class="form-group">
                                                     <label for="basicInput">Disiplin</label>
-                                                    <input type="text" class="form-control" id="disiplin" name="disiplin">
+                                                    <input type="text" class="form-control" id="disiplin" name="disiplin" >
                                                   </div>
                                             </div>
                                             <div class="col-6"> 
