@@ -101,6 +101,7 @@
                         
                         <form action="{{ route('update.note', $logbook->id) }}" method="POST" enctype="multipart/form-data">
                             @csrf
+                            @method('put')
                         <div class="modal-body">
                             
                             <div class="form-group">

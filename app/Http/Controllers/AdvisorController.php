@@ -203,7 +203,8 @@ class AdvisorController extends Controller
             'message' => 'Catatan berhasil ditambahkan',
             'alert-type' => 'success'
         );
-        return redirect()->route('advisor.internship.monitoring')->with($notification);    
+        //MASIH PR
+        return redirect()->route('/advisor/internship/monitoring/personal/'.$logbook->student_id)->with($notification);    
     }
     
 
