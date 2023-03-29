@@ -23,8 +23,6 @@
         </div>
         <section class="section">
             <div class="card">
-                <div class="card-header">
-                </div>
                 <div class="card-body">
                     <table class="table table-striped" id="table1">
                         <thead>

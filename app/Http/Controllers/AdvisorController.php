@@ -218,5 +218,9 @@ class AdvisorController extends Controller
         return view('advisor.internship-view.monthly-report', $data);
     }
 
+    public function finalReport() {
+        
+    }
+
 
 }

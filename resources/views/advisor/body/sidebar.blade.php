@@ -79,18 +79,21 @@
         <li class="submenu-item {{ request()->is('advisor/internship/monthly-report') ? 'active' : '' }}">
             <a href="{{ route('advisor.internship.monthly-report') }}">Laporan Bulanan</a>
         </li>
+        <li class="submenu-item {{ request()->is('advisor/internship/report') ? 'active' : '' }}">
+            <a href="{{ route('advisor.internship.report') }}">Laporan dan Nilai PKL</a>
+        </li>
         
     </ul>
 </li>  
     
     
-    <li
+    {{-- <li
         class="sidebar-item  ">
         <a href="{{ route('internship.report') }}" class='sidebar-link'>
             <i class="bi bi-file-bar-graph-fill"></i>
             <span>Laporan PKL Siswa</span>
         </a>
-    </li>
+    </li> --}}
 
     
     
