@@ -76,6 +76,9 @@
         <li class="submenu-item {{ request()->is('advisor/internship/monitoring/*') ? 'active' : '' }}">
             <a href="{{ route('advisor.internship.monitoring') }}">Monitoring PKL</a>
         </li>
+        <li class="submenu-item {{ request()->is('advisor/internship/monthly-report') ? 'active' : '' }}">
+            <a href="{{ route('advisor.internship.monthly-report') }}">Laporan Bulanan</a>
+        </li>
         
     </ul>
 </li>  

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Helper\RedirectHelper;
 use App\Models\Departement;
 use App\Models\InternshipLogbooks;
+use App\Models\InternshipMonthlyReport;
 use App\Models\InternshipSubmission;
 use App\Models\Student;
 use Illuminate\Http\Request;
@@ -207,6 +208,15 @@ class AdvisorController extends Controller
         return redirect()->back()->with($notification);    
     }
     
+    public function monthlyReport() {
+        $id = Auth::user()->id;
+        $data['monthlyReports'] = InternshipMonthlyReport::whereHas('internshipSubmission', function ($query) use ($id) {
+            $query->where('advisor_id', $id);
+        })->get();
+
+       
+        return view('advisor.internship-view.monthly-report', $data);
+    }
 
 
 }
