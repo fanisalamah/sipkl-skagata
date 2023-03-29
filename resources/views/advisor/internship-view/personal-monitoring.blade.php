@@ -43,11 +43,11 @@
                         <thead>
                             <tr style="font-size:14px;">
                                 <th width="5%">No. </th>
-                                <th>Tanggal</th>
-                                <th width="28%">Kegiatan</th>
+                                <th width="19%">Tanggal</th>
+                                <th width="35%">Kegiatan</th>
                                 <th>Lampiran</th>
                                 <th width="25%">Catatan</th>
-                                <th width="9%">Aksi</th>
+                                <th> Aksi </th>
                             </tr>
                             
                         </thead>
@@ -68,8 +68,13 @@
                                 <td> {{ $logbook->activity }}</td>
                                 <td> <a href="{{ Storage::url('internship/logbook/'. $logbook->attachment_file)}}"
                                     class="badge text-bg-success" target="__blank" style="font-size:14px; padding:10px;"> <i class="bi bi-eye"></i>  Preview </a>  </td>
-                                <td> {{ $logbook->note }} </td>
-                                <td> Aksi </td>
+                            @if($logbook->note == null || $logbook->note == '')
+                                <td style="font-style:italic;">Tidak ada catatan</td>
+                            @else
+                                <td style="font-weight:bold;"> {{ $logbook->note }}</td>
+                            @endif
+                            <td>  <a href="#" class="btn btn-primary" data-bs-toggle="modal"
+                                 data-bs-target="#noteModal-{{ $logbook->id }}" style="background-color:#1d8455; border:none;"> <i class="bi bi-plus"></i> </a> </td>
                             </tr>
                             @endforeach
                             
@@ -84,5 +89,36 @@
     
                  
                 </div>
+
+                @foreach($logbooks as $logbook)
+                <div class="modal fade" id="noteModal-{{ $logbook->id }}" tabindex="-1" aria-labelledby="noteModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h5 class="modal-title" id="noteModalLabel">Tambahkan catatan</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        
+                        <form action="{{ route('update.note', $logbook->id) }}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                        <div class="modal-body">
+                            
+                            <div class="form-group">
+                                  <div class="col-12">
+                                    <textarea class="form-control" id="note" name="note" rows="3"></textarea>
+                                  </div>
+                            </div>
+                        </div>
+                        
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </form>    
+                    @endforeach
+                    </div>
+                
+                    </div>
+            </div>
 
 @endsection

@@ -193,6 +193,18 @@ class AdvisorController extends Controller
         );
         return redirect()->route('advisor.internship.monitoring')->with($notification);        
     }
+
+    public function updateNote(Request $request, $id) {
+        $logbook = InternshipLogbooks::find($id);
+        $logbook->note = $request->note;
+        $logbook->save();
+
+        $notification = array(
+            'message' => 'Catatan berhasil ditambahkan',
+            'alert-type' => 'success'
+        );
+        return redirect()->route('advisor.internship.monitoring')->with($notification);    
+    }
     
 
 

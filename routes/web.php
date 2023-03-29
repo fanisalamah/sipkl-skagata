@@ -107,6 +107,7 @@ Route::group(['middleware' => ['auth:advisor']], function() {
         Route::get('/internship/monitoring/', [AdvisorController::class, 'internshipMonitoring'])->name('advisor.internship.monitoring');
         Route::get('/internship/monitoring/delete/{id}', [AdvisorController::class, 'deleteMonitoring'])->name('advisor.internship.monitoring.delete');
         Route::get('/internship/monitoring/personal/{id}', [AdvisorController::class, 'personalMonitoring'])->name('advisor.internship.monitoring.personal');
+        Route::post('/internship/monitoring/personal/note/{id', [AdvisorController::class, 'updateNote'])->name('update.note');
 
     });
     
