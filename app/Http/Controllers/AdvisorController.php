@@ -173,8 +173,23 @@ class AdvisorController extends Controller
     }
 
     public function personalMonitoring($id) {
-        $data['logbooks'] = InternshipLogbooks::find($id);
-        
+        // $data['logbooks'] = InternshipLogbooks::find($id);
+        $data['internship'] = Internship::find()
+        return view('advisor.internship-view.personal-monitoring', $data);
     }
+
+    public function deleteMonitoring($id) {
+        $data = InternshipSubmission::find($id);
+        $data->advisor_id = null;
+        $data->save();
+
+        $notification = array(
+            'message' => 'Siswa berhasil dihapus dari daftar bimbingan',
+            'alert-type' => 'success'
+        );
+        return redirect()->route('advisor.internship.monitoring')->with($notification);        
+    }
+    
+
 
 }

@@ -43,13 +43,19 @@
                             </tr>
                         </thead>
                         <tbody>
+                            
                             @foreach($internships as $key => $internship)
+                            
+                                
                             <tr>
                                 <td> {{ $key+1 }} </td>
                                 <td> {{ $internship->students->name }}</td>
                                 <td> {{ $internship->students->departement->name }}</td>
                                 <td> {{ $internship->industries->name }}</td>
-                                <td><a href="#" class="badge text-bg-success" target="_blank"> Lihat Logbook </a> </td>
+                                <td width="24%">
+                                    <a href="{{ route('advisor.internship.monitoring.personal', $internship->id) }}" class="btn btn-info"> Cek Logbook </a>
+                                    <a href="{{ route('advisor.internship.monitoring.delete', $internship->id) }}"  class="btn btn-danger"> Hapus </a>
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>
