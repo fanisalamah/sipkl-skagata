@@ -204,7 +204,7 @@ class AdvisorController extends Controller
             'alert-type' => 'success'
         );
         //MASIH PR
-        return redirect()->route('/advisor/internship/monitoring/personal/'.$logbook->student_id)->with($notification);    
+        return redirect()->back()->with($notification);    
     }
     
 
