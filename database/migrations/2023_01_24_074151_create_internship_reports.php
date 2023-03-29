@@ -16,10 +16,9 @@ class CreateInternshipReports extends Migration
         Schema::create('internship_reports', function (Blueprint $table) {
             $table->id();
             $table->foreignId('internship_submission_id')->constrained('internship_submissions');
-            $table->string('title');
             $table->string('url_file');
-            $table->integer('score_industry')->nullable();
-            $table->integer('score_school')->nullable();
+            $table->float('score_industry')->nullable();
+            $table->float('score_school')->nullable();
             $table->float('final_score')->nullable();
             $table->timestamps();
            

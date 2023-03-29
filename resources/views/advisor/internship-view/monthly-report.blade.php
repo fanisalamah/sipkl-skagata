@@ -44,7 +44,7 @@
                                 <td>{{ $mr->internshipSubmission->students->name }}</td>
                                 <td> {{ $mr->internshipSubmission->industries->name }}</td>
                                 <td> {{ $mr->title }} </td>
-                                <td> <a href=" {{ $mr->file }}" class="badge text-bg-success" target="__blank" style="font-size:14px; padding:10px;" > <i class="bi bi-eye"></i>  Preview</td>
+                                <td> <a href="{{ Storage::url('internship/monthly-report/'.  $mr->file)}} " class="badge text-bg-success" target="__blank" style="font-size:14px; padding:10px;" > <i class="bi bi-eye"></i>  Preview</td>
                             </tr>
                             @endforeach
                             

@@ -6,6 +6,7 @@ use App\Helper\RedirectHelper;
 use App\Models\Departement;
 use App\Models\InternshipLogbooks;
 use App\Models\InternshipMonthlyReport;
+use App\Models\InternshipReports;
 use App\Models\InternshipSubmission;
 use App\Models\Student;
 use Illuminate\Http\Request;
@@ -204,7 +205,7 @@ class AdvisorController extends Controller
             'message' => 'Catatan berhasil ditambahkan',
             'alert-type' => 'success'
         );
-        //MASIH PR
+        
         return redirect()->back()->with($notification);    
     }
     
@@ -219,8 +220,36 @@ class AdvisorController extends Controller
     }
 
     public function finalReport() {
-        
+        $id = Auth::user()->id;
+        $data['reports'] = InternshipReports::whereHas('internshipSubmission', function ($query) use ($id) {
+            $query->where('advisor_id', $id);
+        })->get();
+        return view('advisor.internship-view.final-report', $data);
     }
 
+    public function updateScore(Request $request, $id) {
+        $report = InternshipReports::find($id);
+        $nilai_1 = $request->disiplin;
+        $nilai_2 = $request->kerjasama;
+        $nilai_3 = $request->inisiatif;
+        $nilai_4 = $request->tanggungjawab;
+        $nilai_5 = $request->kejujuran;
+        $nilai_6 = $request->aspek1;
+        $nilai_7 = $request->aspek2;
+        $nilai_8 = $request->aspek3;
+        $nilai_9 = $request->aspek4;
+        $nilai_10 = $request->aspek5;
 
+        $report->score_industry = ($nilai_1 + $nilai_2 + $nilai_3 + $nilai_4 + $nilai_5) / 5;
+        $report->save();
+
+        $notification = array(
+            'message' => 'Nilai berhasil ditambahkan',
+            'alert-type' => 'success'
+        );
+        //MASIH PR
+        return redirect()->back()->with($notification); 
+        
+
+    }
 }
