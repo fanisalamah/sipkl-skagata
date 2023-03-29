@@ -173,8 +173,12 @@ class AdvisorController extends Controller
     }
 
     public function personalMonitoring($id) {
-        // $data['logbooks'] = InternshipLogbooks::find($id);
-        $data['internship'] = Internship::find()
+        $data['internship'] = InternshipSubmission::find($id);
+        $data['logbooks'] = InternshipLogbooks::whereHas('internshipSubmission',
+        function ($query) use ($id) {
+            $query->where('id', $id);
+        })->get();
+        
         return view('advisor.internship-view.personal-monitoring', $data);
     }
 
