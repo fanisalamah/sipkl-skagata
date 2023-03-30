@@ -28,6 +28,12 @@ class LoginController extends Controller
         }
         else if(Auth::guard('advisor')->attempt(['email' => $request->email, 'password' => $request->password])) {
           return redirect()->route('advisor.dashboard');
+      } else {
+        $notification = array(
+          'message' => 'Login gagal. Periksa data email dan password yang digunakan',
+          'alert-type' => 'error'
+      );
+        return redirect()->route('login')->with($notification);
       }
     }
 
@@ -43,6 +49,5 @@ class LoginController extends Controller
       return redirect('/');
     }
 
-}
-
+  }
  
