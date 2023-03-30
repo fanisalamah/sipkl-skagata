@@ -228,7 +228,6 @@ class AdminController extends Controller
             }
 
         $data = User::find($id);
-        // dd(Hash::check($request->oldPassword, $data->password));
         if(Hash::check($request->oldPassword, $data->password)) {
 
             $data->password = bcrypt($request->newPassword);
@@ -246,7 +245,7 @@ class AdminController extends Controller
             $data->save();
             $notification = array(
                 'message' => 'Konfirmasi password salah',
-                'alert-type' => 'warning'
+                'alert-type' => 'error'
             );
             return redirect()->back()->with($notification);
         }

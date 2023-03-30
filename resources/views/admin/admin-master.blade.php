@@ -49,7 +49,7 @@
     function sweetConfirm(url, title) {
 		   let endpointUrl = url;
 		   swal({
-			   title: `Hapus data ${title}?`,
+			   title: `Hapus Data ${title}?`,
 			   text: `Data yang terhapus tidak dapat dikembalikan lagi`,
 			   type: "warning",
 			   showCancelButton: !0,
