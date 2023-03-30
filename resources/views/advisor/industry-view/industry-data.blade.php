@@ -33,7 +33,7 @@
                           <i class="bi bi-cloud-arrow-up-fill"></i> Import Industri
                         </button>
                         <ul class="dropdown-menu">
-                          <li><a class="dropdown-item" href="{{ route('download.template.industri', '?file=Template_Industri.xlsx') }}">Download Template</a></li>
+                          <li><a class="dropdown-item" href="{{ route('advisor.download.template.industri', '?file=Template_Industri.xlsx') }}">Download Template</a></li>
                           <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">Upload Data Industri</a></li>
                         </ul>
                       </div>
@@ -49,7 +49,7 @@
                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                           </div>
 
-                          <form action="{{ route('upload.industri') }}" method="POST" enctype="multipart/form-data">
+                          <form action="{{ route('advisor.upload.industri') }}" method="POST" enctype="multipart/form-data">
                               @csrf
                           <div class="modal-body">
                           

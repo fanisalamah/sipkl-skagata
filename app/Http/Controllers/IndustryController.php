@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Helper\RedirectHelper;
 use App\Models\Industry;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class IndustryController extends Controller
 {
@@ -43,11 +45,16 @@ class IndustryController extends Controller
     }
 
     public function storeIndustri(Request $request) {
-        $validatedData = $request->validate([
+        $validator = Validator::make($request->all(), [
             'name' => 'required|unique:industries',
             'address' => 'required',
-
         ]);
+
+        if($validator->fails()){
+            $errors = $validator->errors()->all(':message');
+            return RedirectHelper::redirectBack(implode(' ',$errors), 'error');
+
+        }
 
         $data = new Industry();
         $data->name = $request->name;
@@ -84,7 +91,16 @@ class IndustryController extends Controller
     }
 
     public function updateIndustri(Request $request, $id) {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|unique:industries',
+            'address' => 'required',
+        ]);
 
+        if($validator->fails()){
+            $errors = $validator->errors()->all(':message');
+            return RedirectHelper::redirectBack(implode(' ',$errors), 'error');
+
+        }
         $data = Industry::find($id);
         $data->name = $request->name;
         $data->address = $request->address;
@@ -94,7 +110,7 @@ class IndustryController extends Controller
             'alert-type' => 'success'
         );
 
-        return redirect()->back()->with($notification);
+        return redirect()->route('industri.data')->with($notification);
         
     }
 

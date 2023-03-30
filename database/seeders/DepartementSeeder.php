@@ -15,19 +15,31 @@ class DepartementSeeder extends Seeder
     public function run()
     {
         DB::table('departements')->insert([
-            'name' => 'Multimedia'
+            'name' => 'Broadcasting & Perfilman'
         ]);
 
         DB::table('departements')->insert([
-            'name' => 'SIJA'
+            'name' => 'TKJ & Telekomunikasi'
         ]);
 
         DB::table('departements')->insert([
-            'name' => 'TKJ'
+            'name' => 'Desain Pemodelan & Informasi Bangunan'
         ]);
 
         DB::table('departements')->insert([
-            'name' => 'Broadcasting'
+            'name' => 'Teknik Konstruksi & Perumahan'
+        ]);
+        DB::table('departements')->insert([
+            'name' => 'Teknik Elektronika'
+        ]);
+        DB::table('departements')->insert([
+            'name' => 'Teknik Ketenagalistrikan'
+        ]);
+        DB::table('departements')->insert([
+            'name' => 'Teknik Otomotif'
+        ]);
+        DB::table('departements')->insert([
+            'name' => 'Teknik Mesin'
         ]);
     }
 }

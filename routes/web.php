@@ -99,8 +99,8 @@ Route::group(['middleware' => ['auth:advisor']], function() {
         Route::get('/industries/edit/{id}', [IndustryController::class, 'editIndustriAdv'])->name('advisor.industri.edit');
         Route::put('/industries/update/{id}', [IndustryController::class, 'updateIndustriAdv'])->name('advisor.industri.update');
         Route::post('/industries/delete/{id}', [IndustryController::class, 'deleteIndustri'])->name('advisor.industri.delete');
-        Route::get('/template_industri', [Excel::class, 'download_local'])->name('download.template.industri');
-        Route::post('/import_industri', [Excel::class, 'upload_local_industry'])->name('upload.industri');
+        Route::get('/template_industri', [Excel::class, 'download_local'])->name('advisor.download.template.industri');
+        Route::post('/import_industri', [Excel::class, 'upload_local_industry'])->name('advisor.upload.industri');
         Route::get('/internship/submission', [AdvisorController::class, 'internshipSubmission'])->name('advisor.internship.submission');
         Route::get('/internship/submission/{id}', [AdvisorController::class, 'filterJurusan']);
         Route::post('/internship/submission/', [AdvisorController::class, 'updateSubmission'])->name('update.advisor');

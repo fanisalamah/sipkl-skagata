@@ -41,20 +41,9 @@
                                         <div class="col-md-6 col-12">
                                             <div class="form-group mandatory">
                                                 <label for="nis" class="form-label">NIS</label>
-                                                <input type="text" name="NIS" id="NIS" class="form-control" value="{{ $editData['users']->nis }}" data-parsley-required="true">
+                                                <input type="text" name="nis" id="nis" class="form-control" value="{{ $editData['users']->nis }}" data-parsley-required="true">
                                             </div>
                                         </div>
-                                        {{-- <div class="col-md-6 col-12">
-                                            <div class="form-group mandatory">
-                                                <label for="role_id" class="form-label"> Pilih Role </label>
-                                                <select class="form-select" id="role_id" name="role_id"  data-parsley-required="true">
-                                                    <option value="" selected="" disabled>Pilih Role</option>
-                                                    @foreach($editData['roles'] as $role)
-                                                    <option value="{{ $role->id }}" {{ $editData['users']->role_id == $role->id ? "selected" : "" }}>{{ $role->name }}</option>
-                                                    @endforeach
-                                                  </select>
-                                            </div>
-                                        </div> --}}
                                         <div class="col-md-6 col-12">
                                             <div class="form-group mandatory">
                                                 <label for="email" class="form-label">Email</label>

@@ -46,10 +46,15 @@
                                 <td>{{ $report->internshipSubmission->students->name }}</td>
                                 <td> {{ $report->internshipSubmission->industries->name }}</td>
                                 <td> <a href="{{ Storage::url('internship/report/'.  $report->url_file)}} " class="badge text-bg-success" target="__blank" style="font-size:14px; padding:10px;" > <i class="bi bi-eye"></i>  Preview</td>
-                            @if($report->final_score == null)
+                            @if($report->score_industry == null && $report->score_school == null)
                                 <td style="font-style:italic;"> Belum ada nilai</td>
-                            @else
-                                <td style="font-weight:bold;"> {{ $report->final_score }}</td>
+                            
+                            @elseif($report->score_industry == null && $report->score_school != null)
+                            <td style="font-weight:bold;"> Nilai dari industri belum diinput</td>
+                            @elseif($report->score_industry != null && $report->score_school == null)
+                            <td style="font-weight:bold;"> Nilai dari sekolah belum diinput</td>
+                            @else 
+                            <td style="font-weight:bold;"> {{ $report->final_score }}</td>
                             @endif
                                 <td> <button type="button" class="badge text-bg-success" data-toggle="modal" data-target="#nilaiModal{{ $report->id }}"  style="background-color:#1d8455; border:none;font-size:14px; padding:10px;"> <i class="bi bi-plus"></i> Input Nilai</button></td>
                             </tr>
