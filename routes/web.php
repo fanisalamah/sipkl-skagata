@@ -37,6 +37,7 @@ Route::group(['middleware' => ['auth:web']], function() {
         Route::post('/import_student', [Excel::class, 'upload_local_student'])->name('upload.student');
         Route::get('/template_industri', [Excel::class, 'download_local'])->name('download.template.industri');
         Route::post('/import_industri', [Excel::class, 'upload_local_industry'])->name('upload.industri');
+        Route::put('/update-password/{id}', [AdminController::class, 'updatePassword'])->name('update.password');
 
 
     Route::prefix('advisor')->group(function() {

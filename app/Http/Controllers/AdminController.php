@@ -12,6 +12,7 @@ use App\Models\Student;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 
@@ -212,6 +213,49 @@ class AdminController extends Controller
         $user->delete();
 
         return redirect()->route('student.data');
+    }
+
+    public function updatePassword(Request $request, $id) {
+        $validator = Validator::make($request->all(), [
+            'oldPassword' => 'required',
+            'newPassword' => 'required',
+            ]);
+
+        if($validator->fails()){
+                $errors = $validator->errors()->all(':message');
+                return RedirectHelper::redirectBack(implode(' ',$errors), 'error');
+    
+            }
+
+        $data = User::find($id);
+        // dd(Hash::check($request->oldPassword, $data->password));
+        if(Hash::check($request->oldPassword, $data->password)) {
+
+            $data->password = bcrypt($request->newPassword);
+            $data->save();
+
+            $notification = array(
+                'message' => 'Password berhasil diupdate',
+                'alert-type' => 'success'
+            );
+            return redirect()->back()->with($notification);
+        }
+        else {
+            
+            $data->password = $data->password;
+            $data->save();
+            $notification = array(
+                'message' => 'Konfirmasi password salah',
+                'alert-type' => 'warning'
+            );
+            return redirect()->back()->with($notification);
+        }
+
+        
+        
+            
+            
+
     }
 }
 

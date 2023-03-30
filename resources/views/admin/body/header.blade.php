@@ -28,7 +28,7 @@
                         </div>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton" style="min-width: 11rem;">
-                        <li><a class="dropdown-item" href="#"><i class="icon-mid bi bi-gear me-2"></i>
+                        <li><a class="dropdown-item" href="#"  data-toggle="modal" data-target="#updatePassword{{ Auth::user()->id }}"><i class="icon-mid bi bi-gear me-2"></i>
                                 Update Password</a></li>
                         <li>
                             <hr class="dropdown-divider">
@@ -41,3 +41,36 @@
         </div>
     </nav>
 </header>
+
+
+        
+        
+<div class="modal fade" id="updatePassword{{ Auth::user()->id }}" tabindex="-1" role="dialog" aria-labelledby="updatePassword{{ Auth::user()->id }}" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h5 class="modal-title" id="updatePassword{{ Auth::user()->id }}">Update Password</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+        <div class="modal-body">
+        <form action="{{ route('update.password', Auth::user()->id) }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            @method('put')
+            
+            <div class="form-group">
+                <label for="oldPassword">Password saat ini</label>
+                <input type="password" class="form-control" id="oldPassword" name="oldPassword" placeholder="Masukkan password saat ini">
+            </div>
+            <div class="form-group">
+                <label for="newPassword">Password baru</label>
+                <input type="password" class="form-control" id="newPassword" name="newPassword" placeholder="Masukkan password baru">
+            </div>
+            <div class="d-flex justify-content-end"><button type="submit" class="btn btn-primary">Update</button></div>
+            
+        </form>
+        </div>
+    </div>
+    </div>
+</div>

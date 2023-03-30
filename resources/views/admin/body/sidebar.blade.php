@@ -1,13 +1,11 @@
 <div id="sidebar" class="active">
     <div class="sidebar-wrapper active">
 <div class="sidebar-header ">
-    {{-- <a href="{{ route('dashboard') }}"><img src="assets/images/logo/logo-smk.svg" alt="Logo" srcset=""> SIMPKL</a> --}}
         <div class="form-check form-switch fs-6">
             <img src="{{ asset('assets/images/logo/logo-smk.svg') }}" height="100">
-            {{-- <span class=""> SIMPKL SKAGATA </span> --}}
+            
             
             <input type="hidden" class="form-check-input  me-0" type="checkbox" id="toggle-dark" >
-            {{-- <label class="form-check-label" ></label> --}}
         </div>
 
     
