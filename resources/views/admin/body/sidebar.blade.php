@@ -80,36 +80,42 @@
 </li>
 
 <li
-    class="sidebar-item  has-sub {{ Request::is('internship/submission', 'internship/data*')?'active':'' }}">
+    class="sidebar-item  has-sub {{ Request::is('internship/submission', 'internship/data*', 'internship/monthly-report', 'internship/report')?'active':'' }}">
     <a href="#" class='sidebar-link'>
         <i class="bi bi-file-earmark-medical-fill"></i> 
         <span>PKL</span>
     </a>
-    <ul class="submenu {{  Request::is('internship/submission', 'internship/data*')?'active':'' }}">
+    <ul class="submenu {{  Request::is('internship/submission', 'internship/data*', 'internship/monthly-report', 'internship/report')?'active':'' }}">
         <li class="submenu-item {{ request()->is('internship/submission') ? 'active' : '' }}">
             <a href="{{ route('internship.submission') }}">Pengajuan PKL</a>
         </li>
         <li class="submenu-item {{ Request::is('internship/data*')?'active':'' }}">
             <a href="{{ route('internship.data') }}">Daftar Siswa PKL</a>
         </li>
+        <li class="submenu-item {{ Request::is('internship/monthly-report')?'active':'' }}">
+            <a href="{{ route('internship.monthly.report') }}">Laporan Bulanan </a>
+        </li>
+        <li class="submenu-item {{ Request::is('internship/report')?'active':'' }}">
+            <a href="{{ route('internship.final.report') }}">Laporan Akhir</a>
+        </li>
     </ul>
 </li>  
     
-     <li
+     {{-- <li
         class="sidebar-item  {{ request()->is('internship/monthly-report') ? 'active' : '' }}">
         <a href="{{ route('internship.monthly.report') }}" class='sidebar-link'>
             <i class="bi bi-file-bar-graph-fill"></i>
             <span>Laporan Bulanan</span>
         </a>
-    </li>
-
+    </li> --}}
+{{-- 
     <li
         class="sidebar-item  {{ request()->is('internship/report') ? 'active' : '' }}">
         <a href="{{ route('internship.report') }}" class='sidebar-link'>
             <i class="bi bi-file-bar-graph-fill"></i>
             <span>Laporan PKL Siswa</span>
         </a>
-    </li>
+    </li> --}}
 
     
     

@@ -73,7 +73,7 @@ Route::group(['middleware' => ['auth:web']], function() {
         Route::get('/data', [InternshipController::class, 'internshipData'])->name('internship.data');
         Route::get('/data/logbook/{id}', [InternshipController::class, 'internshipLogbook'])->name('internship.logbook');
         Route::get('/monthly-report', [InternshipController::class, 'monthlyReport'])->name('internship.monthly.report');
-        Route::get('/report', [InternshipController::class, 'internshipReport'])->name('internship.report');
+        Route::get('/report', [InternshipController::class, 'internshipReport'])->name('internship.final.report');
     });
     
     

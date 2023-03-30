@@ -73,7 +73,7 @@
                             @else
                                 <td style="font-weight:bold;"> {{ $logbook->note }}</td>
                             @endif
-                            <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal{{ $logbook->id }}"  style="background-color:#1d8455; border:none;"><i class="bi bi-plus"></i></button></td>
+                            <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal{{ $logbook->id }}"  style="background-color:#1d8455; border:none;" data-toggle="tooltip" data-placement="top" title="Tambah Catatan" ><i class="bi bi-plus"></i></button></td>
                             </tr>
                             @endforeach
                             

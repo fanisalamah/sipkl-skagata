@@ -62,7 +62,11 @@ class InternshipController extends Controller
 
     public function internshipLogbook($id) {
         $data['internships'] = InternshipSubmission::find($id);
-        $data['logbooks'] = InternshipLogbooks::all()->where('internship_submission_id', $id);
+        $data['logbooks'] = InternshipLogbooks::whereHas('internshipSubmission',
+        function ($query) use ($id) {
+            $query->where('id', $id);
+        })->get();
+
         return view('internship.internship-logbooks', $data);
 
     }
@@ -76,15 +80,9 @@ class InternshipController extends Controller
 
     public function internshipReport() {
         $data['internshipReports'] = InternshipReports::all();
-        $data['internshipSubmissions'] = InternshipSubmission::all();
 
         return view('internship.internship-report', $data);
     }
 
-    // public function storeInternshipSubmission(Request $request, $id) {
-
-    //     $data['students'] = Student::all();
-
-    // }
 }
     

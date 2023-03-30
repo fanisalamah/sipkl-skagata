@@ -28,7 +28,6 @@
                         <div class="col">
                             <span style="font-size: 12px;">     
                             <table>
-                                
                                 <tr>
                                     <td>Nama Siswa&emsp;</td>
                                     <td>:</td>
@@ -80,7 +79,7 @@
 
                 </div>
        <br>         
-       <button class="btn btn-primary mb-2" type=""> Export </button>
+       {{-- <button class="btn btn-primary mb-2" type=""> Export </button> --}}
             <div class="card">
                 
                 <div class="card-body">
@@ -88,7 +87,7 @@
                  
                  
                    <span style="font-size: 14px;">     
-                    <table class="table table-striped" id="">
+                    <table class="table table-striped" id="table1">
                         
                         <thead>
                             <tr>
@@ -101,13 +100,20 @@
                             </tr>
                         </thead>
                         <tbody>
+                            
                             @foreach($logbooks as $key => $logbook)
                             <tr>
-                                <td> 1</td>
-                                <td width="15%"> {{ $logbook->date }}</td>
-                                <td width="40%"> {{ $logbook->activity }}
-                                </td>
-                                <td>{{ $logbook->url_attachment }}</td>
+                                <td> {{ $key+1 }}</td>
+                                <td width="15%"> @php
+                                
+                                    $date = Carbon::parse($logbook->date)->locale('id') ;
+                                    $date->settings(['formatFunction' => 'translatedFormat']);
+                                    echo $date->format('j F Y');
+
+                                     @endphp </td>
+                                <td width="40%"> {{ $logbook->activity }} </td>
+                                <td>  <a href="{{ Storage::url('internship/logbook/'. $logbook->attachment_file)}}"
+                                    class="badge text-bg-success" target="__blank" style="font-size:14px; padding:10px;"> <i class="bi bi-eye"></i>  Preview </a>  </td>
                                 @if($logbook->note == null)
                                 <td width="20%">Belum ada catatan dari Pembimbing</td>
                                 @else
@@ -115,6 +121,12 @@
                                 @endif
                             </tr>
                             @endforeach
+                            
+                            
+
+
+
+                            
                         </tbody>
                     
                     </table>

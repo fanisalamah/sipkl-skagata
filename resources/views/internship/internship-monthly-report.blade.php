@@ -51,7 +51,7 @@
                                 <td> {{ $monthlyReport->InternshipSubmission->advisors->name }}</td> 
                                 @endif
                                 <td> {{ $monthlyReport->title }}</td>
-                                <td> <a href="{{ $monthlyReport->url_file }}" target="__blank"
+                                <td> <a href="{{ Storage::url('internship/monthly-report/'.  $monthlyReport->file)}}" target="__blank"
                                     style="background-color:#198754;color:white; text-decoration:none; padding:5px 6px 5px 6px;border-radius:5px;"> Preview file </a> </td>
                                     
                             </tr>
