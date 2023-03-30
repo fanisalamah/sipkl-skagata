@@ -84,34 +84,43 @@ Route::group(['middleware' => ['auth:web']], function() {
 // yang bisa diakses advisor
 Route::group(['middleware' => ['auth:advisor']], function() {
     Route::prefix('advisor')->group(function() {
-        Route::get('/dashboard', [AdvisorController::class, 'index'])->name('advisor.dashboard');  
-        Route::get('/student/data', [AdvisorController::class, 'studentData'])->name('advisor.student.data');
-        Route::get('/student/add', [AdvisorController::class, 'addStudent'])->name('advisor.student.add');
-        Route::post('/student/store', [AdvisorController::class, 'storeStudent'])->name('advisor.student.store');
-        Route::get('/student/edit/{id}', [AdvisorController::class, 'editStudent'])->name('advisor.student.edit');
-        Route::put('/student/update/{id}', [AdvisorController::class, 'updateStudent'])->name('advisor.student.update');
-        Route::post('/student/delete/{id}', [AdvisorController::class, 'deleteStudent'])->name('advisor.student.delete');
+        Route::get('/dashboard', [AdvisorController::class, 'index'])->name('advisor.dashboard');
         Route::get('/template_student', [Excel::class, 'download_local'])->name('advisor.download.template.student');
         Route::post('/import_student', [Excel::class, 'upload_local_student'])->name('advisor.upload.student');
-
-        Route::get('/industries/data', [IndustryController::class, 'industriDataAdv'])->name('advisor.industri.data');
-        Route::get('/industries/add', [IndustryController::class, 'addIndustriAdv'])->name('advisor.industri.add');
-        Route::post('/industries/store', [IndustryController::class, 'storeIndustriAdv'])->name('advisor.industri.store');
-        Route::get('/industries/edit/{id}', [IndustryController::class, 'editIndustriAdv'])->name('advisor.industri.edit');
-        Route::put('/industries/update/{id}', [IndustryController::class, 'updateIndustriAdv'])->name('advisor.industri.update');
-        Route::post('/industries/delete/{id}', [IndustryController::class, 'deleteIndustri'])->name('advisor.industri.delete');
         Route::get('/template_industri', [Excel::class, 'download_local'])->name('advisor.download.template.industri');
         Route::post('/import_industri', [Excel::class, 'upload_local_industry'])->name('advisor.upload.industri');
-        Route::get('/internship/submission', [AdvisorController::class, 'internshipSubmission'])->name('advisor.internship.submission');
-        Route::get('/internship/submission/{id}', [AdvisorController::class, 'filterJurusan']);
-        Route::post('/internship/submission/', [AdvisorController::class, 'updateSubmission'])->name('update.advisor');
-        Route::get('/internship/monitoring/', [AdvisorController::class, 'internshipMonitoring'])->name('advisor.internship.monitoring');
-        Route::get('/internship/monitoring/delete/{id}', [AdvisorController::class, 'deleteMonitoring'])->name('advisor.internship.monitoring.delete');
-        Route::get('/internship/monitoring/personal/{id}', [AdvisorController::class, 'personalMonitoring'])->name('advisor.internship.monitoring.personal');
-        Route::put('/internship/monitoring/personal/note/{id}', [AdvisorController::class, 'updateNote'])->name('update.note');
-        Route::get('/internship/monthly-report', [AdvisorController::class, 'monthlyReport'])->name('advisor.internship.monthly-report');
-        Route::get('/internship/report', [AdvisorController::class, 'finalReport'])->name('advisor.internship.report');
-        Route::post('/internship/report/score/{id}', [AdvisorController::class, 'updateScore'])->name('update.score');
+        Route::put('/advisor/update-password/{id}', [AdvisorController::class, 'updatePassword'])->name('advisor.update.password');
+        
+        Route::prefix('student')->group(function() {
+            Route::get('/data', [AdvisorController::class, 'studentData'])->name('advisor.student.data');
+            Route::get('/add', [AdvisorController::class, 'addStudent'])->name('advisor.student.add');
+            Route::post('/store', [AdvisorController::class, 'storeStudent'])->name('advisor.student.store');
+            Route::get('/edit/{id}', [AdvisorController::class, 'editStudent'])->name('advisor.student.edit');
+            Route::put('/update/{id}', [AdvisorController::class, 'updateStudent'])->name('advisor.student.update');
+            Route::post('/delete/{id}', [AdvisorController::class, 'deleteStudent'])->name('advisor.student.delete');
+        });
+
+        Route::prefix('industries')->group(function() {
+            Route::get('/data', [IndustryController::class, 'industriDataAdv'])->name('advisor.industri.data');
+            Route::get('/add', [IndustryController::class, 'addIndustriAdv'])->name('advisor.industri.add');
+            Route::post('/store', [IndustryController::class, 'storeIndustriAdv'])->name('advisor.industri.store');
+            Route::get('/edit/{id}', [IndustryController::class, 'editIndustriAdv'])->name('advisor.industri.edit');
+            Route::put('/update/{id}', [IndustryController::class, 'updateIndustriAdv'])->name('advisor.industri.update');
+            Route::post('/delete/{id}', [IndustryController::class, 'deleteIndustri'])->name('advisor.industri.delete');  
+        });
+
+        Route::prefix('internship')->group(function() {
+            Route::get('/submission', [AdvisorController::class, 'internshipSubmission'])->name('advisor.internship.submission');
+            Route::get('/submission/{id}', [AdvisorController::class, 'filterJurusan']);
+            Route::post('/submission/', [AdvisorController::class, 'updateSubmission'])->name('update.advisor');
+            Route::get('/monitoring/', [AdvisorController::class, 'internshipMonitoring'])->name('advisor.internship.monitoring');
+            Route::get('/monitoring/delete/{id}', [AdvisorController::class, 'deleteMonitoring'])->name('advisor.internship.monitoring.delete');
+            Route::get('/monitoring/personal/{id}', [AdvisorController::class, 'personalMonitoring'])->name('advisor.internship.monitoring.personal');
+            Route::put('/monitoring/personal/note/{id}', [AdvisorController::class, 'updateNote'])->name('update.note');
+            Route::get('/monthly-report', [AdvisorController::class, 'monthlyReport'])->name('advisor.internship.monthly-report');
+            Route::get('/report', [AdvisorController::class, 'finalReport'])->name('advisor.internship.report');
+            Route::post('/report/score/{id}', [AdvisorController::class, 'updateScore'])->name('update.score');
+        });
 
     });
     

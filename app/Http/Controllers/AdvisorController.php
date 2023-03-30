@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Helper\RedirectHelper;
+use App\Models\Advisor;
 use App\Models\Departement;
 use App\Models\InternshipLogbooks;
 use App\Models\InternshipMonthlyReport;
@@ -11,6 +12,7 @@ use App\Models\InternshipSubmission;
 use App\Models\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 class AdvisorController extends Controller
@@ -251,7 +253,41 @@ class AdvisorController extends Controller
         );
         //MASIH PR
         return redirect()->back()->with($notification); 
-        
+    }
+
+    public function updatePassword(Request $request, $id) {
+        $validator = Validator::make($request->all(), [
+            'oldPassword' => 'required',
+            'newPassword' => 'required',
+            ]);
+
+        if($validator->fails()){
+                $errors = $validator->errors()->all(':message');
+                return RedirectHelper::redirectBack(implode(' ',$errors), 'error');
+            }
+
+        $data = Advisor::find($id);
+        if(Hash::check($request->oldPassword, $data->password)) {
+
+            $data->password = bcrypt($request->newPassword);
+            $data->save();
+
+            $notification = array(
+                'message' => 'Password berhasil diupdate',
+                'alert-type' => 'success'
+            );
+            return redirect()->back()->with($notification);
+        }
+        else {
+            
+            $data->password = $data->password;
+            $data->save();
+            $notification = array(
+                'message' => 'Konfirmasi password salah',
+                'alert-type' => 'error'
+            );
+            return redirect()->back()->with($notification);
+        }
 
     }
 }

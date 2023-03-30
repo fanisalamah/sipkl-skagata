@@ -44,7 +44,7 @@
 
 
         
-        
+{{-- Modal         --}}
 <div class="modal fade" id="updatePassword{{ Auth::user()->id }}" tabindex="-1" role="dialog" aria-labelledby="updatePassword{{ Auth::user()->id }}" aria-hidden="true">
     <div class="modal-dialog" role="document">
     <div class="modal-content">
