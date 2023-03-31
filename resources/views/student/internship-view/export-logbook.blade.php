@@ -23,23 +23,60 @@
                 @foreach($internships as $key => $internship)
                 <table align="center">
                     <tr>
-                        <td width="25%">Nama : {{ Auth::user()->name }}&emsp;</td>
-                        <td>Industri : {{ $internship->industries->name }}&emsp;<br></td>
+                        <td width="30%">Nama : {{ Auth::user()->name }}&emsp;</td>
+                        <td width="40%">Industri : {{ $internship->industries->name }}&emsp;&emsp;<br></td>
                         <td>Advisor : {{ $internship->advisors->name }}  <br></td>
                     </tr>
                     <tr>
-                        <td width="25%">NIS : {{ Auth::user()->nis }}&emsp;</td>
-                        <td>Alamat : {{ $internship->industries->address }}&emsp;</td>
+                        <td width="30%">NIS : {{ Auth::user()->nis }}&emsp;</td>
+                        <td width="40%">Alamat : {{ $internship->industries->address }}&emsp;&emsp;</td>
                         <td>Jurusan : {{ Auth::user()->departement->name }}</td>
                     </tr>
                 </table>
                 @endforeach
         </p>
-        
+        <hr color="grey"> <br>
         <table class="static" align="center" rules="all" border="1px" style="width: 95%;">
-
+            <th>No</th>
+            <th width="13%">Tangal</th>
+            <th>Kegiatan</th>
+            <th>Catatan</th>
+            @foreach($submissions as $key => $submission)
+                @php $i=1 @endphp
+                @foreach($submission->internshipLogbooks->sortByDesc('date') as $logbook)              
+            <tr>
+                <td align="center">{{ $i++ }}</td>
+                <td align="center" width="20%">
+                    @php                  
+                        $date = Carbon::parse($logbook->date)->locale('id') ;
+                        $date->settings(['formatFunction' => 'translatedFormat']);
+                        echo $date->format('j F Y');
+                    @endphp
+                </td>
+                <td style="padding:3px 5px;"> {{ $logbook->activity }}</td>
+                <td style="padding:3px 5px; "> {{ $logbook->note }}</td>
+            </tr>
+                @endforeach
+            @endforeach
+        </table>
+        <BR>
+        <table class="static" align="center" rules="all" border="1px" style="width: 95%;">
+            <tr>
+                <td>Mengetahui,<td>
+            </tr>
+            <tr>
+                <td>Pihak Industri</td>
+            </tr>
+            <tr>
+                <td>NGOK</td>
+            </tr>
+            <tr>
+                <td>__________________</td>
+            </tr>
         </table>
     </div>
+
+    
     
 </body>
 </html>
