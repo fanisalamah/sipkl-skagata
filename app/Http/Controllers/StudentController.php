@@ -118,13 +118,20 @@ class StudentController extends Controller
                     $query->where('status', '=', 2) && ('student_id' == Auth::id());
                     
                 })->get();
-        
-        
-
-            // ini query untuk semua student yang statusnya 2 (accepted), dan idnya sesuai id user yang login
-
+            
         return view('student.internship-view.internship-logbook', $data);
 
+    }
+
+    public function exportLogbook() {
+        $data['internships'] = InternshipSubmission::where('student_id', Auth::id())->where('status', 2)->get();
+        $data['submissions'] = InternshipSubmission::with('internshipLogbooks')
+                ->whereHas('students', function ($query) {
+                    $query->where('status', '=', 2) && ('student_id' == Auth::id());
+                    
+                })->get();
+            
+        return view('student.internship-view.export-logbook', $data);
     }
 
     public function addLogbook() {
