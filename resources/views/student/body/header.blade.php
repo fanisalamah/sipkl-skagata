@@ -56,7 +56,6 @@
         <form action="{{ route('student.update.password', Auth::user()->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('put')
-            
             <div class="form-group">
                 <label for="oldPassword">Password saat ini</label>
                 <input type="password" class="form-control" id="oldPassword" name="oldPassword" placeholder="Masukkan password saat ini">
