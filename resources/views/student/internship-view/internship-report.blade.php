@@ -132,7 +132,7 @@
                                     <button type="submit" class="btn btn-danger" id="delete"
                                 onclick="sweetConfirm('/student/report/delete/{{ $report->id }}', 'Laporan Akhir')"
                                 @if($report->score_school != null || $report->score_industry != null) 
-                                <?= 'disabled'?>
+                                <?= 'disabled' ?>
                             @endif > Hapus</button>  
                                   </td>
                               </tr>
