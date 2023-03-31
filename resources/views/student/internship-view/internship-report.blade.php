@@ -26,12 +26,12 @@
                             @foreach($internships as $key => $internship)
                             <div class="col">Nama : {{ Auth::user()->name }}</div>
                             <div class="col-6"> Industri : {{ $internship->industries->name }}</div>
-                            <div class="col"> Jurusan : {{ Auth::user()->departement->name }}</div>
+                            <div class="col">  Advisor : {{ $internship->advisors->name }} </div>
                         </div>
                         <div class="row">
                             <div class="col">NIS : {{ Auth::user()->nis }}</div>
                             <div class="col-6"> Alamat : {{ $internship->industries->address }}</div>
-                            <div class="col">  Advisor : {{ $internship->advisors->name }} </div>
+                            <div class="col"> Jurusan : {{ Auth::user()->departement->name }}</div>
                             @endforeach
                         </div>
                     </div>
@@ -59,11 +59,6 @@
                     <div class="modal-body">
                         
                         <div class="form-group">
-                            <div class="col-md-12 mb-4">                                
-                                    <label for="title">Judul</label>
-                                    <input type="text" class="form-control" id="title" name="title" placeholder="Masukkan judul laporan">
-                            </div>
-
                               <div class="col-md-12 mb-4">
                                 <h6>Upload File (PDF, Maks. 3 MB)</h6>
                                 <input class="form-control" type="file" id="file" name="file">
@@ -92,32 +87,53 @@
                     <table class="table table-striped" id="">
                         <thead>
                             <tr>
-                                <th>No. </th>
-                                <th width="30%" >Judul</th>
-                                <th>File Laporan</th> 
-                                <th>Nilai Akhir</th>    
-                                <th width="5%">Aksi</th>    
+                                <th width="%">No. </th>
+                                <th width="20%">File Laporan</th> 
+                                <th width="20%">Nilai Sekolah</th> 
+                                <th width="20%">Nilai Industri</th> 
+                                <th width="20%">Nilai Akhir</th>    
+                                <th>Aksi</th>    
                             </tr>
                         </thead>
                             
                         <tbody>
                             
                                 @if($reports->isEmpty())
-                                <tr> <td colspan="5" style="text-align:center;"> Data tidak ditemukan</td></tr>
+                                <tr> <td colspan="6" style="text-align:center;"> Data tidak ditemukan</td></tr>
 
                                 @else
                               @foreach($reports as $key => $report)  
                               
                               <tr>
                                   <td> {{ $key+1 }} </td>
-                                  <td> {{ $report->title }}</td>
                                   <td> <a href="{{ Storage::url('internship/report/'. $report->url_file)}}"
                                       class="badge text-bg-success" target="__blank" style="font-size:14px; padding:10px;"> <i class="bi bi-eye"></i>  Preview file </a>  </td>
-                                  
+                                @if($report->score_school == null)
+                                  <td>  Nilai belum tersedia </td>
+                                  @else
+                                  <td> {{ $report->score_school }} </td>
+                                @endif
+
+                                @if($report->score_industry == null)
+                                  <td>  Nilai belum tersedia </td>
+                                  @else
+                                  <td> {{ $report->score_industry }} </td>
+                                @endif
+
+                                @if($report->final_score == null)
+                                  <td>  Nilai belum tersedia </td>
+                                  @else
                                   <td> {{ $report->final_score }} </td>
-                                      <td width="20%">
+                                @endif
+
+                                
+                                  
+                                      <td>
                                     <button type="submit" class="btn btn-danger" id="delete"
-                                    onclick="sweetConfirm('/student/delete/monthly-report/{{ $report->id }}', 'Laporan Bulanan')"> Hapus</button>  
+                                onclick="sweetConfirm('/student/report/delete/{{ $report->id }}', 'Laporan Akhir')"
+                                @if($report->score_school != null || $report->score_industry != null) 
+                                <?= 'disabled'?>
+                            @endif > Hapus</button>  
                                   </td>
                               </tr>
 

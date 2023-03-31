@@ -217,17 +217,12 @@ class StudentController extends Controller
     }
 
     public function deleteLogbook($id) {
-        try {
-
+        
             $logbook = InternshipLogbooks::find($id);
             Storage::disk('public')->delete('internship/logbook/'. $logbook->attachment_file);
             $logbook->delete();
             return redirect()->route('student.logbook');
-        }
-
-        catch(\Exception $e) {
-            $e->getMessage();
-        }
+      
     }
 
     public function monthlyReport() {
@@ -348,7 +343,6 @@ class StudentController extends Controller
 
         public function storeReport(Request $request) {
             $validator = Validator::make($request->all(), [
-                'title' => 'required',
                 'file' => 'required|mimes:pdf|max:3072',
             ]);
 
@@ -364,7 +358,6 @@ class StudentController extends Controller
             $data = new InternshipReports();
             $id_internship = InternshipSubmission::where('student_id', Auth::id())->where('status', 2)->get(); 
             $data->internship_submission_id = $id_internship[0]->id;
-            $data->title = $request->title;
             $data->url_file = $fileNameSimpan;
             $data->save();
 
@@ -381,6 +374,15 @@ class StudentController extends Controller
             $file = new FileHelper();
             $fileName = $file->handle($uploadedFile, InternshipReports::getUploadPath());
             return $fileName;
+        }
+
+        public function deleteReport($id) {
+
+            $report = InternshipReports::find($id);
+            Storage::disk('public')->delete('internship/report/'. $report->url_file);
+            $report->delete();
+            return redirect()->route('internship.report');            
+
         }
 
         public function updatePassword(Request $request, $id) {

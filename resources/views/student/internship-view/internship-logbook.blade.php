@@ -53,7 +53,7 @@
                                 <th width="28%">Kegiatan</th>
                                 <th>Lampiran</th>
                                 <th width="25%">Catatan</th>
-                                <th width="9%">Aksi</th>
+                                <th width="25%">Aksi</th>
                             </tr>
                             
                         </thead>
