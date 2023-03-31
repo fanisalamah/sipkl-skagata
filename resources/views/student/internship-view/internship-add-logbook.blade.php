@@ -34,7 +34,7 @@
                         <div class="col-md-6 col-12">
                           <div class="form-group mandatory">
                             <label for="date">Tanggal<span style="color:#DF2E38;">*</span></label>
-                            <input type="date" id="date" class="form-control" placeholder="Pilih tanggal" name="date">
+                            <input type="datetime-local" id="date" class="form-control flatpickr-no-config flatpickr-input" placeholder="Pilih tanggal" name="date">
                           </div>
                         </div>
 

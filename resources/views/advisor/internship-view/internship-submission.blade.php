@@ -16,7 +16,7 @@
                     <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="#">Praktik Kerja Lapangan</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Pengajuan</li>
+                            <li class="breadcrumb-item active" aria-current="page">Daftar Siswa</li>
                         </ol>
                     </nav>
                 </div>
@@ -33,7 +33,7 @@
                         <!-- FILTER button -->
                     <div class="btn-group">
                         <button type="button" class="btn btn-primary dropdown-toggle mb-3" data-bs-toggle="dropdown" aria-expanded="false"> 
-                        Pilih Jurusan
+                        Pilih Jurusan 
                         </button>
                         <ul class="dropdown-menu">
 

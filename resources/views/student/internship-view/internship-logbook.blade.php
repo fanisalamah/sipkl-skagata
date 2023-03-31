@@ -29,12 +29,12 @@
                             @foreach($internships as $key => $internship)
                             <div class="col">Nama : {{ Auth::user()->name }}</div>
                             <div class="col-6"> Industri : {{ $internship->industries->name }}</div>
-                            <div class="col"> Jurusan : {{ Auth::user()->departement->name }}</div>
+                            <div class="col">  Advisor : {{ $internship->advisors->name }} </div>
                         </div>
                         <div class="row">
                             <div class="col">NIS : {{ Auth::user()->nis }}</div>
                             <div class="col-6"> Alamat : {{ $internship->industries->address }}</div>
-                            <div class="col">  Advisor : {{ $internship->advisors->name }} </div>
+                            <div class="col"> Jurusan : {{ Auth::user()->departement->name }}</div>
                             @endforeach
                         </div>
                     </div>

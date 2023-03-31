@@ -28,12 +28,12 @@
                         <div class="row">
                             <div class="col">Nama : {{ $internship->students->name }}</div>
                             <div class="col-6"> Industri : {{ $internship->industries->name }}</div>
-                            <div class="col"> Jurusan : {{ $internship->students->departement->name }}</div>
+                            <div class="col">  Advisor : {{ $internship->advisors->name }} </div>
                         </div>
                         <div class="row">
                             <div class="col">NIS : {{ $internship->students->nis }}</div>
                             <div class="col-6"> Alamat : {{ $internship->industries->address }}</div>
-                            <div class="col">  Advisor : {{ $internship->advisors->name }} </div>
+                            <div class="col"> Jurusan : {{ $internship->students->departement->name }}</div>
                         </div>
                     </div>
                     
@@ -73,7 +73,7 @@
                             @else
                                 <td style="font-weight:bold;"> {{ $logbook->note }}</td>
                             @endif
-                            <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal{{ $logbook->id }}"  style="background-color:#1d8455; border:none;" data-toggle="tooltip" data-placement="top" title="Tambah Catatan" ><i class="bi bi-plus"></i></button></td>
+                            <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal{{ $logbook->id }}"  style="background-color:#1d8455; border:none;"  data-toggle="tooltip" data-placement="top" title="Tambah Catatan" ><i class="bi bi-plus"></i></button></td>
                             </tr>
                             @endforeach
                             

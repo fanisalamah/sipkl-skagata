@@ -23,13 +23,12 @@
             <div class="card">
                 
                 <div class="card-body">
-                    <h4 class="card-title">Alur Pengajuan PKL</h4>
+                    <h4 class="card-title">Alur Pengajuan Praktik Kerja Lapangan</h4>
                         <ol>
-                            <li>Informasi tentang daftar industri melalui laman <span style="color:#198754; font-weight:bold;">Data Industri </span> </li>
+                            <li>Informasi tentang daftar industri dapat diakses melalui laman <span style="color:#198754; font-weight:bold;">Data Industri </span> </li>
                             <li>Pengajuan PKL dapat dilakukan melalui laman <span style="color:#198754; font-weight:bold;">Pengajuan PKL</span> dengan
                             menyertakan <i>Letter of Acceptance(LOA)</i> dari industri yang bersangkutan </li>
-                            <li>Pengajuan PKL dapat dilakukan melalui laman <span style="color:#198754; font-weight:bold;">Pengajuan PKL</span> dengan
-                                menyertakan <i>Letter of Acceptance(LOA)</i> dari industri yang bersangkutan </li>
+                            
                         </ol>
                     
                 </div>

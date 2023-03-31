@@ -71,11 +71,18 @@ class IndustryController extends Controller
     }
 
     public function storeIndustriAdv(Request $request) {
-        $validatedData = $request->validate([
+
+        $validator = Validator::make($request->all(), [
             'name' => 'required|unique:industries',
             'address' => 'required',
-
         ]);
+
+        if($validator->fails()){
+            $errors = $validator->errors()->all(':message');
+            return RedirectHelper::redirectBack(implode(' ',$errors), 'error');
+
+        }
+
 
         $data = new Industry();
         $data->name = $request->name;
@@ -115,7 +122,16 @@ class IndustryController extends Controller
     }
 
     public function updateIndustriAdv(Request $request, $id) {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|unique:industries',
+            'address' => 'required',
+        ]);
 
+        if($validator->fails()){
+            $errors = $validator->errors()->all(':message');
+            return RedirectHelper::redirectBack(implode(' ',$errors), 'error');
+
+        }
         $data = Industry::find($id);
         $data->name = $request->name;
         $data->address = $request->address;

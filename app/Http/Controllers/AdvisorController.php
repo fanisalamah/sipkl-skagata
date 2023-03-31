@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Helper\RedirectHelper;
 use App\Models\Advisor;
 use App\Models\Departement;
+use App\Models\Industry;
 use App\Models\InternshipLogbooks;
 use App\Models\InternshipMonthlyReport;
 use App\Models\InternshipReports;
@@ -18,7 +19,11 @@ use Illuminate\Support\Facades\Validator;
 class AdvisorController extends Controller
 {
     public function index() {
-        return view('advisor.index');
+        $data['student'] = Student::all();
+        $data['advisor'] = Advisor::all();
+        $data['industry'] = Industry::all();
+        $data['internship_submission'] = InternshipSubmission::where('advisor_id', '=', Auth::user()->id)->get();
+        return view('advisor.index', $data);
     }
 
     public function studentData() {
@@ -71,7 +76,7 @@ class AdvisorController extends Controller
 
     public function updateStudent(Request $request, $id) {
         $validator = Validator::make($request->all(), [
-            'nis' => 'required|unique:users',
+            'nis' => 'required',
             'name' => 'required',
             'email' => 'required|unique:users',
             'departement_id' => 'required',
@@ -138,6 +143,26 @@ class AdvisorController extends Controller
                         $query->where('id', '=', 4)->where('advisor_id', '=', null);
                     })->get();
                     break;
+                case 5:
+                    $data['allDataSub'] = InternshipSubmission::whereHas('students.departement', function ($query) {
+                         $query->where('id', '=', 5)->where('advisor_id', '=', null);
+                     })->get();
+                     break;
+                case 6:
+                    $data['allDataSub'] = InternshipSubmission::whereHas('students.departement', function ($query) {
+                         $query->where('id', '=', 6)->where('advisor_id', '=', null);
+                      })->get();
+                      break;     
+                 case 7:
+                    $data['allDataSub'] = InternshipSubmission::whereHas('students.departement', function ($query) {
+                         $query->where('id', '=', 7)->where('advisor_id', '=', null);
+                      })->get();
+                      break; 
+                 case 8:
+                    $data['allDataSub'] = InternshipSubmission::whereHas('students.departement', function ($query) {
+                         $query->where('id', '=', 8)->where('advisor_id', '=', null);
+                      })->get();
+                      break;                       
                 default:
                     $data['allDataSub'] = InternshipSubmission::with('students', 'industries')
                     ->whereHas('students', function ($query) {

@@ -41,7 +41,7 @@
                                         <div class="col-md-6 col-12">
                                             <div class="form-group mandatory">
                                                 <label for="nis" class="form-label">NIS</label>
-                                                <input type="text" name="NIS" id="NIS" class="form-control" value="{{ $editData['users']->nis }}" data-parsley-required="true">
+                                                <input type="text" name="nis" id="nis" class="form-control" value="{{ $editData['users']->nis }}" data-parsley-required="true">
                                             </div>
                                         </div>
                                         {{-- <div class="col-md-6 col-12">

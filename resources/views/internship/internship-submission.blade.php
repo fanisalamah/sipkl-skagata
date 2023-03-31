@@ -62,7 +62,7 @@
                                 <td>{{ $submission->students->name}}</td>
                                 <td>{{ $submission->students->departement->name }}</td>
                                 <td>{{ $submission->industries->name }}</td>
-                                <td><a href="{{ $submission->acceptance_file }}" class="btn btn-success" target="_blank"> Lihat Lampiran <i class="bi bi-eye"></i> </a> </td>
+                                <td><a href="{{ Storage::url('internship/letter-of-acceptance/'. $submission->acceptance_file)}}" class="btn btn-success" target="_blank"> Lihat Lampiran <i class="bi bi-eye"></i> </a> </td>
                                 
                                 <td width="12%">
                                   <div class="d-flex justify-content-center">

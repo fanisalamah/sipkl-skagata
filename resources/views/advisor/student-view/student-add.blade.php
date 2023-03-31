@@ -16,7 +16,7 @@
                     <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="#">Manajemen Siswa</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Data Siswa</li>
+                            <li class="breadcrumb-item active" aria-current="page">Tambah Data Siswa</li>
                         </ol>
                     </nav>
                 </div>

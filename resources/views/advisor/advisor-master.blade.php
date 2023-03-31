@@ -7,7 +7,7 @@
     <title>SIMPKL - Dashboard</title>
     
     {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css"> --}}
-    
+    <link rel="stylesheet" href="{{ asset('assets/css/shared/iconly.css') }}">    
     
     <link rel="stylesheet" href="{{ asset('assets/css/main/app.css') }}">
     <link rel="shortcut icon" href="{{ asset('assets/images/logo/logo.png') }}" type="image/x-icon">
@@ -49,7 +49,7 @@
     function sweetConfirm(url, title) {
 		   let endpointUrl = url;
 		   swal({
-			   title: `Hapus data ${title}?`,
+			   title: `Hapus ${title}?`,
 			   text: `Data yang terhapus tidak dapat dikembalikan lagi`,
 			   type: "warning",
 			   showCancelButton: !0,
