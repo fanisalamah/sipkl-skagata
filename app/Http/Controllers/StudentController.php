@@ -22,7 +22,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\File; 
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Hash;
 
 class StudentController extends Controller
 {   
@@ -382,6 +383,40 @@ class StudentController extends Controller
             return $fileName;
         }
 
+        public function updatePassword(Request $request, $id) {
+            $validator = Validator::make($request->all(), [
+                'oldPassword' => 'required',
+                'newPassword' => 'required',
+                ]);
+    
+            if($validator->fails()){
+                    $errors = $validator->errors()->all(':message');
+                    return RedirectHelper::redirectBack(implode(' ',$errors), 'error');
+                }
+    
+            $data = Student::find($id);
+            if(Hash::check($request->oldPassword, $data->password)) {
+    
+                $data->password = bcrypt($request->newPassword);
+                $data->save();
+    
+                $notification = array(
+                    'message' => 'Password berhasil diupdate',
+                    'alert-type' => 'success'
+                );
+                return redirect()->back()->with($notification);
+            }
+            else {
+                
+                $data->password = $data->password;
+                $data->save();
+                $notification = array(
+                    'message' => 'Konfirmasi password salah',
+                    'alert-type' => 'error'
+                );
+                return redirect()->back()->with($notification);
+            }
+        }
 }
 
  

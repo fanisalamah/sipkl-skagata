@@ -134,7 +134,10 @@ Route::group(['middleware' => ['auth:student']], function() {
 
     Route::prefix('student')->group(function() {
         Route::get('/dashboard', [StudentController::class, 'index'])->name('student.dashboard');
+        Route::put('/student/update-password/{id}', [StudentController::class, 'updatePassword'])->name('student.update.password');
+
         Route::get('/industries/data', [StudentController::class, 'industriData'])->name('student.industry-data');
+
         Route::get('/internship/submission', [StudentController::class, 'internshipSubmission'])->name('student.internship-submission');
         Route::post('/internship/submission/store/{id}', [StudentController::class, 'storeSubmission'])->name('student.internship-store');
         Route::get('/internship/status', [StudentController::class, 'internshipStatus'])->name('student.internship-status');
