@@ -40,9 +40,15 @@
             <th width="13%">Tangal</th>
             <th>Kegiatan</th>
             <th width="17%">Catatan</th>
+            
+            @php
+                $tanggal_awal = Carbon::createFromFormat('d-m-Y', $tanggal[0]);
+                $tanggal_akhir = Carbon::createFromFormat('d-m-Y', $tanggal[1]);   
+            @endphp
+            
             @foreach($submissions as $key => $submission)
                 @php $i=1 @endphp
-                @foreach($submission->internshipLogbooks->sortByDesc('date') as $logbook)              
+                @foreach($submission->internshipLogbooks->whereBetween('date', [$tanggal_awal, $tanggal_akhir])->sortBy('date') as $logbook)              
             <tr>
                 <td align="center">{{ $i++ }}</td>
                 <td align="center" width="20%">

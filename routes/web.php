@@ -158,7 +158,8 @@ Route::group(['middleware' => ['auth:student']], function() {
         Route::post('/report/store', [StudentController::class, 'storeReport'])->name('store.internship.report');
         Route::post('/report/delete/{id}', [StudentController::class, 'deleteReport'])->name('delete.internship.report');
 
-        Route::get('/export-logbook', [StudentController::class, 'exportLogbook'])->name('student.export.logbook');
+        Route::get('/export-logbook/{date}', [StudentController::class, 'exportLogbook'])->name('student.export.logbook');
+        Route::post('/export-logbook', [StudentController:: class, 'exportFilteredLogbook'])->name('student.export.logbook.filtered');
         
     });
     

@@ -132,8 +132,10 @@
             dateFormat: "d-m-Y",
         });
 
+
         flatpickr('.flatpickr-date-range', {
             mode: "range",
+            dateFormat: "d-m-Y",
         });
     </script>
     

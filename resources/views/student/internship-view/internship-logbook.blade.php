@@ -37,11 +37,11 @@
                             <div class="col"> Jurusan : {{ Auth::user()->departement->name }}</div>
                             @endforeach
                         </div>
+                        <br>
                     </div>
                     
-                     <a href="{{ route('student.add-logbook') }}" class="btn btn-primary" style="margin-top:10px;"> <i class="bi bi-plus"></i> Tambah logbook </a>
-                    <a href="#" class="btn btn-secondary flatpickr-date-range" style="margin-top:10px;"> <i class="bi bi-printer"></i> &nbsp; Export PDF </a>
-                    {{-- <input type="datetime-local" class="form-control flatpickr-date-range" placeholder="Pilih tanggal.." id="" name=""> --}}
+                        <a href="{{ route('student.add-logbook') }}" class="btn btn-primary" style="margin-top:10px;"> <i class="bi bi-plus"></i> Tambah logbook </a> 
+                        <a href="#" class="btn btn-secondary" style="margin-top:10px;" data-toggle="modal" data-target="#exportLogbook"><i class="bi bi-printer"></i> &nbsp; Export PDF</a>                    
                 </div>
 
                 <div class="card-body">
@@ -73,6 +73,7 @@
                                     $date = Carbon::parse($logbook->date)->locale('id') ;
                                     $date->settings(['formatFunction' => 'translatedFormat']);
                                     echo $date->format('D, j F Y');
+                                    
 
                                 @endphp
                                     
@@ -114,6 +115,42 @@
     </div>
     
                  
+                </div>
+                {{-- Modal --}}
+                <div class="modal fade" id="exportLogbook" tabindex="-1" role="dialog" aria-labelledby="exportLogbook" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h5 class="modal-title" id="exportLogbook">Export Logbook</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        </div>
+                        <div class="modal-body">
+                        <form action="{{ route('student.export.logbook.filtered') }}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            <div class="form-group">
+                              <div class="container">
+
+                                  <div class="row">
+                                      <div class="col-12"> 
+                                          <div class="form-group">
+                                              <label for="basicInput">Pilih tanggal</label>
+                                              
+                                                <div class="input-group">
+                                                    <input type="text" id="date" name="date" class="form-control flatpickr-date-range">
+                                                    <button  type="submit" class="btn btn-secondary"> <i class="bi bi-printer"></i> &nbsp; Export PDF </button>
+                                                </div>
+                                             
+                                            </div>
+                                      </div>
+                                  </div>
+                              </div>
+                            </div>
+                        </form>
+                        </div>
+                    </div>
+                    </div>
                 </div>
 
 @endsection

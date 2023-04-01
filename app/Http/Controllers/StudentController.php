@@ -134,6 +134,21 @@ class StudentController extends Controller
         return view('student.internship-view.export-logbook', $data);
     }
 
+    public function exportFilteredLogbook(Request $request) {
+       $data['tanggal']= explode(' to ', $request->date);
+       
+       $data['internships'] = InternshipSubmission::where('student_id', Auth::id())->where('status', 2)->get();
+       $data['submissions'] = InternshipSubmission::with('internshipLogbooks')
+                ->whereHas('students', function ($query) {
+                    $query->where('status', '=', 2) && ('student_id' == Auth::id());
+                })->get();
+
+        return view('student.internship-view.export-logbook', $data);
+       
+
+    }
+
+
     public function addLogbook() {
         return view('student.internship-view.internship-add-logbook');
     }
@@ -158,7 +173,7 @@ class StudentController extends Controller
         $data = new InternshipLogbooks();
         $dataPKL = InternshipSubmission::where('student_id', Auth::id())->where('status', 2)->get(); 
         $data->internship_submission_id = $dataPKL[0]->id;
-        $data->date = $request->date;
+        $data->date = Carbon::createFromFormat('d-m-Y', $request->date);
         $data->activity = $request->activity;
         $data->note = '';
         $data->attachment_file = $fileNameSimpan;
