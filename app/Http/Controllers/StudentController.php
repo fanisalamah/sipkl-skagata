@@ -143,6 +143,7 @@ class StudentController extends Controller
                     $query->where('status', '=', 2) && ('student_id' == Auth::id());
                 })->get();
 
+
         return view('student.internship-view.export-logbook', $data);
        
 

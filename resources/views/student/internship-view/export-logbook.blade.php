@@ -17,7 +17,7 @@
 
 <body>
     <div class="form-group">
-        <p align="center"> <b> Logbook Kegiatan Praktik Kerja Lapangan </b> </p>
+        <p> <h2 align="center"> Logbook Kegiatan Praktik Kerja Lapangan </h2> </p>
         <p align="center">
                 @foreach($internships as $key => $internship)
                 <table align="center">
@@ -36,7 +36,7 @@
         </p>
         <hr color="grey"> <br>
         <table class="static" align="center" rules="all" border="1px" style="width: 95%;">
-            <th>No</th>
+            <th width="5%">No</th>
             <th width="13%">Tangal</th>
             <th>Kegiatan</th>
             <th width="17%">Catatan</th>
@@ -50,7 +50,7 @@
                 @php $i=1 @endphp
                 @foreach($submission->internshipLogbooks->whereBetween('date', [$tanggal_awal, $tanggal_akhir])->sortBy('date') as $logbook)              
             <tr>
-                <td align="center">{{ $i++ }}</td>
+                <td align="center" width="5%">{{ $i++ }}</td>
                 <td align="center" width="20%">
                     @php                  
                         $date = Carbon::parse($logbook->date)->locale('id') ;
@@ -84,7 +84,10 @@
 
     <script type="text/javascript">
         window.print();
-
+        // document.location.href = return view('student.internship-view.internship-logbook');
+        window.onafterprint = function(event) {
+        window.location.href = '/student/logbook';
+};
     </script>
     
 </body>

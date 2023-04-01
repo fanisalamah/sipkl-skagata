@@ -127,6 +127,8 @@
     <script src="{{ asset('assets/selectpicker/script.js') }}"> </script>
     
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+    
     <script>
         flatpickr("input[type=datetime-local]", {
             dateFormat: "d-m-Y",
