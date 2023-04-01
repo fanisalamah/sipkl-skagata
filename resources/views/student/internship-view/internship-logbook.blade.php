@@ -40,7 +40,8 @@
                     </div>
                     
                      <a href="{{ route('student.add-logbook') }}" class="btn btn-primary" style="margin-top:10px;"> <i class="bi bi-plus"></i> Tambah logbook </a>
-                    <a href="{{ route('student.export.logbook') }}" class="btn btn-secondary" style="margin-top:10px;" target="_blank"> <i class="bi bi-printer"></i> &nbsp; Export PDF </a>
+                    <a href="#" class="btn btn-secondary flatpickr-date-range" style="margin-top:10px;"> <i class="bi bi-printer"></i> &nbsp; Export PDF </a>
+                    {{-- <input type="datetime-local" class="form-control flatpickr-date-range" placeholder="Pilih tanggal.." id="" name=""> --}}
                 </div>
 
                 <div class="card-body">
@@ -71,7 +72,7 @@
                                 
                                     $date = Carbon::parse($logbook->date)->locale('id') ;
                                     $date->settings(['formatFunction' => 'translatedFormat']);
-                                    echo $date->format('j F Y');
+                                    echo $date->format('D, j F Y');
 
                                 @endphp
                                     

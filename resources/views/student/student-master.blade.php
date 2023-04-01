@@ -128,8 +128,15 @@
     
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script>
-        flatpickr("input[type=datetime-local]", {});
+        flatpickr("input[type=datetime-local]", {
+            dateFormat: "d-m-Y",
+        });
+
+        flatpickr('.flatpickr-date-range', {
+            mode: "range",
+        });
     </script>
+    
     
 </body>
 
