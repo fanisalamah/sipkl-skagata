@@ -12,10 +12,9 @@
             border:1px solid black;
         }
     </style>
-
-
     <title>Export Logbook</title>
 </head>
+
 <body>
     <div class="form-group">
         <p align="center"> <b> Logbook Kegiatan Praktik Kerja Lapangan </b> </p>
@@ -40,7 +39,7 @@
             <th>No</th>
             <th width="13%">Tangal</th>
             <th>Kegiatan</th>
-            <th>Catatan</th>
+            <th width="17%">Catatan</th>
             @foreach($submissions as $key => $submission)
                 @php $i=1 @endphp
                 @foreach($submission->internshipLogbooks->sortByDesc('date') as $logbook)              
@@ -59,24 +58,28 @@
                 @endforeach
             @endforeach
         </table>
-        <BR>
-        <table class="static" align="center" rules="all" border="1px" style="width: 95%;">
+        <BR><BR><BR>
+        <table align="center" style="width: 95%; position: relative;">
             <tr>
-                <td>Mengetahui,<td>
+                <td>Mengetahui,<td>     
             </tr>
             <tr>
-                <td>Pihak Industri</td>
+                <td>Pihak Industri<td>     
             </tr>
             <tr>
-                <td>NGOK</td>
+                <td><br><br><br><br><td>     
             </tr>
             <tr>
-                <td>__________________</td>
+                <td>_________________<td>     
             </tr>
+            
         </table>
     </div>
 
-    
+    <script type="text/javascript">
+        window.print();
+
+    </script>
     
 </body>
 </html>
