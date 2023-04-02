@@ -261,14 +261,11 @@ class AdvisorController extends Controller
         $nilai_3 = $request->inisiatif;
         $nilai_4 = $request->tanggungjawab;
         $nilai_5 = $request->kejujuran;
-        $nilai_6 = $request->aspek1;
-        $nilai_7 = $request->aspek2;
-        $nilai_8 = $request->aspek3;
-        $nilai_9 = $request->aspek4;
-        $nilai_10 = $request->aspek5;
+        $nilai_6 = $request->laporan;
+        $nilai_7 = $request->presentasi;
 
         $report->score_industry = ($nilai_1 + $nilai_2 + $nilai_3 + $nilai_4 + $nilai_5) / 5;
-        $report->score_school = ($nilai_6 + $nilai_7 + $nilai_8 + $nilai_9 + $nilai_10) / 5;;
+        $report->score_school = ($nilai_6 + $nilai_7) / 2;
         $report->final_score = ($report->score_industry + $report->score_school)/2;
         $report->save();
 

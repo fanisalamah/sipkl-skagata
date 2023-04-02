@@ -46,13 +46,8 @@
                                 <td>{{ $report->internshipSubmission->students->name }}</td>
                                 <td> {{ $report->internshipSubmission->industries->name }}</td>
                                 <td> <a href="{{ Storage::url('internship/report/'.  $report->url_file)}} " class="badge text-bg-success" target="__blank" style="font-size:14px; padding:10px;" > <i class="bi bi-eye"></i>  Preview</td>
-                            @if($report->score_industry == null && $report->score_school == null)
+                            @if($report->final_score == null)
                                 <td style="font-style:italic;"> Belum ada nilai</td>
-                            
-                            @elseif($report->score_industry == null && $report->score_school != null)
-                            <td style="font-weight:bold;"> Nilai dari industri belum diinput</td>
-                            @elseif($report->score_industry != null && $report->score_school == null)
-                            <td style="font-weight:bold;"> Nilai dari sekolah belum diinput</td>
                             @else 
                             <td style="font-weight:bold;"> {{ $report->final_score }}</td>
                             @endif
@@ -99,22 +94,8 @@
                                             </div>
                                             <div class="col-6"> 
                                                 <div class="form-group">
-                                                    <label for="basicInput">Aspek 1</label>
-                                                    <input type="text" class="form-control" id="aspek1" name="aspek1">
-                                                  </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-6"> 
-                                                <div class="form-group">
                                                     <label for="basicInput">Kerjasama</label>
                                                     <input type="text" class="form-control" id="kerjasama" name="kerjasama">
-                                                  </div>
-                                            </div>
-                                            <div class="col-6"> 
-                                                <div class="form-group">
-                                                    <label for="basicInput">Aspek 2</label>
-                                                    <input type="text" class="form-control" id="aspek2" name="aspek2">
                                                   </div>
                                             </div>
                                         </div>
@@ -127,22 +108,8 @@
                                             </div>
                                             <div class="col-6"> 
                                                 <div class="form-group">
-                                                    <label for="basicInput">Aspek 3</label>
-                                                    <input type="text" class="form-control" id="aspek3" name="aspek3">
-                                                  </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-6"> 
-                                                <div class="form-group">
                                                     <label for="basicInput">Tanggung Jawab</label>
                                                     <input type="text" class="form-control" id="tanggungjawab" name="tanggungjawab">
-                                                  </div>
-                                            </div>
-                                            <div class="col-6"> 
-                                                <div class="form-group">
-                                                    <label for="basicInput">Aspek 4</label>
-                                                    <input type="text" class="form-control" id="aspek4" name="aspek4">
                                                   </div>
                                             </div>
                                         </div>
@@ -155,9 +122,20 @@
                                             </div>
                                             <div class="col-6"> 
                                                 <div class="form-group">
-                                                    <label for="basicInput">Aspek 5</label>
-                                                    <input type="text" class="form-control" id="aspek5" name="aspek5">
+                                                    <label for="basicInput">Laporan</label>
+                                                    <input type="text" class="form-control" id="laporan" name="laporan">
                                                   </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-6"> 
+                                                <div class="form-group">
+                                                    <label for="basicInput">Presentasi</label>
+                                                    <input type="text" class="form-control" id="presentasi" name="presentasi">
+                                                  </div>
+                                            </div>
+                                            <div class="col-6"> 
+                                                
                                             </div>
                                         </div>
                                         <div class="row">
